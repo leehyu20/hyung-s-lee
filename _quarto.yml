@@ -5,6 +5,7 @@ project:
 website:
   title: "Hyung S. Lee"
   site-url: "https://leehyu20.github.io/hyung-s-lee/"
+  google-analytics: "G-E3LRN9QKM0"
   navbar:
     background: primary
     left:
