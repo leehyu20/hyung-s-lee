@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Hyung S. Lee</title>
+<link>https://leehyu20.github.io/hyung-s-lee/posts/index.html</link>
+<atom:link href="https://leehyu20.github.io/hyung-s-lee/posts/index.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.3.450</generator>
+<lastBuildDate>Sat, 03 Oct 2026 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>Mathematical Formulation of DSteele</title>
+  <dc:creator>Hyung S. Lee, Ph.D., P.E.</dc:creator>
+  <link>https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<div class="article-series-label">
+<p><strong>DSteele Article Series · DS-02</strong></p>
+</div>
+<section id="purpose-and-scope" class="level2">
+<h2 class="anchored" data-anchor-id="purpose-and-scope">Purpose and Scope</h2>
+<p>DS-01 introduced DSteele from the perspective of its development, motivation, implementation, and application to moving-load and Traffic Speed Deflectometer (TSD) analysis. This companion article documents the mathematical formulation underlying the model. The derivation that follows is retained from my original, unpublished DSteele formulation manuscript with only the surrounding context reorganized for this article.</p>
+<p>The purpose of DS-02 is not to reproduce the DSteele source code. Rather, it is to document the mechanics and mathematical structure of the solution: the governing equations, transformation to the wavenumber domain, spectral-element stiffness formulation for finite layers and the semi-infinite halfspace, treatment of elastic and viscoelastic properties, global assembly, moving surface loading, and inverse-transformation of the response back to the physical domain.</p>
+</section>
+<section id="mathematical-development-of-dsteele" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-development-of-dsteele">Mathematical Development of DSteele</h2>
+<p>As indicated in one of my previous LinkedIn posts (<a href="https://lnkd.in/p/eWKApk64">original LinkedIn post</a>), I derived the mathematical derivation of DSteele by hand. The hand-written derivation extended across more than twenty pages and included the displacement-potential solution, evaluation of displacement and stress components at layer boundaries that were ultimately used to construct the spectral-element stiffness matrix.</p>
+<p>Development of the formulation was iterative. Because an error discovered late in the derivation could propagate into the layer stiffness matrices, portions of the derivation were restarted and checked repeatedly before being translated into code. The photographs below preserve part of that original development record. They are included as technical provenance for the formulation, not as a substitute for the mathematical development that follows.</p>
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image1.jpg" style="width:6.35in;height:4.7625in"></p>
+<p><em>Figure 1. Original handwritten derivation developed during the formulation of DSteele. The derivation progressed from the governing equations and displacement potentials through finite-layer displacement and stress relationships used to construct the spectral-element stiffness matrices.</em></p>
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image2.jpg" style="width:4.8in;height:6.4in"></p>
+<p><em>Figure 2. Close-up from the original handwritten development of the finite-layer displacement relationships, including evaluation of displacement components at the upper and lower layer boundaries prior to their organization in matrix form.</em></p>
+</section>
+<section id="detailed-dsteele-formulation" class="level2">
+<h2 class="anchored" data-anchor-id="detailed-dsteele-formulation">Detailed DSteele Formulation</h2>
+<p>The formulation proceeds from the three-dimensional equations of motion for an elastic, homogeneous continuum. Helmholtz decomposition is then used to express the displacement field in terms of scalar and vector potentials. For a load moving at constant speed, the solution is written in a two-dimensional Fourier representation so that derivatives with respect to space and time can be handled algebraically in the transformed domain.</p>
+<p>The resulting harmonic solutions are used to derive stiffness matrices for two-noded finite-thickness layers and a one-noded semi-infinite element. Elastic or viscoelastic layer properties are incorporated into those element relationships, after which the individual elements are assembled into the global pavement system. The transformed nodal response is solved for each wavenumber pair and subsequently transformed back to obtain the pavement response associated with the moving load. Details of DSteele formulation is provided in the following.</p>
+</section>
+<section id="formulation-of-dsteele" class="level2">
+<h2 class="anchored" data-anchor-id="formulation-of-dsteele">Formulation of DSteele</h2>
+<section id="governing-equations" class="level3">
+<h3 class="anchored" data-anchor-id="governing-equations">Governing Equations</h3>
+<p>The formulation of DSteele starts with the classical equation of motion for an elastic, homogeneous continuum without body forces. In terms of the displacement vector, <strong>u</strong>, the equation is given as the following.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image3.png" class="eq-display" alt="Equation 1"> <span class="ds-equation-number">(1)</span></p>
+</div>
+<p>where <em>λ</em> and <em>μ</em> are the lamé constants, and <em>ρ</em> is the mass density of the material. The stresses of an isotropic material satisfying the governing equation shown above, are given by the generalized Hooke’s law written as the following.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image4.png" class="eq-display" alt="Equation 2"> <span class="ds-equation-number">(2)</span></p>
+</div>
+<p>where <strong>Ι</strong> is the identity tensor and <strong>ε</strong> is the strain tensor given as the following.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image5.png" class="eq-display" alt="Equation 3"> <span class="ds-equation-number">(3)</span></p>
+</div>
+<p>In a cartesian coordinate system such as the one shown in Figure 1, Equation (1) represents a complicated system of partial differential equations that need to be solved for three components of the displacement vector (i.e., <em>u<sub>x</sub></em>, <em>u<sub>y</sub></em>, <em>u<sub>z</sub></em>). As pointed out by Graff (1991), Equation (1) can be decoupled into a more simpler form by means of the Helmholtz decomposition given as the following.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image6.png" class="eq-display" alt="Equation 4"> <span class="ds-equation-number">(4)</span></p>
+</div>
+<p>where Φ represent a scalar potential and <strong>H</strong> is a vector potential whose divergence vanishes. In other words, the following condition must hold for the vector potential <strong>H</strong>.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image7.png" class="eq-display" alt="Equation 5"> <span class="ds-equation-number">(5)</span></p>
+</div>
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image8.png" style="width:4in;height:3.72222in"></p>
+<p>Figure 1. Cartesian Coordinate System with Multiple Layers on a Halfspace</p>
+<p>Substituting Equation (4) into Equation (1), one arrives at the following decoupled equations for Φ and <strong>H</strong>.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image9.png" class="eq-display" alt="Equation 6"> <span class="ds-equation-number">(6)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image10.png" class="eq-display" alt="Equation 7"> <span class="ds-equation-number">(7)</span></p>
+</div>
+<p>Similar to the solutions provided by Siddharthan et. al.&nbsp;(1998, 2000) and Nielsen (2019), the solutions of the above equations under a load moving at a constant speed, <em>V</em>, can be written in the form of an inverse Fourier Transform. More specifically, the solutions for the scalar and the vector potentials are written as the following.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image11.png" class="eq-display" alt="Equation 8"> <span class="ds-equation-number">(8)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image12.png" class="eq-display" alt="Equation 9"> <span class="ds-equation-number">(9)</span></p>
+</div>
+<p>where <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image13.png" class="eq-inline img-fluid">, <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image14.png" class="eq-inline img-fluid"> is the 2-dimensional (2D) Fourier transform of the function <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image15.png" class="eq-inline img-fluid"> along the <em>x</em> and <em>y</em> axes, and <em>k<sub>x</sub></em> and <em>k<sub>y</sub></em> are the wave numbers along their respective axes.</p>
+<p>The primary advantage of writing the solutions in the form of Equations (8) and (9) is that the partial derivatives with respect to <em>x</em>, <em>y</em>, and <em>t</em> reduce to simple algebraic multiplications. For example, by denoting the Fourier transform pairs as <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image16.png" class="eq-inline img-fluid">, it is easily seen from Equation (8) that the partial derivative of Φ with respect to <em>x</em>, is obtained as <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image17.png" class="eq-inline img-fluid">. Therefore, the solution of the above equations can be obtained more conveniently in the transformed domain (i.e., wave number or frequency domain).</p>
+<p>In the frequency domain, the components of the displacement vector <strong>u</strong> can be written as the following in terms of the potentials.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image18.png" class="eq-display" alt="Equation 10"> <span class="ds-equation-number">(10)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image19.png" class="eq-display" alt="Equation 11"> <span class="ds-equation-number">(11)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image20.png" class="eq-display" alt="Equation 12"> <span class="ds-equation-number">(12)</span></p>
+</div>
+<p>where <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image21.png" class="eq-inline img-fluid">, <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image22.png" class="eq-inline img-fluid">, and <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image23.png" class="eq-inline img-fluid"> are the <em>x</em>, <em>y</em>, and <em>z</em> components of the vector potential <strong>H</strong>, respectively.</p>
+</section>
+<section id="solutions-for-harmonic-potentials" class="level3">
+<h3 class="anchored" data-anchor-id="solutions-for-harmonic-potentials">Solutions for Harmonic Potentials</h3>
+<p>In order to solve for the harmonic components of <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image24.png" class="eq-inline img-fluid"> and <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image25.png" class="eq-inline img-fluid"> in Equations (8) and (9), it is first necessary to transform Equations (6) and (7) into the same wave number or frequency domain. For the scalar potential Φ, transforming Equation (6) into the frequency domain results in the following.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image26.png" class="eq-display" alt="Equation 13"> <span class="ds-equation-number">(13)</span></p>
+</div>
+<p>where <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image27.png" class="eq-inline img-fluid">. The above equation can be rewritten in the form of a classical wave equation as:</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image28.png" class="eq-display" alt="Equation 14"> <span class="ds-equation-number">(14)</span></p>
+</div>
+<p>where</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image29.png" class="eq-display" alt="Equation 15"> <span class="ds-equation-number">(15)</span></p>
+</div>
+<p>and</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image30.png" class="eq-display" alt="Equation 16"> <span class="ds-equation-number">(16)</span></p>
+</div>
+<p>After dropping the term corresponding to the stress wave propagating in the negative z axis, the solution for the scalar potential is obtained as the following (Ewing et. al.&nbsp;1957; Graff 1991).</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image31.png" class="eq-display" alt="Equation 17"> <span class="ds-equation-number">(17)</span></p>
+</div>
+<p>where <em>A</em><sub>1</sub> is an arbitrary constant.</p>
+<p>Similarly, one arrives at the following wave equation for the vector potential <strong>H</strong>, by following the same procedure shown above.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image32.png" class="eq-display" alt="Equation 18"> <span class="ds-equation-number">(18)</span></p>
+</div>
+<p>where</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image33.png" class="eq-display" alt="Equation 19"> <span class="ds-equation-number">(19)</span></p>
+</div>
+<p>and</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image34.png" class="eq-display" alt="Equation 20"> <span class="ds-equation-number">(20)</span></p>
+</div>
+<p>The solution for each component of <strong>H</strong> is obtained as the following, after dropping the terms that result in the unbounded results.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image35.png" class="eq-display" alt="Equation 21-1"> <span class="ds-equation-number">(21-1)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image36.png" class="eq-display" alt="Equation 21-2"> <span class="ds-equation-number">(21-2)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image37.png" class="eq-display" alt="Equation 21-3"> <span class="ds-equation-number">(21-3)</span></p>
+</div>
+<p>where <em>B</em><sub>1</sub>, <em>C</em><sub>1</sub>, and <em>D</em><sub>1</sub> are arbitrary constants.</p>
+</section>
+<section id="stiffness-matrix-of-a-two-noded-element-with-finite-thickness" class="level3">
+<h3 class="anchored" data-anchor-id="stiffness-matrix-of-a-two-noded-element-with-finite-thickness">Stiffness Matrix of a Two-Noded Element with Finite Thickness</h3>
+<p>The solution for the scalar potential shown in Equation (17) and those for the vector potential shown in Equation (21) only account for the stress waves propagating in the positive <em>z</em>-direction (i.e., downwards, see Figure 1). However, for a layer with finite thickness, <em>h</em>, the stress wave not only propagates downwards, but also upwards due to the reflection and refraction at the lower boundary. To account for the waves propagating upwards from the lower boundary, another term is added to the right-hand side of Equations (18) and (21) (Al-Khoury et. al., 2001; Lee, 2013a; Lee, 2013b). Thus, the solution for the scalar potential is written as the following.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image38.png" class="eq-display" alt="Equation 22"> <span class="ds-equation-number">(22)</span></p>
+</div>
+<p>where <em>A</em><sub>1</sub> and <em>A</em><sub>2</sub> are arbitrary constants. Similarly, the solution for the vector potential is written as:</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image39.png" class="eq-display" alt="Equation 23-1"> <span class="ds-equation-number">(23-1)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image40.png" class="eq-display" alt="Equation 23-2"> <span class="ds-equation-number">(23-2)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image41.png" class="eq-display" alt="Equation 23-3"> <span class="ds-equation-number">(23-3)</span></p>
+</div>
+<p>where <em>B</em><sub>j</sub>, <em>C</em><sub>j</sub>, and <em>D</em><sub>j</sub> (j = 1, 2) are arbitrary constants. Substituting the above equation into the divergence condition of <strong>H</strong>, i.e., Equation (5), one arrives at the following expression for the arbitrary constants of <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image42.png" class="eq-inline img-fluid">.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image43.png" class="eq-display" alt="Equation 24-1"> <span class="ds-equation-number">(24-1)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image44.png" class="eq-display" alt="Equation 24-2"> <span class="ds-equation-number">(24-2)</span></p>
+</div>
+<p>By substituting Equations (22) through (24) into Equations (10) through (12), the displacements are obtained as the following.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image45.png" class="eq-display" alt="Equation 25"> <span class="ds-equation-number">(25)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image46.png" class="eq-display" alt="Equation 26"> <span class="ds-equation-number">(26)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image47.png" class="eq-display" alt="Equation 27"> <span class="ds-equation-number">(27)</span></p>
+</div>
+<p>where</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image48.png" class="eq-display" alt="Equation 28"> <span class="ds-equation-number">(28)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image49.png" class="eq-display" alt="Equation 29"> <span class="ds-equation-number">(29)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image50.png" class="eq-display" alt="Equation 30"> <span class="ds-equation-number">(30)</span></p>
+</div>
+<p>The equations for the relevant stresses are obtained by substituting Equation (3) into Equation (2), then taking the Fourier transform with respect to <em>x</em> and <em>y</em>. Substituting Equations (25) through (30) into the resulting equations yields the following.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image51.png" class="eq-display" alt="Equation 31"> <span class="ds-equation-number">(31)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image52.png" class="eq-display" alt="Equation 32"> <span class="ds-equation-number">(32)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image53.png" class="eq-display" alt="Equation 33"> <span class="ds-equation-number">(33)</span></p>
+</div>
+<p>where</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image54.png" class="eq-display" alt="Equation 34"> <span class="ds-equation-number">(34)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image55.png" class="eq-display" alt="Equation 35"> <span class="ds-equation-number">(35)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image56.png" class="eq-display" alt="Equation 36"> <span class="ds-equation-number">(36)</span></p>
+</div>
+<p>To construct the stiffness matrix of a layer with finite thickness, <em>h</em>, it is necessary to obtain the displacements and the stresses at the upper and lower boundaries. For the displacements, this is achieved easily by substituting <em>z</em> = 0 for the upper boundary and <em>z</em> = <em>h</em> for the lower boundary in Equations (25) through (27). The resulting displacements are obtained as the following in matrix form.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image57.png" class="eq-display" alt="Equation 37"> <span class="ds-equation-number">(37)</span></p>
+</div>
+<p>where <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image58.png" class="eq-inline img-fluid">and <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image59.png" class="eq-inline img-fluid">. <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image60.png" class="eq-inline img-fluid">, <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image61.png" class="eq-inline img-fluid">, and <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image62.png" class="eq-inline img-fluid"> are the displacements at the upper boundary along the <em>x</em>, <em>y</em>, and <em>z</em> axes, respectively, and <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image63.png" class="eq-inline img-fluid">, <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image64.png" class="eq-inline img-fluid">, and <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image65.png" class="eq-inline img-fluid"> are their counterparts at the lower boundary. The matrix <strong>S<sub>1</sub></strong> is given as:</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image66.png" class="eq-display" alt="Equation 38"> <span class="ds-equation-number">(38)</span></p>
+</div>
+<p>where</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image67.png" class="eq-display" alt="Equation 39"> <span class="ds-equation-number">(39)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image68.png" class="eq-display" alt="Equation 40"> <span class="ds-equation-number">(40)</span></p>
+</div>
+<p>Similarly, substituting <em>z</em> = 0 for the upper boundary and <em>z</em> = <em>h</em> for the lower boundary in Equations (31) through (33) yields the following for the stresses in matrix form.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image69.png" class="eq-display" alt="Equation 41"> <span class="ds-equation-number">(41)</span></p>
+</div>
+<p>where <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image70.png" class="eq-inline img-fluid">in which the subscripts 1 and 2 indicate the corresponding stresses at the upper and lower boundaries, respectively. The matrix <strong>S<sub>2</sub></strong> is given as:</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image71.png" class="eq-display" alt="Equation 42"> <span class="ds-equation-number">(42)</span></p>
+</div>
+<p>With the matrices <strong>S<sub>1</sub></strong> and <strong>S<sub>2</sub></strong> defined as the above, the stiffness matrix of a layer with finite thickness (i.e., the stiffness matrix of a two-noded element, with one node at the upper boundary and the other at the lower boundary) is obtained by relating the nodal displacements to boundary tractions. In other words, the stiffness matrix is obtained from:</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image72.png" class="eq-display" alt="Equation 43"> <span class="ds-equation-number">(43)</span></p>
+</div>
+<p>in which the stiffness matrix, <strong>S<sub>2-noded</sub></strong>, is given as the following.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image73.png" class="eq-display" alt="Equation 44"> <span class="ds-equation-number">(44)</span></p>
+</div>
+<p>where</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image74.png" class="eq-display" alt="Equation 45"> <span class="ds-equation-number">(45)</span></p>
+</div>
+</section>
+<section id="stiffness-matrix-of-a-one-noded-semi-infinite-element" class="level3">
+<h3 class="anchored" data-anchor-id="stiffness-matrix-of-a-one-noded-semi-infinite-element">Stiffness Matrix of a One-Noded, Semi-Infinite Element</h3>
+<p>An example of the one-noded, semi-infinite element (i.e., a halfspace element) was schematically shown as the bottom layer in Figure 1. Obviously, the one-noded element only has a single boundary at the top of the layer. In other words, this element does not have a lower boundary from which the stress waves can reflect and refract back to the upper boundary. Therefore, the stiffness matrix of a semi-infinite element can be obtained in the same manner as the two-noded element without the terms that govern the stress waves propagating upwards [i.e., <em>A</em><sub>2</sub> = <em>B</em><sub>2</sub> = <em>C</em><sub>2</sub> = <em>D</em><sub>2</sub> =0 in Equations (22) and (23)].</p>
+<p>Following the same mathematical procedure previously shown for the two-noded element, one arrives at the following for the stiffness matrix of a one-noded element.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image75.png" class="eq-display" alt="Equation 46"> <span class="ds-equation-number">(46)</span></p>
+</div>
+<p>where the matrices <strong>S<sub>3</sub></strong> and <strong>S<sub>4</sub></strong> are obtained from the displacement and stress functions as shown below.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image76.png" class="eq-display" alt="Equation 47"> <span class="ds-equation-number">(47)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image77.png" class="eq-display" alt="Equation 48"> <span class="ds-equation-number">(48)</span></p>
+</div>
+</section>
+<section id="incorporating-elastic-and-viscoelastic-layer-properties" class="level3">
+<h3 class="anchored" data-anchor-id="incorporating-elastic-and-viscoelastic-layer-properties">Incorporating Elastic and Viscoelastic Layer Properties</h3>
+<p>For an elastic material whose stiffness characteristics are time-independent, the lamé constants can easily be obtained from the Young’s modulus, <em>E</em>, and the Poisson’s ratio, <em>ν</em>. From the classical theory of elasticity, these relationships are given as:</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image78.png" class="eq-display" alt="Equation 49"> <span class="ds-equation-number">(49)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image79.png" class="eq-display" alt="Equation 50"> <span class="ds-equation-number">(50)</span></p>
+</div>
+<p>However, as indicated Rizzi (1989) who introduced the spectral element solution approach for layered media, it is recommended that a small amount of damping be added to the lamé constants, since no realistic material is purely elastic. In classical soil dynamics, this is achieved by adding an imaginary, hysteretic damping to the material functions (Siddharthan et. al.&nbsp;1998, 2000). In other words, the complex lamé constants with damping are given as the following:</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image80.png" class="eq-display" alt="Equation 51"> <span class="ds-equation-number">(51)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image81.png" class="eq-display" alt="Equation 52"> <span class="ds-equation-number">(52)</span></p>
+</div>
+<p>where <em>ζ</em> is a damping constant.</p>
+<p>The modulus of a viscoelastic material such as Asphalt Concrete (AC) is time (or equivalently, frequency) dependent. A well-known model for the time-dependent viscoelastic modulus is given in terms of a sigmoidal function of the following form.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image82.png" class="eq-display" alt="Equation 53"> <span class="ds-equation-number">(53)</span></p>
+</div>
+<p>where <em>E</em>(<em>t</em>) is the time dependent, viscoelastic relaxation modulus at time <em>t</em>, and <em>c</em><sub>1</sub> through <em>c</em><sub>4</sub> are model constants. Similarly, the frequency-dependent viscoelastic modulus model is often written as the following.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image83.png" class="eq-display" alt="Equation 54"> <span class="ds-equation-number">(54)</span></p>
+</div>
+<p>where |<em>E*|</em> is the dynamic modulus which is simply the amplitude of the complex modulus <em>E</em>* = <em>E</em>’ + <em>iE</em>”, <em>f</em> is the frequency, and <em>d</em><sub>1</sub> through <em>d</em><sub>4</sub> are model constants.</p>
+<p>Although Equation (54) may seem more natural and adequate than Equation (53) for use with the complex stiffness matrices previously derived in the frequency domain, one drawback of Equation (54) is that the real and imaginary parts of the complex modulus (<em>E</em>’ and <em>E</em>”, respectively) needed for these stiffness matrices cannot be obtained without the knowledge of phase angle at different frequencies (note that Equation (54) does not include any phase angle information). A feasible workaround for finding <em>E</em>’ and <em>E</em>” from Equation (54) is through the Prony series representation of the complex modulus in which <em>E</em>’ and <em>E</em>” are written as the following.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image84.png" class="eq-display" alt="Equation 55-1"> <span class="ds-equation-number">(55-1)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image85.png" class="eq-display" alt="Equation 55-2"> <span class="ds-equation-number">(55-2)</span></p>
+</div>
+<p>where <em>E</em><sub>0</sub> and <em>E<sub>i</sub></em> are the Prony coefficients, <em>M</em> is the number of Prony elements, and <em>ρ<sub>i</sub></em> is the relaxation time for the <em>i</em><sup>th</sup> Prony element. From the above, the frequency dependent dynamic modulus can be written as:</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image86.png" class="eq-display" alt="Equation 56"> <span class="ds-equation-number">(56)</span></p>
+</div>
+<p>To determine the Prony coefficients, it is necessary to fit the dynamic modulus expressed in the form of Equation (56) to those obtained from Equation (54). However, due to the complicated nature of Equation (56), this process involves a Nonlinear Least Squares (NLS) approach which requires iteration over the objective function (which minimizes the error between the |<em>E</em>*| values from Equation (56) and those from Equation (54)), starting from a reasonable set of seed values (i.e., initial guess) for the Prony coefficients (Lee, 2022).</p>
+<p>However, the above NLS process was not desired for use with the spectral element solution developed in this study, primarily for two reasons. First, the |E*| obtained in the form of Equation (56) depends on the seed values, i.e., using a different set of seed values may result in different |E*| values which in turn, may result in different responses obtained from the spectral element solution. Second, the NLS requires iteration which increases the runtime of the implemented algorithm, and the increase in runtime is not expected to be consistent (as the NLS may need different number of iterations before converging, depending on the seed values).</p>
+<p>Due to the above challenges with determining the Prony coefficients from |<em>E</em>*|, an alternate method was adopted for implementation. Rather than finding the Prony coefficients from the frequency-dependent functions [i.e., Equations (54) and (56)], these coefficients were determined by fitting the Prony series representation in time-domain to the relaxation modulus represented in Equation (53). The time-domain Prony series model for the relaxation modulus is given as the following.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image87.png" class="eq-display" alt="Equation 57"> <span class="ds-equation-number">(57)</span></p>
+</div>
+<p>Obtaining the Prony coefficients from Equation (57) is carried out by fitting the <em>E</em>(<em>t</em>) in this equation to those obtained from Equation (53). Due to the simple form of Equation (57), this fitting process can be achieved through a Linear Least Squares (LLS) rather than a NLS. More specifically, the LLS reduces to a set of linear algebraic equations that can be written as the following in matrix form (See Lee, 2022 for a detailed derivation and proof).</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image88.png" class="eq-display" alt="Equation 58"> <span class="ds-equation-number">(58)</span></p>
+</div>
+<p>where</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image89.png" class="eq-display" alt="Equation 59"> <span class="ds-equation-number">(59)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image90.png" class="eq-display" alt="Equation 60"> <span class="ds-equation-number">(60)</span></p>
+</div>
+<p>and <em>t<sub>k</sub></em> (<em>k</em> = 0, 1, 2, …, n) is the discrete time values at which the value of <em>E</em>(<em>t</em>) is obtained from Equations (53) and (57) for LLS. As seen from Equation (58), the LLS does not require any iterations (i.e., it is solved by inverting the matrix <strong>M</strong> once) and does not require nor depend on any seed values (i.e., initial guess).</p>
+<p>Once the Prony coefficients are obtained from Equation (58), the real and imaginary parts of the complex modulus (<em>E</em>’ and <em>E</em>”, respectively) needed for the spectral element solution can easily be obtained from Equation (55).</p>
+</section>
+<section id="global-stiffness-matrix-and-nodal-displacements" class="level3">
+<h3 class="anchored" data-anchor-id="global-stiffness-matrix-and-nodal-displacements">Global Stiffness Matrix and Nodal Displacements</h3>
+<p>Using the element stiffness matrices derived previously, the global stiffness matrix, <strong>S<sub>Global</sub></strong>, is constructed in a manner similar to the Finite Element Method (FEM) (Al-Khoury et. al., 2001; Lee, 2013a, 2013b). The global stiffness matrix is a (3∙<em>n</em>+3) by (3∙<em>n</em>+3) square matrix (<em>n</em> = total number of layers) whose constructional schematics are shown in Figure 2(a) for pavements with a halfspace and in Figure 2(b) for those with a shallow bedrock. In Figure 2, any region that is overlapped by two distinct element stiffness matrices indicate the components of the respective element matrices are summed. Additional details regarding the global stiffness matrix construction can be found in Al-Khoury et. al.&nbsp;(2001) and Lee (2013a, 2013b), and shall not be repeated herein.</p>
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image91.png" style="width:4.3125in;height:2.79167in"></p>
+<p><strong>(a)</strong></p>
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image92.png" style="width:4.86458in;height:3.13542in"></p>
+<p><strong>(b)</strong></p>
+<p>Figure 2. Global Stiffness Matrix Construction for Pavement Structures (a) with a Halfspace and (b) without a Halfspace (i.e., shallow bedrock)</p>
+<p>Once the global stiffness matrix is constructed, the displacements at every node of the pavement structure can be found simply by inverting the stiffness matrix. In other words:</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image93.png" class="eq-display" alt="Equation 61"> <span class="ds-equation-number">(61)</span></p>
+</div>
+<p>where</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image94.png" class="eq-display" alt="Equation 62"> <span class="ds-equation-number">(62)</span></p>
+</div>
+<p>is the global displacement vector, and <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image95.png" class="eq-inline img-fluid">, <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image96.png" class="eq-inline img-fluid">, and <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image97.png" class="eq-inline img-fluid"> are the <em>x</em>, <em>y</em>, and <em>z</em> components of the displacement at the <em>i</em>th node, respectively. Similarly, the global force vector <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image98.png" class="eq-inline img-fluid"> is given as the following.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image99.png" class="eq-display" alt="Equation 63"> <span class="ds-equation-number">(63)</span></p>
+</div>
+<p>where <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image100.png" class="eq-inline img-fluid"> and <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image101.png" class="eq-inline img-fluid"> are the applied shear stresses in the z<em>x</em> and <em>yz</em> planes, respectively, and <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image102.png" class="eq-inline img-fluid"> is the applied normal stress in the <em>z</em> direction, all of which are at the <em>i</em>th node.</p>
+<p>For pavements that are only subjected to the vertical load at the pavement surface, the only non-zero component of <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image98.png" class="eq-inline img-fluid"> in Equation (63) is the normal component <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image103.png" class="eq-inline img-fluid">, which can be obtained easily by taking the forward Fourier transform of the applied pressure at the pavement surface, <em>p</em>(<em>x</em>, <em>y</em>). Mathematically, this is written as the following.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image104.png" class="eq-display" alt="Equation 64"> <span class="ds-equation-number">(64)</span></p>
+</div>
+</section>
+<section id="time-domain-response" class="level3">
+<h3 class="anchored" data-anchor-id="time-domain-response">Time-Domain Response</h3>
+<p>Note that the global displacement vector <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image105.png" class="eq-inline img-fluid"> obtained from Equation (61) is still in the transformed domain. As discussed previously, the advantage of working in the transformed domain is that the partial derivatives in the physical domain are represented as algebraic multiplications in the transformed domain.</p>
+<p>More specifically, because the deflection slope with respect to <em>x</em> at the pavement surface is represented as <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image106.png" class="eq-inline img-fluid">, its frequency domain counterpart is simply obtained as <img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image107.png" class="eq-inline img-fluid">. Both the deflection and deflection slope can then be brought back to the physical domain through the respective 2D inverse Fourier transforms as shown in the following equations.</p>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image108.png" class="eq-display" alt="Equation 65"> <span class="ds-equation-number">(65)</span></p>
+</div>
+<div class="ds-equation-row">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image109.png" class="eq-display" alt="Equation 66"> <span class="ds-equation-number">(66)</span></p>
+</div>
+</section>
+</section>
+<section id="from-formulation-to-dsteele" class="level2">
+<h2 class="anchored" data-anchor-id="from-formulation-to-dsteele">From Formulation to DSteele</h2>
+<p>The preceding derivation provides the mathematical foundation implemented in DSteele. At the element level, each finite pavement layer is represented by a stiffness matrix in the frequency domain, while the bottom layer can be represented directly as an element of finite thickness or a semi-infinite element. These element relationships are assembled into the global pavement system in a manner analogous to finite-element assembly.</p>
+<p>For a specified moving load, the surface traction is represented in the same transformed domain as the pavement system. Solving the global system provides nodal displacements in the frequency domain. The inverse transformation then returns the response back to physical domain, allowing the model to describe the pavement response produced by a load traveling at a prescribed constant speed.</p>
+</section>
+<section id="response-quantities-and-tsd-applications" class="level2">
+<h2 class="anchored" data-anchor-id="response-quantities-and-tsd-applications">Response Quantities and TSD Applications</h2>
+<p>Although the formulation is developed in terms of the full three-dimensional displacement and stress fields, DSteele was developed with moving-deflection applications as a central motivation. Vertical surface deflection is obtained naturally from the nodal displacements, and the deflection slope needed for Traffic Speed Deflectometer (TSD) analysis is also obtained easily as its derivative.</p>
+</section>
+<section id="relationship-to-the-dsteele-series" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-to-the-dsteele-series">Relationship to the DSteele Series</h2>
+<p>DS-01 provides the development history and engineering overview of DSteele. DS-02 documents the underlying mathematical formulation. A subsequent article will address DSteele V2 and the computational changes used to accelerate the original implementation. Additional articles can then treat TSD measurement and integration, direct deflection-slope backcalculation, dimensional analysis, and the DSteele machine-learning surrogate without repeatedly reproducing the derivation presented here.</p>
+</section>
+<section id="references" class="level1">
+<h1>REFERENCES</h1>
+<ol type="1">
+<li><p>Al-Khoury, R., Scarpas, A., Kasbergen, C., and Blaauwendraad, J. 2001. Spectral Element Technique for Efficient Parameter Identification of Layered Media. I. Forward Calculation. International Journal of Solids and Structures. 38: 1605-1623.</p></li>
+<li><p>Applied Research Associates (ARA). 2004. Guide for Mechanistic-Empirical Design of New and Rehabilitated Pavement Structures. NCHRP Project 1-37A, Final Report, National Cooperative Highway Research Program, Transportation Research Board, National Research Council, Washington, D.C.</p></li>
+<li><p>Ewing, W. M., Jardetzky, W. S., and Press, F. 1957. Elastic Waves in Layered Media. McGraw-Hill Book Company. NY.</p></li>
+<li><p>Graff, K. 1991. Wave Motion in Elastic Solids. Dover Publications, Inc.&nbsp;NY.</p></li>
+<li><p>Lee, H. S. 2013(a). Viscowave – A New Solution for Viscoelastic Wave Propagation of Layered Structures Subjected to an Impact Load, International Journal of Pavement Engineering, DOI:10.1080/10298436.2013.782401.</p></li>
+<li><p>Lee, H. S., 2013(b). Development of a New Solution for Viscoelastic Wave Propagation of Pavement Structures and its Use in Dynamic Backcalculation. Ph.D.&nbsp;Dissertation. Michigan State University, East Lansing, MI.</p></li>
+<li><p>Lee, H. S. 2022. ViscoWave Documentation and User Guide. <a href="https://github.com/leehyu20/ViscoWave/blob/main/ViscoWave_User_Guide_Sept%202022.pdf" class="uri">https://github.com/leehyu20/ViscoWave/blob/main/ViscoWave_User_Guide_Sept%202022.pdf</a>.</p></li>
+<li><p>Nielsen, C.P. 2019. Visco-Elastic Back-Calculation of Traffic Speed Deflectometer Measurements. Transportation Research Record, Vol. 2673, No.&nbsp;12. DOI: <a href="https://doi.org/10.1177/0361198118823500" class="uri">https://doi.org/10.1177/0361198118823500</a>.</p></li>
+<li><p>Siddharthan, R.V., Yao, J., and Sebaaly, P. 1998. Pavement Strain from Moving Dynamic 3D Load Distribution. Journal of Transportation Engineering, Vol. 124, No.&nbsp;6. DOI: <a href="https://doi.org/10.1061/(ASCE)0733-947X(1998)124:6(557)" class="uri">https://doi.org/10.1061/(ASCE)0733-947X(1998)124:6(557)</a>.</p></li>
+<li><p>Siddharthan, R.V., Krishnamenon, N., and Sebaaly, P. 2000. Finite-Layer Approach to Pavement Response Evaluation. Transportation Research Record, Vol. 1709, No.&nbsp;1. DOI: <a href="https://doi.org/10.3141/1709-06" class="uri">https://doi.org/10.3141/1709-06</a></p></li>
+</ol>
+
+
+</section>
+
+ ]]></description>
+  <category>DSteele</category>
+  <category>Pavement Engineering</category>
+  <category>Computational Mechanics</category>
+  <category>Moving Loads</category>
+  <category>TSD</category>
+  <guid>https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/index.html</guid>
+  <pubDate>Sat, 03 Oct 2026 05:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>DSteele: A 3D Spectral-Element Model for Pavement Response under Moving Loads</title>
+  <dc:creator>Hyung S. Lee, Ph.D., P.E.</dc:creator>
+  <link>https://leehyu20.github.io/hyung-s-lee/posts/dsteele-overview/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<div class="article-lead">
+<p>DSteele is a mechanics-based moving-load pavement response model developed with Traffic Speed Deflectometer (TSD) applications as a central motivation. This article introduces its origin, implementation, early evaluation, and the research questions it has enabled.</p>
+</div>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>DSteele is a dynamic, three-dimensional (3D) spectral-element or finite-layer model developed to simulate flexible pavement responses under moving vehicle loads, with Traffic Speed Deflection Device (TSDD) applications as a central motivation.</p>
+<p>The model calculates pavement response under a moving load by solving the 3D equation of motion semi-analytically in the frequency domain for each pavement layer of finite thickness. In this sense, each layer acts as a spectral element. Multiple layers (or elements) are then connected in a manner similar to the finite element method to construct the global stiffness matrix, which is solved for pavement responses including deflection. More importantly for TSD analysis, DSteele can provide deflection slope directly as a model response without approximating it numerically from a series of independently calculated deflections.</p>
+<p>The formulation supports both elastic and viscoelastic material representations for asphalt materials. The viscoelastic material input takes the form of a time-domain relaxation modulus represented by a four-parameter sigmoidal function.</p>
+<p>The initial DSteele implementation was developed in 2023. Its computational engine is written in C++, while an Excel-based interface is used to define pavement structures, moving loads, vehicle speed, and response output locations.</p>
+<p>This article introduces why DSteele was developed, its implementation and early evaluation, and the research questions it subsequently enabled, many of which were discussed across my LinkedIn posts. This article is intended only as an overview. A future, separate article will document the mathematical formulation in greater depth.</p>
+</section>
+<section id="why-i-developed-dsteele" class="level2">
+<h2 class="anchored" data-anchor-id="why-i-developed-dsteele">1. Why I Developed DSteele</h2>
+<p>Traffic Speed Deflection Devices (TSDDs), which include TSDs with Doppler lasers as well as devices such as the Rolling Wheel Deflectometer (RWD) and Raptor that use distance lasers, represent a fundamentally different methodology for measuring pavement surface deflection compared with stationary impact devices such as the Falling/Heavy Weight Deflectometer (F/HWD). Rather than stopping at discrete locations and applying an impact load, a TSDD measures pavement deflection while traveling at highway speed.</p>
+<p>For those of you who know me, you may have heard of <a href="https://github.com/leehyu20/ViscoWave">ViscoWave</a>. It is a dynamic, finite-layer model for analyzing F/HWD (i.e., impact-load) time-history data that I developed as part of my Ph.D.&nbsp;work. After I finished my Ph.D., I personally continued developing ViscoWave for moving-load or TSDD applications, but I never really had a research project that needed it.</p>
+<p>My first exposure to a real TSDD research project came when my friend and colleague, Doug Steele (1968-2023), was leading a research effort to develop the RWD. After I finished my Ph.D.&nbsp;work, Doug pulled me into his RWD research team, and I had my first real occasion to use ViscoWave to simulate moving loads. Although the RWD research was completed using ViscoWave’s moving-load implementation, it had one critical drawback. While it was fairly efficient for analyzing F/HWD time-history data, it was computationally inefficient—and therefore time-consuming—for simulating or analyzing moving loads.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-overview/doug-steele.jpg" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption class="figure-caption">Doug Steele (1968-2023).</figcaption>
+</figure>
+</div>
+<p>If you knew Doug, you could probably imagine him telling me that we needed something that could simulate moving loads faster and more efficiently. Yes, that is exactly what he did almost every day when he saw me in the office. I had ideas that could potentially lead to a new solution, but since our RWD research was discontinued and I became busy with other things, it never became reality.</p>
+<p>In January 2023, we lost Doug in a tragic accident. At his funeral, I thought about what Doug had been telling me for so long: I needed to develop a new solution for moving loads. After spending countless late nights and weekends working on it, my first public description of the new solution appeared in a LinkedIn post in June 2023. I named the solution <strong>DSteele</strong> in honor and loving memory of my friend, Doug Steele.</p>
+</section>
+<section id="what-dsteele-solves" class="level2">
+<h2 class="anchored" data-anchor-id="what-dsteele-solves">2. What DSteele Solves</h2>
+<p>DSteele represents a layered pavement system in three dimensions. Each finite pavement layer (or element) is described by its material properties (i.e., modulus, density, Poisson’s ratio, and damping) and thickness. It solves the stress-wave propagation problem for a layered pavement system under vehicle loads traveling at a constant speed. At a conceptual level, the analysis process is as follows.</p>
+<ol type="1">
+<li>Define the layered pavement structure and material properties.</li>
+<li>Define the moving wheel-load configuration and vehicle speed.</li>
+<li>Transform the variables from the physical domain, <img src="https://latex.codecogs.com/png.latex?(x,y)">, to the frequency (or wavenumber) domain, <img src="https://latex.codecogs.com/png.latex?(k_x,k_y)">, in the horizontal plane.</li>
+<li>Construct the frequency-domain stiffness matrix based on the semi-analytical solution for each layer that makes up the pavement.</li>
+<li>Assemble the layer stiffness matrices into a global stiffness matrix and solve for the nodal responses in the frequency domain.</li>
+<li>Inverse-transform displacement and other pavement responses back to the physical (spatial) domain.</li>
+</ol>
+</section>
+<section id="dsteele-implementation" class="level2">
+<h2 class="anchored" data-anchor-id="dsteele-implementation">3. DSteele Implementation</h2>
+<p>As mentioned, the computational engine of DSteele was implemented in C++, while a developmental MS Excel interface serves as the primary user interface. This separation allows the computationally intensive spectral-element calculations to be conducted efficiently, while the spreadsheet provides a convenient way for the user to communicate inputs and outputs with the C++ engine and visualize the results without repeatedly importing or exporting files through separate software.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-overview/dsteele-interface.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">DSteele developmental interface showing pavement/material inputs, moving-load inputs, and calculated vertical deflection and deflection slope.</figcaption>
+</figure>
+</div>
+</section>
+<section id="why-deflection-slope-matters-for-tsd" class="level2">
+<h2 class="anchored" data-anchor-id="why-deflection-slope-matters-for-tsd">4. Why Deflection Slope Matters for TSD</h2>
+<p>In this context, Traffic Speed Deflection Devices (TSDDs) include devices designed and built to measure pavement deflection from a moving platform, whereas the Traffic Speed Deflectometer (TSD) refers to a specific type of TSDD that uses Doppler laser sensors to measure pavement response.</p>
+<p>It is important to emphasize that the Doppler lasers do not measure distance or displacement directly. Instead, they measure vertical pavement deflection velocity. For continuous pavements (e.g., flexible pavements), the deflection velocity can be divided by the vehicle velocity to yield the deflection slope, which is essentially the derivative of deflection in the longitudinal direction.</p>
+<p>Deflection velocity, or equivalently deflection slope under the steady moving-load relationship, is a particularly unique response associated with TSDs. Other TSDDs that use distance lasers do not rely on deflection slope (or velocity) at all. To support analysis of different TSDDs that exist today as well as those that may be developed in the future, DSteele was therefore developed to calculate not only deflection but also deflection slope directly within the solution. As will be discussed in the mathematical formulation article, this quantity can be obtained naturally in the frequency domain.</p>
+</section>
+<section id="early-evaluation-against-3d-move" class="level2">
+<h2 class="anchored" data-anchor-id="early-evaluation-against-3d-move">5. Early Evaluation against 3D-Move</h2>
+<p>During early development, DSteele response was compared with 3D-Move for a common pavement/loading case. The purpose of this comparison was to check whether the independently developed moving-load solution produced a physically consistent deflection history with comparable response magnitude and shape.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-overview/3dmove-vs-dsteele.png" class="img-fluid figure-img" style="width:78.0%"></p>
+<figcaption class="figure-caption">Early comparison of calculated vertical deflection from DSteele and 3D-Move for the same analysis case. The comparison was used as an early evaluation of the independently developed formulation.</figcaption>
+</figure>
+</div>
+<p>The curves show close agreement in overall response shape and peak deflection, with a small systematic difference visible over much of the time history. This comparison is therefore best described as an early model-to-model evaluation rather than comprehensive validation. Broader verification and validation would require a documented suite of analytical, numerical, and/or measured benchmarks.</p>
+</section>
+<section id="from-dsteele-to-dsteele-v2" class="level2">
+<h2 class="anchored" data-anchor-id="from-dsteele-to-dsteele-v2">6. From DSteele to DSteele V2</h2>
+<p>As the range and complexity of DSteele analyses grew, computational runtime became increasingly important. Development of DSteele V2 focused on accelerating the frequency-domain calculations without changing the fundamental physical formulation.</p>
+<p>The idea behind V2 development was to interpolate the high-frequency portion of the frequency-response function and to take advantage of symmetry in the 2D Fourier transform. In the cases I tested during development, these changes reduced runtime by more than a factor of 20 compared with the original implementation.</p>
+<p>This improvement was purely numerical and related to the implementation of DSteele; it did not change the underlying formulation or derivation. The details may therefore be documented in a separate article in the future.</p>
+</section>
+<section id="what-dsteele-has-enabled" class="level2">
+<h2 class="anchored" data-anchor-id="what-dsteele-has-enabled">7. What DSteele Has Enabled</h2>
+<p>DSteele has allowed me to explore several topics in greater depth as I studied the TSD. A short list of these topics is provided below.</p>
+<ul>
+<li>Sensitivity of modeled deflection and deflection slope.</li>
+<li>Investigation of assumptions used when integrating TSD slope to construct deflection.</li>
+<li>Separation of shifting and rotation errors in reconstructed deflection basins.</li>
+<li>Backcalculation using deflection slopes directly at Doppler-sensor locations.</li>
+<li>Evaluation of full-truck versus reduced axle/load representations.</li>
+<li>Comparison and correlation of TSD and FWD responses under different loading conditions.</li>
+<li>Dimensional analysis of moving-load pavement response.</li>
+<li>Development of a machine-learning surrogate for rapid prediction of DSteele response.</li>
+</ul>
+<p>Some of the topics above have already been covered in bits and pieces across my LinkedIn posts. I plan to develop several of them into longer articles so that the work has a more permanent home.</p>
+</section>
+<section id="dsteele-in-motion" class="level2">
+<h2 class="anchored" data-anchor-id="dsteele-in-motion">8. DSteele in Motion</h2>
+<p>A moving-load model is easier to understand when the response is visualized in an animation. For this reason, I also developed a number of 2D and 3D visualizations of DSteele results, along with other related simulations. I plan to develop separate articles around some of the visualizations that originally appeared in my LinkedIn posts.</p>
+<p>For this introductory article, the visualization below shows pavement deflection under a moving standard single axle, originally posted on LinkedIn.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="dsteele-move.mp4"></video></div>
+<hr>
+<section id="continue-the-dsteele-series" class="level3">
+<h3 class="anchored" data-anchor-id="continue-the-dsteele-series">Continue the DSteele series</h3>
+<p>The next article will focus on the <strong>detailed mathematical formulation of DSteele</strong>, including the governing equations, transformed-domain solution, spectral-element stiffness formulation, semi-infinite halfspace, viscoelastic representation, and global assembly.</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>DSteele</category>
+  <category>Traffic Speed Deflectometer</category>
+  <category>Flexible Pavement</category>
+  <category>Moving Loads</category>
+  <category>Spectral Element Method</category>
+  <category>Computational Engineering</category>
+  <guid>https://leehyu20.github.io/hyung-s-lee/posts/dsteele-overview/index.html</guid>
+  <pubDate>Fri, 02 Oct 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-overview/3dmove-vs-dsteele.png" medium="image" type="image/png" height="144" width="144"/>
+</item>
+</channel>
+</rss>

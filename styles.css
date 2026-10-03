@@ -1,0 +1,429 @@
+:root {
+  --hl-navy: #17365d;
+  --hl-blue: #246aa5;
+  --hl-blue-dark: #123c5e;
+  --hl-ink: #24313d;
+  --hl-muted: #61707d;
+  --hl-border: #dbe3ea;
+  --hl-soft: #f4f7fa;
+  --hl-card: #ffffff;
+  --bs-primary: var(--hl-navy);
+  --bs-link-color: #1d5d8f;
+  --bs-link-hover-color: #123c5e;
+}
+
+body {
+  line-height: 1.68;
+  color: var(--hl-ink);
+}
+
+.navbar {
+  box-shadow: 0 1px 7px rgba(0,0,0,.12);
+}
+
+.navbar-brand {
+  font-weight: 650;
+  letter-spacing: -.01em;
+}
+
+.quarto-title-banner {
+  background: linear-gradient(120deg, #f7f9fb, #edf3f8);
+}
+
+.quarto-title .title {
+  font-weight: 750;
+  letter-spacing: -0.025em;
+}
+
+h1, h2, h3 {
+  letter-spacing: -0.018em;
+}
+
+h2 {
+  margin-top: 2.25rem;
+}
+
+.article-lead {
+  font-size: 1.12rem;
+  color: #495057;
+}
+
+.figure-caption {
+  font-size: .92rem;
+}
+
+.callout {
+  border-radius: .45rem;
+}
+
+.model-card {
+  border-left: 4px solid var(--hl-navy);
+  padding-left: 1rem;
+  margin: 1.2rem 0;
+}
+
+.smallcaps {
+  font-variant: small-caps;
+  letter-spacing: .04em;
+}
+
+/* Homepage */
+.hero-home {
+  max-width: 1080px;
+  margin: 1.4rem auto 3.5rem auto;
+  padding: 3.7rem 3.8rem;
+  border: 1px solid var(--hl-border);
+  border-radius: 1rem;
+  background:
+    radial-gradient(circle at 92% 15%, rgba(36,106,165,.13), transparent 28%),
+    linear-gradient(135deg, #ffffff 0%, #f4f8fb 100%);
+  box-shadow: 0 14px 40px rgba(23,54,93,.07);
+}
+
+.hero-home h1 {
+  font-size: clamp(2.25rem, 5vw, 4.1rem);
+  line-height: 1.04;
+  margin: .25rem 0 .6rem 0;
+  color: var(--hl-navy);
+}
+
+.hero-kicker,
+.eyebrow,
+.model-label {
+  font-size: .76rem;
+  font-weight: 750;
+  letter-spacing: .13em;
+  color: var(--hl-blue);
+}
+
+.hero-subtitle {
+  font-size: 1.18rem;
+  font-weight: 550;
+  color: #405466;
+  margin-bottom: 1.15rem;
+}
+
+.hero-home > p {
+  max-width: 820px;
+  font-size: 1.08rem;
+  color: #526372;
+}
+
+.hero-actions {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-top: 1.55rem;
+}
+
+.home-card-grid,
+.model-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.1rem 0 2.5rem 0;
+}
+
+.model-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.home-card,
+.model-tile {
+  border: 1px solid var(--hl-border);
+  border-radius: .7rem;
+  background: var(--hl-card);
+  padding: 1.25rem 1.3rem 1.15rem 1.3rem;
+  box-shadow: 0 4px 18px rgba(23,54,93,.045);
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.home-card:hover,
+.model-tile:hover {
+  transform: translateY(-2px);
+  border-color: #b9cad9;
+  box-shadow: 0 8px 24px rgba(23,54,93,.09);
+}
+
+.home-card h3,
+.model-tile h3 {
+  margin-top: .2rem;
+  margin-bottom: .55rem;
+  font-size: 1.15rem;
+}
+
+.home-card p,
+.model-tile p {
+  color: var(--hl-muted);
+  font-size: .94rem;
+  margin-bottom: .15rem;
+}
+
+.featured-article {
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap: 2rem;
+  align-items: center;
+  margin: 1rem 0 2.8rem 0;
+  padding: 1.7rem;
+  border-radius: .8rem;
+  background: var(--hl-soft);
+  border: 1px solid var(--hl-border);
+}
+
+.featured-article h3 {
+  font-size: 1.45rem;
+  line-height: 1.25;
+  margin: .35rem 0 .75rem 0;
+}
+
+.featured-article-copy p {
+  color: var(--hl-muted);
+}
+
+.featured-article-media img {
+  width: 100%;
+  border-radius: .5rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+
+.article-link {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Technical article polish */
+body.quarto-light .quarto-title-block .quarto-title-banner {
+  border-bottom: 1px solid var(--hl-border);
+}
+
+.quarto-title-meta {
+  color: var(--hl-muted);
+}
+
+#quarto-document-content img {
+  border-radius: .3rem;
+}
+
+video {
+  width: 100%;
+  max-width: 100%;
+  border-radius: .5rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,.10);
+}
+
+/* Dark mode */
+body.quarto-dark {
+  --hl-card: #20252a;
+  --hl-soft: #20252a;
+  --hl-border: #3a4249;
+  --hl-muted: #b8c1c8;
+}
+
+body.quarto-dark .hero-home {
+  background:
+    radial-gradient(circle at 92% 15%, rgba(77,150,211,.16), transparent 28%),
+    linear-gradient(135deg, #20252a 0%, #1d2227 100%);
+}
+
+body.quarto-dark .hero-home h1 {
+  color: #eef5fb;
+}
+
+body.quarto-dark .hero-subtitle,
+body.quarto-dark .hero-home > p {
+  color: #c3ced7;
+}
+
+@media (max-width: 991px) {
+  .home-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .model-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .featured-article { grid-template-columns: 1fr; }
+  .hero-home { padding: 2.5rem 2rem; }
+}
+
+@media (max-width: 575px) {
+  .home-card-grid,
+  .model-grid { grid-template-columns: 1fr; }
+  .hero-home { padding: 2rem 1.25rem; }
+}
+
+/* v0.3: portrait hero and homepage title cleanup */
+.hero-home {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(250px, .65fr);
+  gap: 2.75rem;
+  align-items: center;
+  padding: 3.25rem 3.5rem;
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
+.hero-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-photo p {
+  margin: 0;
+}
+
+.hero-photo img {
+  width: min(100%, 320px);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 36%;
+  border-radius: .9rem;
+  border: 1px solid rgba(23,54,93,.12);
+  box-shadow: 0 14px 34px rgba(23,54,93,.16);
+}
+
+.hero-home .hero-copy > p {
+  max-width: 720px;
+  font-size: 1.08rem;
+  color: #526372;
+}
+
+body.quarto-dark .hero-home .hero-copy > p {
+  color: #c3ced7;
+}
+
+@media (max-width: 991px) {
+  .hero-home {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .hero-photo {
+    justify-content: flex-start;
+  }
+  .hero-photo img {
+    width: min(72vw, 300px);
+  }
+}
+
+@media (max-width: 575px) {
+  .hero-photo img {
+    width: min(78vw, 270px);
+  }
+}
+
+
+/* v0.3.1: final homepage refinements */
+.hero-home {
+  max-width: 1180px;
+  grid-template-columns: minmax(0, 1.75fr) minmax(240px, .60fr);
+  gap: 2.5rem;
+}
+
+.hero-home h1 {
+  font-size: clamp(2.2rem, 4.25vw, 3.75rem);
+}
+
+@media (max-width: 991px) {
+  .hero-home {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* DS-02 long-form technical article */
+.article-series-label {
+  color: #1f6fb2;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+.quarto-title-block .quarto-title-banner { padding-bottom: 1.2rem; }
+main.content img[src*="dsteele-mathematical-formulation/media/image"] {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* DS-02 equation rendering */
+.eq-display {
+  display: block;
+  width: auto !important;
+  max-width: min(100%, 900px) !important;
+  max-height: 280px;
+  margin: 1.15rem auto 0.35rem auto;
+  object-fit: contain;
+}
+.eq-inline {
+  display: inline-block;
+  width: auto !important;
+  height: 1.35em !important;
+  max-width: 100%;
+  vertical-align: -0.32em;
+  margin: 0 0.12em;
+}
+/* Large matrix equations may use their natural width and horizontal overflow on narrow screens. */
+.quarto-figure, p:has(> .eq-display) { overflow-x: auto; }
+
+
+/* DS-02 equation rows: equation and number share the same line */
+.ds-equation-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 2.4rem;
+  margin: 1.15rem 0 0.65rem 0;
+  padding: 0 4.25rem;
+  box-sizing: border-box;
+}
+.ds-equation-row .eq-display {
+  display: block;
+  width: auto !important;
+  max-width: 100% !important;
+  max-height: 280px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+.ds-equation-number {
+  position: absolute;
+  right: 0.35rem;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 0.96rem;
+}
+@media (max-width: 700px) {
+  .ds-equation-row { padding: 0 3.2rem 0 0.4rem; }
+  .ds-equation-number { right: 0.1rem; font-size: 0.9rem; }
+}
+
+/* v0.4.2 refinement: DS-02 equation-scale and figure alignment */
+/* Equation graphics retain a common source scale. Eq. (5) is a compact
+   one-line expression whose Word export was visually oversized, so reduce
+   only that export rather than changing the scale of complex equations. */
+.ds-equation-row img[alt="Equation 5"] {
+  height: 1.55rem !important;
+  width: auto !important;
+  max-height: none !important;
+}
+
+/* Center all standalone DS-02 figures and their captions. */
+body:has(.article-series-label) .quarto-figure,
+body:has(.article-series-label) figure {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+body:has(.article-series-label) .quarto-figure img,
+body:has(.article-series-label) figure img,
+body:has(.article-series-label) p > img:not(.eq-inline):not(.eq-display) {
+  display: block;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+body:has(.article-series-label) figcaption,
+body:has(.article-series-label) .figure-caption {
+  text-align: center;
+}
