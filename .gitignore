@@ -1,0 +1,28 @@
+# RStudio user/session files
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# Quarto cache / preview state
+.quarto/
+*_cache/
+*_files/
+
+# Rendered website (GitHub Actions will build this)
+_site/
+
+# Private working archives and manuscripts — keep locally, do not publish
+LinkedIn Archive/
+Branch_DS/
+
+# Internal planning documents
+Quarto_Research_Site_Architecture_*.docx
+
+# OS/editor clutter
+.DS_Store
+Thumbs.db
+~$*
+
+/.quarto/
+**/*.quarto_ipynb

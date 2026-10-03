@@ -1,0 +1,14 @@
+---
+title: "Technical Articles"
+subtitle: "Long-form research articles, technical notes, and engineering visualizations"
+listing:
+  contents: "**/index.qmd"
+  sort: "date desc"
+  type: grid
+  grid-columns: 3
+  categories: true
+  feed: true
+page-layout: full
+---
+
+This collection will grow from research projects, model development, numerical experiments, presentations, and selected technical material originally shared through LinkedIn.

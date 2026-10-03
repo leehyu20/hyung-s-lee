@@ -1,0 +1,9 @@
+---
+title: "Rigid Pavements"
+---
+
+This section focuses on Jointed Concrete Pavement (JPC) response, load transfer, slab rocking, curling and warping, moving and dynamic loads, Traffic Speed Deflectometer (TSD) response, composite pavements, finite-element modeling, and analytical beam formulations.
+
+## Articles & Technical Notes
+
+**More content is coming.** This section is being developed and will be populated with research articles, technical notes, computational studies, and engineering visualizations as the site develops.

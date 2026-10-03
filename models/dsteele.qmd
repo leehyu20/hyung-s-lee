@@ -1,0 +1,80 @@
+---
+title: "DSteele"
+subtitle: "Moving-load pavement response and Traffic Speed Deflectometer (TSD) analysis"
+page-layout: full
+toc: false
+---
+
+::: {.hero-home}
+::: {.hero-kicker}
+MODELS & SOFTWARE
+:::
+
+# DSteele
+
+::: {.hero-subtitle}
+A 3D spectral-element / finite-layer model for pavement response under moving loads
+:::
+
+DSteele was developed to simulate layered flexible-pavement response under vehicle loads traveling at constant speed, with Traffic Speed Deflectometer (TSD) applications as a central motivation.
+
+[Start with the DSteele overview](../posts/dsteele-overview/index.qmd){.btn .btn-primary}
+:::
+
+## DSteele Article Series
+
+::: {.home-card-grid}
+::: {.home-card}
+::: {.model-label}
+DS-01 · OVERVIEW
+:::
+### [DSteele: A 3D Spectral-Element Model for Pavement Response under Moving Loads](../posts/dsteele-overview/index.qmd)
+
+Development history, motivation, implementation, early evaluation, and research applications.
+:::
+
+::: {.home-card}
+::: {.model-label}
+DS-02 · FORMULATION
+:::
+### [Mathematical Formulation of DSteele](../posts/dsteele-mathematical-formulation/index.qmd)
+
+Governing equations, transformed-domain solution, spectral-element stiffness formulation, semi-infinite halfspace, viscoelastic representation, global assembly, and inverse transformation.
+:::
+
+::: {.home-card}
+::: {.model-label}
+DS-03 · PLANNED
+:::
+### DSteele V2
+
+Computational acceleration, frequency-response interpolation, Fourier-transform symmetry, and numerical implementation.
+:::
+
+::: {.home-card}
+::: {.model-label}
+TSD APPLICATIONS
+:::
+### TSD Measurement & Integration
+
+Deflection velocity, slope, reconstructed deflection, integration assumptions, and associated errors.
+:::
+
+::: {.home-card}
+::: {.model-label}
+BACKCALCULATION
+:::
+### Direct TSD Slope Backcalculation
+
+Using modeled deflection slopes directly at Doppler-sensor locations.
+:::
+
+::: {.home-card}
+::: {.model-label}
+CURRENT RESEARCH
+:::
+### Dimensional Analysis & ML Surrogate
+
+Dimensionless moving-load response and development of a rapid DSteele machine-learning surrogate.
+:::
+:::

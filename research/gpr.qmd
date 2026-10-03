@@ -1,0 +1,9 @@
+---
+title: "Ground Penetrating Radar"
+---
+
+This section focuses on pavement Ground Penetrating Radar (GPR), including FDTD simulation of layered and heterogeneous pavement systems, layer interfaces, thin layers, cracks, voids, moisture, and groundwater effects.
+
+## Articles & Technical Notes
+
+**More content is coming.** This section is being developed and will be populated with research articles, technical notes, computational studies, and engineering visualizations as the site develops.

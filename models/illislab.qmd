@@ -1,0 +1,5 @@
+---
+title: "Independent ILLI-SLAB Implementation"
+---
+
+A dedicated section for the independent ILLI-SLAB implementation and its applications to rigid-pavement finite-element analysis, moving-frame simulation, dynamic loading, load transfer, thermal curling/warping, TSD response, and airfield damage repair.

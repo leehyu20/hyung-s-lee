@@ -1,0 +1,9 @@
+---
+title: "FWD / HWD"
+---
+
+This section focuses on FWD/HWD deflection basins & time histories, backcalculation, temperature effects, representative loading frequency, viscoelastic response, and relationships between stationary impact and moving load pavement response.
+
+## Articles & Technical Notes
+
+**More content is coming.** This section is being developed and will be populated with research articles, technical notes, computational studies, and engineering visualizations as the site develops.

@@ -1,0 +1,67 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Hyung S. Lee"
+  site-url: "https://leehyu20.github.io/hyung-s-lee/"
+  navbar:
+    background: primary
+    left:
+      - text: Home
+        href: index.qmd
+      - text: Research
+        menu:
+          - text: Traffic Speed Deflectometer (TSD)
+            href: research/tsd.qmd
+          - text: Flexible Pavements
+            href: research/flexible-pavements.qmd
+          - text: Rigid Pavements
+            href: research/rigid-pavements.qmd
+          - text: FWD / HWD
+            href: research/fwd-hwd.qmd
+          - text: Ground Penetrating Radar
+            href: research/gpr.qmd
+          - text: Friction & Surface Characterization
+            href: research/friction.qmd
+      - text: Models & Software
+        menu:
+          - text: DSteele
+            href: models/dsteele.qmd
+          - text: Finite Beam Model
+            href: models/finite-beam.qmd
+          - text: ILLI-SLAB Implementation
+            href: models/illislab.qmd
+          - text: ViscoWave
+            href: models/viscowave.qmd
+      - text: Articles
+        href: posts/index.qmd
+      - text: Publications
+        href: publications.qmd
+      - text: About
+        href: about.qmd
+    right:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/hyungsuklee/
+        aria-label: LinkedIn
+      - icon: github
+        href: https://github.com/leehyu20
+        aria-label: GitHub
+  page-footer:
+    left: "© Hyung S. Lee"
+    right: "Built with Quarto"
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    smooth-scroll: true
+    code-copy: true
+    link-external-newwindow: true
+
+execute:
+  freeze: auto

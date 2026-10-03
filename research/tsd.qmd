@@ -1,0 +1,19 @@
+---
+title: "Traffic Speed Deflectometer (TSD)"
+---
+
+This section brings together work on Traffic Speed Deflectometer (TSD) measurement fundamentals, pavement response under moving loads, deflection velocity and slope, slope integration, backcalculation, full-truck modeling, and flexible- and rigid-pavement applications.
+
+## DSteele and TSD
+
+### [DS-01 — DSteele: A 3D Spectral-Element Model for Pavement Response under Moving Loads](../posts/dsteele-overview/index.qmd)
+
+Development history, engineering motivation, implementation, early evaluation, and application of DSteele to moving-load and TSD analysis.
+
+### [DS-02 — Mathematical Formulation of DSteele](../posts/dsteele-mathematical-formulation/index.qmd)
+
+Mathematical foundation of DSteele, including the transformed-domain moving-load formulation, finite-layer and halfspace stiffness matrices, and direct calculation of pavement surface deflection and longitudinal deflection slope for TSD applications.
+
+## Additional TSD Research
+
+**More content is coming.** Additional articles will address TSD measurement and slope integration, direct deflection-slope backcalculation, full-truck modeling, flexible- versus rigid-pavement response, dimensional analysis, and the DSteele machine-learning surrogate.

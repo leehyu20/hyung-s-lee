@@ -1,0 +1,25 @@
+---
+title: "About"
+---
+
+I am a Principal Research Engineer specializing in pavement mechanics, nondestructive evaluation/testing (NDE/NDT), and computational modeling of pavement systems. My work focuses on bridging fundamental mechanics, numerical modeling, and practical pavement evaluation to solve complex transportation infrastructure problems.
+ 
+My technical expertise includes pavement dynamics, viscoelasticity, vehicle–pavement interaction, continuum damage mechanics, dynamic backcalculation, and pavement response modeling. Throughout my career, I have worked on research and implementation efforts involving pavement design, evaluation, management, forensic investigations, and statistical modeling of pavement performance data.
+ 
+I am the original developer of ViscoWave, a dynamic Finite Layer Method (FLM) framework for modeling transient stress-wave propagation in flexible pavement systems with elastic and viscoelastic layers. ViscoWave has also been applied to dynamic pavement backcalculation and is available as open-source software.
+ 
+I am also the original developer of DSteele, a 3D spectral element solution currently under development for modeling flexible pavement response under moving vehicle loads. My broader research interests include advanced computational mechanics, pavement–vehicle interaction, NDT technologies, and next-generation methods for pavement structural evaluation.
+ 
+Prior to joining Applied Research Associates (ARA), I worked with the Florida Department of Transportation (FDOT), where my experience included pavement design and evaluation, pavement management, forensic investigations, nondestructive testing, and statistical analysis and modeling of pavement performance data.
+ 
+I enjoy tackling problems that sit at the intersection of engineering mechanics, computation, experimentation, and real-world infrastructure applications—particularly problems for which conventional approaches are not enough.
+
+## Professional profiles
+
+- [LinkedIn](https://www.linkedin.com/in/hyungsuklee/) — Professional profile, research updates, and technical posts
+- [ResearchGate](https://www.researchgate.net/profile/Hyung-Lee-2) — Publications, presentations, and research materials
+- [GitHub](https://github.com/leehyu20) — Open-source software and research code
+
+## Research themes
+
+Traffic Speed Deflectometer (TSD) • FWD/HWD • Ground Penetrating Radar • Flexible and Rigid Pavement Mechanics • Numerical Modeling • Research Software

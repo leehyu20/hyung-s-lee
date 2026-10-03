@@ -1,0 +1,9 @@
+---
+title: "Flexible Pavements"
+---
+
+This section focuses on pavement response, viscoelastic response, temperature, loading frequency, dimensional analysis, and related computational methods for flexible pavement systems.
+
+## Articles & Technical Notes
+
+**More content is coming.** This section is being developed and will be populated with research articles, technical notes, computational studies, and engineering visualizations as the site develops.

@@ -1,0 +1,5 @@
+---
+title: "Finite Beam Model"
+---
+
+A dedicated section for the finite-beam formulation developed for jointed rigid-pavement and TSD response analysis. Planned topics include multiple slabs and joints, load-transfer efficiency, slab rocking, multiple TSD sensors, nonuniform properties, and composite pavements.

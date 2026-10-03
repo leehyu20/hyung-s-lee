@@ -1,0 +1,158 @@
+---
+title: "Hyung S. Lee, Ph.D., P.E."
+page-layout: full
+toc: false
+---
+
+<style>
+#title-block-header { display: none; }
+</style>
+
+::: {.hero-home}
+::: {.hero-copy}
+::: {.hero-kicker}
+PAVEMENT ENGINEERING · COMPUTATIONAL RESEARCH
+:::
+
+# Hyung S. Lee, Ph.D., P.E.
+
+::: {.hero-subtitle}
+Pavement Engineering · Computational Mechanics · Nondestructive Testing · Dynamic & Viscoelastic Modeling · Vehicle-Pavement Interaction · Developer of ViscoWave, DSteele, and Finite Beam Method
+:::
+
+I develop mechanics-based computational models and numerical tools to study pavement response, moving-load behavior, nondestructive testing, and infrastructure evaluation.
+
+::: {.hero-actions}
+[Explore Research](#featured-research){.btn .btn-primary .btn-lg}
+[Models & Software](#models-software){.btn .btn-outline-primary .btn-lg}
+:::
+:::
+
+::: {.hero-photo}
+![](assets/hyungsuk-lee-headshot.png){fig-alt="Professional headshot of Hyung S. Lee"}
+:::
+:::
+
+## Latest Technical Articles
+
+::: {.featured-article}
+::: {.featured-article-copy}
+::: {.eyebrow}
+DSteele · DS-02 · October 3, 2026
+:::
+
+### [Mathematical Formulation of DSteele](posts/dsteele-mathematical-formulation/index.qmd)
+
+The mathematical foundation of DSteele: governing equations, transformed-domain harmonic solutions, spectral-element stiffness matrices, viscoelastic representation, global assembly, and inverse transformation.
+
+[Read DS-02 →](posts/dsteele-mathematical-formulation/index.qmd){.article-link}
+:::
+
+::: {.featured-article-media}
+![](posts/dsteele-mathematical-formulation/media/image1.jpg){fig-alt="Original handwritten mathematical derivation developed during the formulation of DSteele"}
+:::
+:::
+
+::: {.featured-article}
+::: {.featured-article-copy}
+::: {.eyebrow}
+DSteele · DS-01 · October 2, 2026
+:::
+
+### [DSteele: A 3D Spectral-Element Model for Pavement Response under Moving Loads](posts/dsteele-overview/index.qmd)
+
+An overview of the motivation, implementation, early evaluation, and research applications of DSteele, a 3D moving-load pavement response model.
+
+[Read DS-01 →](posts/dsteele-overview/index.qmd){.article-link}
+:::
+
+::: {.featured-article-media}
+![](posts/dsteele-overview/3dmove-vs-dsteele.png){fig-alt="Comparison of calculated pavement deflection from DSteele and 3D-Move"}
+:::
+:::
+
+
+## Featured Research {#featured-research}
+
+::: {.home-card-grid}
+::: {.home-card}
+### [Traffic Speed Deflectometer (TSD)](research/tsd.qmd)
+
+Pavement response under moving loads, TSD measurements, deflection slope, integration, and backcalculation.
+:::
+
+::: {.home-card}
+### [Flexible Pavements](research/flexible-pavements.qmd)
+
+Pavement response, viscoelastic response, temperature, loading frequency, and dimensional analysis.
+:::
+
+::: {.home-card}
+### [Rigid Pavements](research/rigid-pavements.qmd)
+
+Joint response, load transfer, slab rocking, thermal effects, and moving-load/TSD applications.
+:::
+
+::: {.home-card}
+### [FWD / HWD](research/fwd-hwd.qmd)
+
+Deflection basins, backcalculation, temperature effects, and viscoelastic response.
+:::
+
+::: {.home-card}
+### [Ground Penetrating Radar](research/gpr.qmd)
+
+FDTD simulation of layered and heterogeneous pavements, moisture, voids, cracking, and thin layers.
+:::
+
+::: {.home-card}
+### [Vehicle-Pavement Interaction](research/friction.qmd)
+
+Pavement friction, texture, roughness, surface characterization, and measurement methods.
+:::
+:::
+
+## Models & Software {#models-software}
+
+::: {.model-grid}
+::: {.model-tile}
+::: {.model-label}
+MOVING LOAD MODELING
+:::
+### [DSteele](models/dsteele.qmd)
+
+3D spectral-element / finite-layer model for simulating pavement response under moving loads and TSD analysis.
+:::
+
+::: {.model-tile}
+::: {.model-label}
+RIGID PAVEMENT MODELING
+:::
+### [Finite Beam Model](models/finite-beam.qmd)
+
+Analytical modeling of finite slabs, joints, load transfer, slab rocking, and moving loads.
+:::
+
+::: {.model-tile}
+::: {.model-label}
+FINITE ELEMENT IMPLEMENTATION
+:::
+### [ILLI-SLAB Implementation](models/illislab.qmd)
+
+Independent implementation for rigid-pavement FEM, moving-frame analysis, and TSD simulation.
+:::
+
+::: {.model-tile}
+::: {.model-label}
+F/HWD ANALYSIS
+:::
+### [ViscoWave](models/viscowave.qmd)
+
+Dynamic/viscoelastic pavement response for FWD/HWD and dynamic backcalculation.
+:::
+:::
+
+
+## About This Site
+
+This site is developed to provide a permanent home for my personal work in pavement engineering, nondestructive testing, moving load simulation, computational mechanics, software development, and engineering visualization. It brings together my own research, technical notes, presentations, software, and selected materials originally shared through LinkedIn.

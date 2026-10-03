@@ -1,0 +1,9 @@
+---
+title: "Friction & Surface Characterization"
+---
+
+This section focuses on pavement friction, texture, surface characterization, roughness, and the mechanics and development of pavement-surface measurement methods.
+
+## Articles & Technical Notes
+
+**More content is coming.** This section is being developed and will be populated with research articles, technical notes, computational studies, and engineering visualizations as the site develops.
