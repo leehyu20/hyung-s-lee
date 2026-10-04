@@ -132,7 +132,7 @@ whose divergence vanishes. In other words, the following condition must
 hold for the vector potential **H**.
 
 <div class="ds-equation-row">
-<img src="media/image7.png" class="eq-display" alt="Equation 5">
+<img src="media/image7.png" class="eq-display eq-display-review-smaller" alt="Equation 5">
 <span class="ds-equation-number">(5)</span>
 </div>
 ![](media/image8.png){width="4.0in"
@@ -166,10 +166,10 @@ scalar and the vector potentials are written as the following.
 <img src="media/image12.png" class="eq-display" alt="Equation 9">
 <span class="ds-equation-number">(9)</span>
 </div>
-where ![](media/image13.png){.eq-inline},
-![](media/image14.png){.eq-inline} is the
+where ![](media/image13.png){.eq-inline .eq-inline-after9-a},
+![](media/image14.png){.eq-inline .eq-inline-after9-b} is the
 2-dimensional (2D) Fourier transform of the function
-![](media/image15.png){.eq-inline} along the
+![](media/image15.png){.eq-inline .eq-inline-after9-c} along the
 *x* and *y* axes, and *k~x~* and *k~y~* are the wave numbers along their
 respective axes.
 
@@ -177,10 +177,10 @@ The primary advantage of writing the solutions in the form of Equations
 (8) and (9) is that the partial derivatives with respect to *x*, *y*,
 and *t* reduce to simple algebraic multiplications. For example, by
 denoting the Fourier transform pairs as
-![](media/image16.png){.eq-inline}, it is
+![](media/image16.png){.eq-inline .eq-inline-after9-d}, it is
 easily seen from Equation (8) that the partial derivative of Φ with
 respect to *x*, is obtained as
-![](media/image17.png){.eq-inline}.
+![](media/image17.png){.eq-inline .eq-inline-after9-e}.
 Therefore, the solution of the above equations can be obtained more
 conveniently in the transformed domain (i.e., wave number or frequency
 domain).
@@ -200,17 +200,17 @@ can be written as the following in terms of the potentials.
 <img src="media/image20.png" class="eq-display" alt="Equation 12">
 <span class="ds-equation-number">(12)</span>
 </div>
-where ![](media/image21.png){.eq-inline},
-![](media/image22.png){.eq-inline}, and
-![](media/image23.png){.eq-inline} are the
+where ![](media/image21.png){.eq-inline .eq-inline-review-large},
+![](media/image22.png){.eq-inline .eq-inline-review-large}, and
+![](media/image23.png){.eq-inline .eq-inline-review-large} are the
 *x*, *y*, and *z* components of the vector potential **H**,
 respectively.
 
 ### Solutions for Harmonic Potentials
 
 In order to solve for the harmonic components of
-![](media/image24.png){.eq-inline} and
-![](media/image25.png){.eq-inline} in
+![](media/image24.png){.eq-inline .eq-inline-tall} and
+![](media/image25.png){.eq-inline .eq-inline-tall} in
 Equations (8) and (9), it is first necessary to transform Equations (6)
 and (7) into the same wave number or frequency domain. For the scalar
 potential Φ, transforming Equation (6) into the frequency domain results
@@ -220,7 +220,7 @@ in the following.
 <img src="media/image26.png" class="eq-display" alt="Equation 13">
 <span class="ds-equation-number">(13)</span>
 </div>
-where ![](media/image27.png){.eq-inline}. The
+where ![](media/image27.png){.eq-inline .eq-inline-review-large}. The
 above equation can be rewritten in the form of a classical wave equation
 as:
 
@@ -266,7 +266,7 @@ where
 and
 
 <div class="ds-equation-row">
-<img src="media/image34.png" class="eq-display" alt="Equation 20">
+<img src="media/image34.png" class="eq-display eq-display-compact" alt="Equation 20">
 <span class="ds-equation-number">(20)</span>
 </div>
 The solution for each component of **H** is obtained as the following,
@@ -322,7 +322,7 @@ where *B*~j~, *C*~j~, and *D*~j~ (j = 1, 2) are arbitrary constants.
 Substituting the above equation into the divergence condition of **H**,
 i.e., Equation (5), one arrives at the following expression for the
 arbitrary constants of
-![](media/image42.png){.eq-inline}.
+![](media/image42.png){.eq-inline .eq-inline-tall}.
 
 <div class="ds-equation-row">
 <img src="media/image43.png" class="eq-display" alt="Equation 24-1">
@@ -400,19 +400,19 @@ the lower boundary in Equations (25) through (27). The resulting
 displacements are obtained as the following in matrix form.
 
 <div class="ds-equation-row">
-<img src="media/image57.png" class="eq-display" alt="Equation 37">
+<img src="media/image57.png" class="eq-display eq-display-review-smaller" alt="Equation 37">
 <span class="ds-equation-number">(37)</span>
 </div>
-where ![](media/image58.png){.eq-inline}and
-![](media/image59.png){.eq-inline}.
-![](media/image60.png){.eq-inline},
-![](media/image61.png){.eq-inline}, and
-![](media/image62.png){.eq-inline} are the
+where ![](media/image58.png){.eq-inline .eq-inline-review-large} and
+![](media/image59.png){.eq-inline .eq-inline-review-large}.
+![](media/image60.png){.eq-inline .eq-inline-review-large},
+![](media/image61.png){.eq-inline .eq-inline-review-large}, and
+![](media/image62.png){.eq-inline .eq-inline-review-large} are the
 displacements at the upper boundary along the *x*, *y*, and *z* axes,
 respectively, and
-![](media/image63.png){.eq-inline},
-![](media/image64.png){.eq-inline}, and
-![](media/image65.png){.eq-inline} are their
+![](media/image63.png){.eq-inline .eq-inline-review-large},
+![](media/image64.png){.eq-inline .eq-inline-review-large}, and
+![](media/image65.png){.eq-inline .eq-inline-review-large} are their
 counterparts at the lower boundary. The matrix **S~1~** is given as:
 
 <div class="ds-equation-row">
@@ -434,10 +434,10 @@ the lower boundary in Equations (31) through (33) yields the following
 for the stresses in matrix form.
 
 <div class="ds-equation-row">
-<img src="media/image69.png" class="eq-display" alt="Equation 41">
+<img src="media/image69.png" class="eq-display eq-display-review-smaller" alt="Equation 41">
 <span class="ds-equation-number">(41)</span>
 </div>
-where ![](media/image70.png){.eq-inline}in
+where ![](media/image70.png){.eq-inline .eq-inline-wide} in
 which the subscripts 1 and 2 indicate the corresponding stresses at the
 upper and lower boundaries, respectively. The matrix **S~2~** is given
 as:
@@ -698,7 +698,7 @@ is the global displacement vector, and
 ![](media/image97.png){.eq-inline} are the
 *x*, *y*, and *z* components of the displacement at the *i*th node,
 respectively. Similarly, the global force vector
-![](media/image98.png){.eq-inline} is given
+![](media/image98.png){.eq-inline .eq-inline-symbol-small} is given
 as the following.
 
 <div class="ds-equation-row">
@@ -714,7 +714,7 @@ applied normal stress in the *z* direction, all of which are at the
 
 For pavements that are only subjected to the vertical load at the
 pavement surface, the only non-zero component of
-![](media/image98.png){.eq-inline} in
+![](media/image98.png){.eq-inline .eq-inline-symbol-small} in
 Equation (63) is the normal component
 ![](media/image103.png){.eq-inline}, which
 can be obtained easily by taking the forward Fourier transform of the
@@ -728,7 +728,7 @@ this is written as the following.
 ### Time-Domain Response
 
 Note that the global displacement vector
-![](media/image105.png){.eq-inline} obtained
+![](media/image105.png){.eq-inline .eq-inline-symbol-small} obtained
 from Equation (61) is still in the transformed domain. As discussed
 previously, the advantage of working in the transformed domain is that
 the partial derivatives in the physical domain are represented as
