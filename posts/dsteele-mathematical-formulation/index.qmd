@@ -16,6 +16,14 @@ fig-align: center
 **DSteele Article Series · DS-02**
 :::
 
+::: {.callout-note}
+## Download the Technical Article
+
+For a print-ready version with consistently formatted equations and figures:
+
+[**Download DS-02: Mathematical Formulation of DSteele (PDF)**](DS-02_DSteele_Mathematical_Formulation.pdf){target="_blank"}
+:::
+
 ## Purpose and Scope
 
 DS-01 introduced DSteele from the perspective of its development,
@@ -116,7 +124,7 @@ as the following.
 <img src="media/image5.png" class="eq-display" alt="Equation 3">
 <span class="ds-equation-number">(3)</span>
 </div>
-In a cartesian coordinate system such as the one shown in Figure 1,
+In a cartesian coordinate system such as the one shown in Figure 3,
 Equation (1) represents a complicated system of partial differential
 equations that need to be solved for three components of the
 displacement vector (i.e., *u~x~*, *u~y~*, *u~z~*). As pointed out by
@@ -138,7 +146,7 @@ hold for the vector potential **H**.
 ![](media/image8.png){width="4.0in"
 height="3.7222222222222223in"}
 
-Figure 1. Cartesian Coordinate System with Multiple Layers on a
+Figure 3. Cartesian Coordinate System with Multiple Layers on a
 Halfspace
 
 Substituting Equation (4) into Equation (1), one arrives at the
@@ -291,7 +299,7 @@ where *B*~1~, *C*~1~, and *D*~1~ are arbitrary constants.
 The solution for the scalar potential shown in Equation (17) and those
 for the vector potential shown in Equation (21) only account for the
 stress waves propagating in the positive *z*-direction (i.e., downwards,
-see Figure 1). However, for a layer with finite thickness, *h*, the
+see Figure 3). However, for a layer with finite thickness, *h*, the
 stress wave not only propagates downwards, but also upwards due to the
 reflection and refraction at the lower boundary. To account for the
 waves propagating upwards from the lower boundary, another term is added
@@ -473,7 +481,7 @@ where
 ### Stiffness Matrix of a One-Noded, Semi-Infinite Element
 
 An example of the one-noded, semi-infinite element (i.e., a halfspace
-element) was schematically shown as the bottom layer in Figure 1.
+element) was schematically shown as the bottom layer in Figure 3.
 Obviously, the one-noded element only has a single boundary at the top
 of the layer. In other words, this element does not have a lower
 boundary from which the stress waves can reflect and refract back to the
@@ -657,8 +665,8 @@ stiffness matrix, **S~Global~**, is constructed in a manner similar to
 the Finite Element Method (FEM) (Al-Khoury et. al., 2001; Lee, 2013a,
 2013b). The global stiffness matrix is a (3∙*n*+3) by (3∙*n*+3) square
 matrix (*n* = total number of layers) whose constructional schematics
-are shown in Figure 2(a) for pavements with a halfspace and in Figure
-2(b) for those with a shallow bedrock. In Figure 2, any region that is
+are shown in Figure 4(a) for pavements with a halfspace and in Figure
+4(b) for those with a shallow bedrock. In Figure 4, any region that is
 overlapped by two distinct element stiffness matrices indicate the
 components of the respective element matrices are summed. Additional
 details regarding the global stiffness matrix construction can be found
@@ -675,7 +683,7 @@ height="3.1354166666666665in"}
 
 **(b)**
 
-Figure 2. Global Stiffness Matrix Construction for Pavement Structures
+Figure 4. Global Stiffness Matrix Construction for Pavement Structures
 (a) with a Halfspace and (b) without a Halfspace (i.e., shallow bedrock)
 
 Once the global stiffness matrix is constructed, the displacements at
@@ -832,3 +840,12 @@ surrogate without repeatedly reproducing the derivation presented here.
     Finite-Layer Approach to Pavement Response Evaluation.
     Transportation Research Record, Vol. 1709, No. 1. DOI:
     <https://doi.org/10.3141/1709-06>
+
+---
+
+### Download DS-02
+
+A print-ready PDF version of this technical article, with consistently formatted equations and figures, is also available:
+
+[**Download DS-02: Mathematical Formulation of DSteele (PDF)**](DS-02_DSteele_Mathematical_Formulation.pdf){target="_blank"}
+
