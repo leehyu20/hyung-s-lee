@@ -22,6 +22,20 @@
 <div class="article-series-label">
 <p><strong>DSteele Article Series · DS-02</strong></p>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Download the Technical Article
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a print-ready version with consistently formatted equations and figures:</p>
+<p><a href="DS-02_DSteele_Mathematical_Formulation.pdf" target="_blank"><strong>Download DS-02: Mathematical Formulation of DSteele (PDF)</strong></a></p>
+</div>
+</div>
 <section id="purpose-and-scope" class="level2">
 <h2 class="anchored" data-anchor-id="purpose-and-scope">Purpose and Scope</h2>
 <p>DS-01 introduced DSteele from the perspective of its development, motivation, implementation, and application to moving-load and Traffic Speed Deflectometer (TSD) analysis. This companion article documents the mathematical formulation underlying the model. The derivation that follows is retained from my original, unpublished DSteele formulation manuscript with only the surrounding context reorganized for this article.</p>
@@ -57,7 +71,7 @@
 <div class="ds-equation-row">
 <p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image5.png" class="eq-display" alt="Equation 3"> <span class="ds-equation-number">(3)</span></p>
 </div>
-<p>In a cartesian coordinate system such as the one shown in Figure 1, Equation (1) represents a complicated system of partial differential equations that need to be solved for three components of the displacement vector (i.e., <em>u<sub>x</sub></em>, <em>u<sub>y</sub></em>, <em>u<sub>z</sub></em>). As pointed out by Graff (1991), Equation (1) can be decoupled into a more simpler form by means of the Helmholtz decomposition given as the following.</p>
+<p>In a cartesian coordinate system such as the one shown in Figure 3, Equation (1) represents a complicated system of partial differential equations that need to be solved for three components of the displacement vector (i.e., <em>u<sub>x</sub></em>, <em>u<sub>y</sub></em>, <em>u<sub>z</sub></em>). As pointed out by Graff (1991), Equation (1) can be decoupled into a more simpler form by means of the Helmholtz decomposition given as the following.</p>
 <div class="ds-equation-row">
 <p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image6.png" class="eq-display" alt="Equation 4"> <span class="ds-equation-number">(4)</span></p>
 </div>
@@ -66,7 +80,7 @@
 <p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image7.png" class="eq-display eq-display-review-smaller" alt="Equation 5"> <span class="ds-equation-number">(5)</span></p>
 </div>
 <p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image8.png" style="width:4in;height:3.72222in"></p>
-<p>Figure 1. Cartesian Coordinate System with Multiple Layers on a Halfspace</p>
+<p>Figure 3. Cartesian Coordinate System with Multiple Layers on a Halfspace</p>
 <p>Substituting Equation (4) into Equation (1), one arrives at the following decoupled equations for Φ and <strong>H</strong>.</p>
 <div class="ds-equation-row">
 <p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image9.png" class="eq-display" alt="Equation 6"> <span class="ds-equation-number">(6)</span></p>
@@ -144,7 +158,7 @@
 </section>
 <section id="stiffness-matrix-of-a-two-noded-element-with-finite-thickness" class="level3">
 <h3 class="anchored" data-anchor-id="stiffness-matrix-of-a-two-noded-element-with-finite-thickness">Stiffness Matrix of a Two-Noded Element with Finite Thickness</h3>
-<p>The solution for the scalar potential shown in Equation (17) and those for the vector potential shown in Equation (21) only account for the stress waves propagating in the positive <em>z</em>-direction (i.e., downwards, see Figure 1). However, for a layer with finite thickness, <em>h</em>, the stress wave not only propagates downwards, but also upwards due to the reflection and refraction at the lower boundary. To account for the waves propagating upwards from the lower boundary, another term is added to the right-hand side of Equations (18) and (21) (Al-Khoury et. al., 2001; Lee, 2013a; Lee, 2013b). Thus, the solution for the scalar potential is written as the following.</p>
+<p>The solution for the scalar potential shown in Equation (17) and those for the vector potential shown in Equation (21) only account for the stress waves propagating in the positive <em>z</em>-direction (i.e., downwards, see Figure 3). However, for a layer with finite thickness, <em>h</em>, the stress wave not only propagates downwards, but also upwards due to the reflection and refraction at the lower boundary. To account for the waves propagating upwards from the lower boundary, another term is added to the right-hand side of Equations (18) and (21) (Al-Khoury et. al., 2001; Lee, 2013a; Lee, 2013b). Thus, the solution for the scalar potential is written as the following.</p>
 <div class="ds-equation-row">
 <p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image38.png" class="eq-display" alt="Equation 22"> <span class="ds-equation-number">(22)</span></p>
 </div>
@@ -243,7 +257,7 @@
 </section>
 <section id="stiffness-matrix-of-a-one-noded-semi-infinite-element" class="level3">
 <h3 class="anchored" data-anchor-id="stiffness-matrix-of-a-one-noded-semi-infinite-element">Stiffness Matrix of a One-Noded, Semi-Infinite Element</h3>
-<p>An example of the one-noded, semi-infinite element (i.e., a halfspace element) was schematically shown as the bottom layer in Figure 1. Obviously, the one-noded element only has a single boundary at the top of the layer. In other words, this element does not have a lower boundary from which the stress waves can reflect and refract back to the upper boundary. Therefore, the stiffness matrix of a semi-infinite element can be obtained in the same manner as the two-noded element without the terms that govern the stress waves propagating upwards [i.e., <em>A</em><sub>2</sub> = <em>B</em><sub>2</sub> = <em>C</em><sub>2</sub> = <em>D</em><sub>2</sub> =0 in Equations (22) and (23)].</p>
+<p>An example of the one-noded, semi-infinite element (i.e., a halfspace element) was schematically shown as the bottom layer in Figure 3. Obviously, the one-noded element only has a single boundary at the top of the layer. In other words, this element does not have a lower boundary from which the stress waves can reflect and refract back to the upper boundary. Therefore, the stiffness matrix of a semi-infinite element can be obtained in the same manner as the two-noded element without the terms that govern the stress waves propagating upwards [i.e., <em>A</em><sub>2</sub> = <em>B</em><sub>2</sub> = <em>C</em><sub>2</sub> = <em>D</em><sub>2</sub> =0 in Equations (22) and (23)].</p>
 <p>Following the same mathematical procedure previously shown for the two-noded element, one arrives at the following for the stiffness matrix of a one-noded element.</p>
 <div class="ds-equation-row">
 <p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image75.png" class="eq-display" alt="Equation 46"> <span class="ds-equation-number">(46)</span></p>
@@ -315,12 +329,12 @@
 </section>
 <section id="global-stiffness-matrix-and-nodal-displacements" class="level3">
 <h3 class="anchored" data-anchor-id="global-stiffness-matrix-and-nodal-displacements">Global Stiffness Matrix and Nodal Displacements</h3>
-<p>Using the element stiffness matrices derived previously, the global stiffness matrix, <strong>S<sub>Global</sub></strong>, is constructed in a manner similar to the Finite Element Method (FEM) (Al-Khoury et. al., 2001; Lee, 2013a, 2013b). The global stiffness matrix is a (3∙<em>n</em>+3) by (3∙<em>n</em>+3) square matrix (<em>n</em> = total number of layers) whose constructional schematics are shown in Figure 2(a) for pavements with a halfspace and in Figure 2(b) for those with a shallow bedrock. In Figure 2, any region that is overlapped by two distinct element stiffness matrices indicate the components of the respective element matrices are summed. Additional details regarding the global stiffness matrix construction can be found in Al-Khoury et. al.&nbsp;(2001) and Lee (2013a, 2013b), and shall not be repeated herein.</p>
+<p>Using the element stiffness matrices derived previously, the global stiffness matrix, <strong>S<sub>Global</sub></strong>, is constructed in a manner similar to the Finite Element Method (FEM) (Al-Khoury et. al., 2001; Lee, 2013a, 2013b). The global stiffness matrix is a (3∙<em>n</em>+3) by (3∙<em>n</em>+3) square matrix (<em>n</em> = total number of layers) whose constructional schematics are shown in Figure 4(a) for pavements with a halfspace and in Figure 4(b) for those with a shallow bedrock. In Figure 4, any region that is overlapped by two distinct element stiffness matrices indicate the components of the respective element matrices are summed. Additional details regarding the global stiffness matrix construction can be found in Al-Khoury et. al.&nbsp;(2001) and Lee (2013a, 2013b), and shall not be repeated herein.</p>
 <p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image91.png" style="width:4.3125in;height:2.79167in"></p>
 <p><strong>(a)</strong></p>
 <p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image92.png" style="width:4.86458in;height:3.13542in"></p>
 <p><strong>(b)</strong></p>
-<p>Figure 2. Global Stiffness Matrix Construction for Pavement Structures (a) with a Halfspace and (b) without a Halfspace (i.e., shallow bedrock)</p>
+<p>Figure 4. Global Stiffness Matrix Construction for Pavement Structures (a) with a Halfspace and (b) without a Halfspace (i.e., shallow bedrock)</p>
 <p>Once the global stiffness matrix is constructed, the displacements at every node of the pavement structure can be found simply by inverting the stiffness matrix. In other words:</p>
 <div class="ds-equation-row">
 <p><img src="https://leehyu20.github.io/hyung-s-lee/posts/dsteele-mathematical-formulation/media/image93.png" class="eq-display" alt="Equation 61"> <span class="ds-equation-number">(61)</span></p>
@@ -378,8 +392,14 @@
 <li><p>Siddharthan, R.V., Yao, J., and Sebaaly, P. 1998. Pavement Strain from Moving Dynamic 3D Load Distribution. Journal of Transportation Engineering, Vol. 124, No.&nbsp;6. DOI: <a href="https://doi.org/10.1061/(ASCE)0733-947X(1998)124:6(557)" class="uri">https://doi.org/10.1061/(ASCE)0733-947X(1998)124:6(557)</a>.</p></li>
 <li><p>Siddharthan, R.V., Krishnamenon, N., and Sebaaly, P. 2000. Finite-Layer Approach to Pavement Response Evaluation. Transportation Research Record, Vol. 1709, No.&nbsp;1. DOI: <a href="https://doi.org/10.3141/1709-06" class="uri">https://doi.org/10.3141/1709-06</a></p></li>
 </ol>
+<hr>
+<section id="download-ds-02" class="level3">
+<h3 class="anchored" data-anchor-id="download-ds-02">Download DS-02</h3>
+<p>A print-ready PDF version of this technical article, with consistently formatted equations and figures, is also available:</p>
+<p><a href="DS-02_DSteele_Mathematical_Formulation.pdf" target="_blank"><strong>Download DS-02: Mathematical Formulation of DSteele (PDF)</strong></a></p>
 
 
+</section>
 </section>
 
  ]]></description>
