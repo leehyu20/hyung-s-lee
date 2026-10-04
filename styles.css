@@ -344,28 +344,45 @@ main.content img[src*="dsteele-mathematical-formulation/media/image"] {
 }
 
 
-/* DS-02 equation rendering */
+/* DS-02 equation rendering — normalized from original MathType raster exports.
+   Equation images are whitespace-cropped but NEVER rescaled at the asset level.
+   This preserves a common MathType character scale, including multiline equations
+   and large matrices, while allowing genuinely tall constructs to remain tall. */
 .eq-display {
   display: block;
   width: auto !important;
-  max-width: min(100%, 900px) !important;
-  max-height: 280px;
-  margin: 1.15rem auto 0.35rem auto;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: none !important;
+  margin: 0 auto;
   object-fit: contain;
 }
 .eq-inline {
   display: inline-block;
   width: auto !important;
-  height: 1.35em !important;
+  height: 1.50em !important;
   max-width: 100%;
+  max-height: none !important;
   vertical-align: -0.32em;
   margin: 0 0.12em;
 }
-/* Large matrix equations may use their natural width and horizontal overflow on narrow screens. */
-.quarto-figure, p:has(> .eq-display) { overflow-x: auto; }
 
 
-/* DS-02 equation rows: equation and number share the same line */
+/* DS-02 surgical equation sizing. Keep complex display equations/matrices untouched. */
+.eq-inline.eq-inline-tall {
+  height: 1.30em !important;
+  vertical-align: -0.27em;
+}
+.eq-inline.eq-inline-wide {
+  height: 1.65em !important;
+  vertical-align: -0.38em;
+}
+.ds-equation-row .eq-display.eq-display-compact {
+  height: 3.5rem !important;
+  width: auto !important;
+}
+
+/* DS-02 equation rows: equation and number share the same line. */
 .ds-equation-row {
   position: relative;
   display: flex;
@@ -376,14 +393,11 @@ main.content img[src*="dsteele-mathematical-formulation/media/image"] {
   margin: 1.15rem 0 0.65rem 0;
   padding: 0 4.25rem;
   box-sizing: border-box;
+  overflow-x: auto;
 }
 .ds-equation-row .eq-display {
-  display: block;
-  width: auto !important;
-  max-width: 100% !important;
-  max-height: 280px;
+  flex: 0 0 auto;
   margin: 0 auto;
-  object-fit: contain;
 }
 .ds-equation-number {
   position: absolute;
@@ -397,16 +411,6 @@ main.content img[src*="dsteele-mathematical-formulation/media/image"] {
 @media (max-width: 700px) {
   .ds-equation-row { padding: 0 3.2rem 0 0.4rem; }
   .ds-equation-number { right: 0.1rem; font-size: 0.9rem; }
-}
-
-/* v0.4.2 refinement: DS-02 equation-scale and figure alignment */
-/* Equation graphics retain a common source scale. Eq. (5) is a compact
-   one-line expression whose Word export was visually oversized, so reduce
-   only that export rather than changing the scale of complex equations. */
-.ds-equation-row img[alt="Equation 5"] {
-  height: 1.55rem !important;
-  width: auto !important;
-  max-height: none !important;
 }
 
 /* Center all standalone DS-02 figures and their captions. */
@@ -427,3 +431,46 @@ body:has(.article-series-label) figcaption,
 body:has(.article-series-label) .figure-caption {
   text-align: center;
 }
+
+/* DS-02 screenshot review pass 2026-10-03: targeted only; do not globally rescale equations. */
+.eq-inline.eq-inline-review-large {
+  height: 1.72em !important;
+  vertical-align: -0.40em;
+}
+.eq-inline.eq-inline-symbol-small {
+  height: 1.12em !important;
+  vertical-align: -0.20em;
+}
+.ds-equation-row .eq-display.eq-display-small {
+  height: 2.75rem !important;
+  width: auto !important;
+}
+
+/* DS-02 screenshot review pass 3: final targeted corrections only. */
+/* Eq. (5), (37), and (41) were still visually oversized at 2.75rem. */
+.ds-equation-row .eq-display.eq-display-review-smaller {
+  height: 2.10rem !important;
+  width: auto !important;
+}
+/* Inline source images after Eq. (9) contain generous transparent padding;
+   give only these a larger box so the visible math matches surrounding text. */
+.eq-inline.eq-inline-after9 {
+  height: 2.10em !important;
+  width: auto !important;
+  max-height: none !important;
+  vertical-align: -0.50em;
+}
+
+/* DS-02 screenshot review pass 4 — surgical sizing from 2026-10-03 review. */
+/* Eqs. (5), (37), and (41): bring them back to the same visual scale as nearby display equations. */
+.ds-equation-row .eq-display.eq-display-review-smaller {
+  height: 1.65rem !important;
+  width: auto !important;
+}
+/* Inline math immediately below Eq. (9): normalize visible variable scale, accounting for
+   the different white margins baked into the original MathType PNG exports. */
+.eq-inline.eq-inline-after9-a { height: 1.72em !important; vertical-align: -0.38em; }
+.eq-inline.eq-inline-after9-b { height: 1.84em !important; vertical-align: -0.42em; }
+.eq-inline.eq-inline-after9-c { height: 1.90em !important; vertical-align: -0.43em; }
+.eq-inline.eq-inline-after9-d { height: 1.62em !important; vertical-align: -0.35em; }
+.eq-inline.eq-inline-after9-e { height: 2.28em !important; vertical-align: -0.50em; }
