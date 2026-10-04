@@ -1,7 +1,9 @@
 project:
   type: website
   output-dir: _site
-
+  resources:
+    - posts/dsteele-overview/dsteele-move.mp4
+    
 website:
   title: "Hyung S. Lee"
   site-url: "https://leehyu20.github.io/hyung-s-lee/"
