@@ -474,3 +474,20 @@ body:has(.article-series-label) .figure-caption {
 .eq-inline.eq-inline-after9-c { height: 1.90em !important; vertical-align: -0.43em; }
 .eq-inline.eq-inline-after9-d { height: 1.62em !important; vertical-align: -0.35em; }
 .eq-inline.eq-inline-after9-e { height: 2.28em !important; vertical-align: -0.50em; }
+
+/* TSD Myth verdict boxes */
+.myth-verdict {
+  background-color: #eef5fc;
+  border: 1px solid #d6e2ef;
+  border-left: 5px solid #4a86e8;
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+}
+
+.myth-verdict p:last-child {
+  margin-bottom: 0;
+}
+
+.darkred {
+  color: darkred;
+}
