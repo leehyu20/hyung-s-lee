@@ -38,6 +38,24 @@ I develop mechanics-based computational models and numerical tools to study pave
 ::: {.featured-article}
 ::: {.featured-article-copy}
 ::: {.eyebrow}
+TSD · TSD-01 · October 6, 2026
+:::
+
+### [Four TSD Myths: Confirmed, Busted, or Plausible?](posts/tsd-four-myths/index.qmd)
+
+Four common assumptions about Traffic Speed Deflectometer analysis are examined through moving-load mechanics, including FWD–TSDD correlation, slope integration, vehicle-model simplification, and slope-based backcalculation.
+
+[Read TSD-01 →](posts/tsd-four-myths/index.qmd){.article-link}
+:::
+
+::: {.featured-article-media}
+![](posts/tsd-four-myths/media/image1.jpg){fig-alt="Confirmed, Busted, and Plausible verdict graphic representing the four TSD myths"}
+:::
+:::
+
+::: {.featured-article}
+::: {.featured-article-copy}
+::: {.eyebrow}
 DSteele · DS-02 · October 3, 2026
 :::
 
@@ -50,24 +68,6 @@ The mathematical foundation of DSteele: governing equations, transformed-domain 
 
 ::: {.featured-article-media}
 ![](posts/dsteele-mathematical-formulation/media/image1.jpg){fig-alt="Original handwritten mathematical derivation developed during the formulation of DSteele"}
-:::
-:::
-
-::: {.featured-article}
-::: {.featured-article-copy}
-::: {.eyebrow}
-DSteele · DS-01 · October 2, 2026
-:::
-
-### [DSteele: A 3D Spectral-Element Model for Pavement Response under Moving Loads](posts/dsteele-overview/index.qmd)
-
-An overview of the motivation, implementation, early evaluation, and research applications of DSteele, a 3D moving-load pavement response model.
-
-[Read DS-01 →](posts/dsteele-overview/index.qmd){.article-link}
-:::
-
-::: {.featured-article-media}
-![](posts/dsteele-overview/3dmove-vs-dsteele.png){fig-alt="Comparison of calculated pavement deflection from DSteele and 3D-Move"}
 :::
 :::
 

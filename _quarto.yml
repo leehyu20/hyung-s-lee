@@ -3,6 +3,8 @@ project:
   output-dir: _site
   resources:
     - posts/dsteele-overview/dsteele-move.mp4
+    - posts/tsd-four-myths/media/*.mp4
+    - models/media/dancing-tsd-defl-slope.mp4
     
 website:
   title: "Hyung S. Lee"
@@ -41,6 +43,8 @@ website:
         href: posts/index.qmd
       - text: Publications
         href: publications.qmd
+      - text: Just for Fun
+        href: just-for-fun/index.qmd
       - text: About
         href: about.qmd
     right:
