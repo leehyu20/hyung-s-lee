@@ -5,6 +5,7 @@ project:
     - posts/dsteele-overview/dsteele-move.mp4
     - posts/tsd-four-myths/media/*.mp4
     - posts/gpr-virtual-laboratory/media/*.mp4
+    - illustrations/**/*.png
     - models/media/dancing-tsd-defl-slope.mp4
     
 website:
@@ -42,6 +43,8 @@ website:
             href: models/viscowave.qmd
       - text: Articles
         href: posts/index.qmd
+      - text: Technical Illustrations
+        href: illustrations/index.qmd
       - text: Publications
         href: publications.qmd
       - text: Just for Fun

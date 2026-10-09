@@ -1,0 +1,16 @@
+---
+title: "Technical Illustrations"
+subtitle: "Pavement engineering concepts and equations—explained visually"
+description: "Original, downloadable engineering illustrations by Hyung S. Lee, Ph.D., P.E."
+listing:
+  contents: "**/index.qmd"
+  sort: "date desc"
+  type: grid
+  grid-columns: 3
+  categories: true
+page-layout: full
+---
+
+Original technical illustrations covering pavement engineering, AASHTO design equations, and Traffic Speed Deflectometer (TSD) measurements. Select an illustration to view it at full resolution and download the original PNG.
+
+The illustrations are intended as visual technical explanations; consult the notes on each page for scope and assumptions.
