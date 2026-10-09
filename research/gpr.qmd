@@ -1,9 +1,18 @@
 ---
 title: "Ground Penetrating Radar"
+description: "Ground Penetrating Radar (GPR) research for pavement engineering, including FDTD electromagnetic simulations, asphalt layer interfaces, pavement thickness, cracks, water intrusion, subsurface voids, and heterogeneous pavement materials."
 ---
 
 This section focuses on pavement Ground Penetrating Radar (GPR), including FDTD simulation of layered and heterogeneous pavement systems, layer interfaces, thin layers, cracks, voids, moisture, and groundwater effects.
 
 ## Articles & Technical Notes
 
-**More content is coming.** This section is being developed and will be populated with research articles, technical notes, computational studies, and engineering visualizations as the site develops.
+### [GPR-01 | Building a Virtual Ground Penetrating Radar Laboratory with FDTD](../posts/gpr-virtual-laboratory/index.qmd)
+
+**October 8, 2026 · GPR Article Series**
+
+Using a controlled FDTD-based virtual pavement laboratory, this article examines how uniform and irregular pavement layers, idealized cracks, a thin water layer, thin asphalt concrete, and a circular subsurface void influence GPR A-scans and B-scans. Includes numerical experiments, figures, and animations.
+
+[Read GPR-01 →](../posts/gpr-virtual-laboratory/index.qmd)
+
+*GPR-02 will explore more realistic heterogeneous pavement structures, including internal material structure, cracking, moisture, and compaction.*

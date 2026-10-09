@@ -320,7 +320,8 @@ Again, the dual tires on each side of the axle start interacting within
 the AC. But more importantly for this figure, the 2 half-axles start
 interacting within the subgrade layer.
 
-![](media/image9.png){width="6.9in" height="3.5in"}
+![](media/image9.png){width="90%"
+}
 
 **Figure 8. Interaction of dual tires due to influence zone
 overlapping.**

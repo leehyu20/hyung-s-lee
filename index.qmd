@@ -1,5 +1,6 @@
 ---
-title: "Hyung S. Lee, Ph.D., P.E."
+title: "Pavement Engineering Research & Computational Modeling"
+description: "Research by Hyung S. Lee, Ph.D., P.E., covering pavement engineering, computational mechanics, nondestructive testing, Traffic Speed Deflectometer (TSD), Ground Penetrating Radar (GPR), DSteele, and ViscoWave."
 page-layout: full
 toc: false
 ---
@@ -34,6 +35,24 @@ I develop mechanics-based computational models and numerical tools to study pave
 :::
 
 ## Latest Technical Articles
+
+::: {.featured-article}
+::: {.featured-article-copy}
+::: {.eyebrow}
+GPR · GPR-01 · October 8, 2026
+:::
+
+### [Building a Virtual Ground Penetrating Radar (GPR) Laboratory with FDTD](posts/gpr-virtual-laboratory/index.qmd)
+
+A virtual GPR laboratory using FDTD simulations to investigate how pavement layer interfaces, irregular thicknesses, cracks, water, thin asphalt layers, and subsurface voids affect the recorded radar response.
+
+[Read GPR-01 →](posts/gpr-virtual-laboratory/index.qmd){.article-link}
+:::
+
+::: {.featured-article-media}
+![](posts/gpr-virtual-laboratory/media/gpr-figure-1.png){fig-alt="FDTD simulation comparison of pavement structures and GPR responses"}
+:::
+:::
 
 ::: {.featured-article}
 ::: {.featured-article-copy}

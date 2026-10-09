@@ -1,6 +1,7 @@
 ---
 title: "Technical Articles"
 subtitle: "Long-form research articles, technical notes, and engineering visualizations"
+description: "Technical research articles by Hyung S. Lee, Ph.D., P.E., covering pavement engineering, Traffic Speed Deflectometer (TSD), Ground Penetrating Radar (GPR), computational mechanics, and numerical modeling."
 listing:
   contents: "**/index.qmd"
   sort: "date desc"

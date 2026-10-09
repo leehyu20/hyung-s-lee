@@ -4,6 +4,7 @@ project:
   resources:
     - posts/dsteele-overview/dsteele-move.mp4
     - posts/tsd-four-myths/media/*.mp4
+    - posts/gpr-virtual-laboratory/media/*.mp4
     - models/media/dancing-tsd-defl-slope.mp4
     
 website:
