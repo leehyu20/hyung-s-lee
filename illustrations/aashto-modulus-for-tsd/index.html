@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Hyung S. Lee, Ph.D., P.E.">
-<meta name="dcterms.date" content="2026-10-02">
-<meta name="description" content="An overview of the motivation, implementation, early evaluation, and research applications of DSteele, a 3D moving-load pavement response model.">
+<meta name="dcterms.date" content="2026-07-26">
+<meta name="description" content="Proposed analytical equations for estimating subgrade and effective pavement moduli from Traffic Speed Deflectometer (TSD) deflection slopes, including dual-tire loading.">
 
-<title>Hyung S. Lee - DSteele: A 3D Spectral-Element Model for Pavement Response under Moving Loads</title>
+<title>Hyung S. Lee - Revisiting the 1993 AASHTO Modulus Equations for TSD</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -44,8 +44,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script src="../../site_libs/quarto-contrib/videojs/video.min.js"></script>
-<link href="../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,8 +75,6 @@ gtag('config', 'G-E3LRN9QKM0', { 'anonymize_ip': true});
 </script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -199,49 +195,26 @@ gtag('config', 'G-E3LRN9QKM0', { 'anonymize_ip': true});
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#why-i-developed-dsteele" id="toc-why-i-developed-dsteele" class="nav-link" data-scroll-target="#why-i-developed-dsteele">1. Why I Developed DSteele</a></li>
-  <li><a href="#what-dsteele-solves" id="toc-what-dsteele-solves" class="nav-link" data-scroll-target="#what-dsteele-solves">2. What DSteele Solves</a></li>
-  <li><a href="#dsteele-implementation" id="toc-dsteele-implementation" class="nav-link" data-scroll-target="#dsteele-implementation">3. DSteele Implementation</a></li>
-  <li><a href="#why-deflection-slope-matters-for-tsd" id="toc-why-deflection-slope-matters-for-tsd" class="nav-link" data-scroll-target="#why-deflection-slope-matters-for-tsd">4. Why Deflection Slope Matters for TSD</a></li>
-  <li><a href="#early-evaluation-against-3d-move" id="toc-early-evaluation-against-3d-move" class="nav-link" data-scroll-target="#early-evaluation-against-3d-move">5. Early Evaluation against 3D-Move</a></li>
-  <li><a href="#from-dsteele-to-dsteele-v2" id="toc-from-dsteele-to-dsteele-v2" class="nav-link" data-scroll-target="#from-dsteele-to-dsteele-v2">6. From DSteele to DSteele V2</a></li>
-  <li><a href="#what-dsteele-has-enabled" id="toc-what-dsteele-has-enabled" class="nav-link" data-scroll-target="#what-dsteele-has-enabled">7. What DSteele Has Enabled</a></li>
-  <li><a href="#dsteele-in-motion" id="toc-dsteele-in-motion" class="nav-link" data-scroll-target="#dsteele-in-motion">8. DSteele in Motion</a>
-  <ul class="collapse">
-  <li><a href="#continue-the-dsteele-series" id="toc-continue-the-dsteele-series" class="nav-link" data-scroll-target="#continue-the-dsteele-series">Continue the DSteele series</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">DSteele: A 3D Spectral-Element Model for Pavement Response under Moving Loads</h1>
-<p class="subtitle lead">Development, motivation, implementation, early evaluation, and application to Traffic Speed Deflectometer (TSD) analysis</p>
+<h1 class="title">Revisiting the 1993 AASHTO Modulus Equations for TSD</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">DSteele</div>
-    <div class="quarto-category">Traffic Speed Deflectometer</div>
-    <div class="quarto-category">Flexible Pavement</div>
-    <div class="quarto-category">Moving Loads</div>
-    <div class="quarto-category">Spectral Element Method</div>
-    <div class="quarto-category">Computational Engineering</div>
+    <div class="quarto-category">AASHTO</div>
+    <div class="quarto-category">TSD</div>
+    <div class="quarto-category">Backcalculation</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    An overview of the motivation, implementation, early evaluation, and research applications of DSteele, a 3D moving-load pavement response model.
+    Proposed analytical equations for estimating subgrade and effective pavement moduli from Traffic Speed Deflectometer (TSD) deflection slopes, including dual-tire loading.
   </div>
 </div>
 
@@ -258,119 +231,36 @@ gtag('config', 'G-E3LRN9QKM0', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 2, 2026</p>
+      <p class="date">July 26, 2026</p>
     </div>
   </div>
   
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">October 2, 2026</p>
-    </div>
-  </div>
     
   </div>
   
 
 </header>
 
-<div class="article-lead">
-<p>DSteele is a mechanics-based moving-load pavement response model developed with Traffic Speed Deflectometer (TSD) applications as a central motivation. This article introduces its origin, implementation, early evaluation, and the research questions it has enabled.</p>
-</div>
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>DSteele is a dynamic, three-dimensional (3D) spectral-element or finite-layer model developed to simulate flexible pavement responses under moving vehicle loads, with Traffic Speed Deflection Device (TSDD) applications as a central motivation.</p>
-<p>The model calculates pavement response under a moving load by solving the 3D equation of motion semi-analytically in the frequency domain for each pavement layer of finite thickness. In this sense, each layer acts as a spectral element. Multiple layers (or elements) are then connected in a manner similar to the finite element method to construct the global stiffness matrix, which is solved for pavement responses including deflection. More importantly for TSD analysis, DSteele can provide deflection slope directly as a model response without approximating it numerically from a series of independently calculated deflections.</p>
-<p>The formulation supports both elastic and viscoelastic material representations for asphalt materials. The viscoelastic material input takes the form of a time-domain relaxation modulus represented by a four-parameter sigmoidal function.</p>
-<p>The initial DSteele implementation was developed in 2023. Its computational engine is written in C++, while an Excel-based interface is used to define pavement structures, moving loads, vehicle speed, and response output locations.</p>
-<p>This article introduces why DSteele was developed, its implementation and early evaluation, and the research questions it subsequently enabled, many of which were discussed across my LinkedIn posts. This article is intended only as an overview. A future, separate article will document the mathematical formulation in greater depth.</p>
-</section>
-<section id="why-i-developed-dsteele" class="level2">
-<h2 class="anchored" data-anchor-id="why-i-developed-dsteele">1. Why I Developed DSteele</h2>
-<p>Traffic Speed Deflection Devices (TSDDs), which include TSDs with Doppler lasers as well as devices such as the Rolling Wheel Deflectometer (RWD) and Raptor that use distance lasers, represent a fundamentally different methodology for measuring pavement surface deflection compared with stationary impact devices such as the Falling/Heavy Weight Deflectometer (F/HWD). Rather than stopping at discrete locations and applying an impact load, a TSDD measures pavement deflection while traveling at highway speed.</p>
-<p>For those of you who know me, you may have heard of <a href="https://github.com/leehyu20/ViscoWave">ViscoWave</a>. It is a dynamic, finite-layer model for analyzing F/HWD (i.e., impact-load) time-history data that I developed as part of my Ph.D.&nbsp;work. After I finished my Ph.D., I personally continued developing ViscoWave for moving-load or TSDD applications, but I never really had a research project that needed it.</p>
-<p>My first exposure to a real TSDD research project came when my friend and colleague, Doug Steele (1968-2023), was leading a research effort to develop the RWD. After I finished my Ph.D.&nbsp;work, Doug pulled me into his RWD research team, and I had my first real occasion to use ViscoWave to simulate moving loads. Although the RWD research was completed using ViscoWave’s moving-load implementation, it had one critical drawback. While it was fairly efficient for analyzing F/HWD time-history data, it was computationally inefficient—and therefore time-consuming—for simulating or analyzing moving loads.</p>
+<p><a href="../../illustrations/index.html">← Back to Technical Illustrations</a></p>
+<p>Proposed analytical equations for estimating subgrade and effective pavement moduli from Traffic Speed Deflectometer (TSD) deflection slopes, including dual-tire loading.</p>
+<div class="illustration-viewer">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="doug-steele.jpg" class="img-fluid figure-img" style="width:45.0%"></p>
-<figcaption class="figure-caption">Doug Steele (1968-2023).</figcaption>
+<p><a href="hyung-s-lee-aashto-ep-for-tsd.png" target="_blank"><img src="hyung-s-lee-aashto-ep-for-tsd.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">Revisiting the 1993 AASHTO Modulus Equations for TSD</figcaption>
 </figure>
 </div>
-<p>If you knew Doug, you could probably imagine him telling me that we needed something that could simulate moving loads faster and more efficiently. Yes, that is exactly what he did almost every day when he saw me in the office. I had ideas that could potentially lead to a new solution, but since our RWD research was discontinued and I became busy with other things, it never became reality.</p>
-<p>In January 2023, we lost Doug in a tragic accident. At his funeral, I thought about what Doug had been telling me for so long: I needed to develop a new solution for moving loads. After spending countless late nights and weekends working on it, my first public description of the new solution appeared in a LinkedIn post in June 2023. I named the solution <strong>DSteele</strong> in honor and loving memory of my friend, Doug Steele.</p>
-</section>
-<section id="what-dsteele-solves" class="level2">
-<h2 class="anchored" data-anchor-id="what-dsteele-solves">2. What DSteele Solves</h2>
-<p>DSteele represents a layered pavement system in three dimensions. Each finite pavement layer (or element) is described by its material properties (i.e., modulus, density, Poisson’s ratio, and damping) and thickness. It solves the stress-wave propagation problem for a layered pavement system under vehicle loads traveling at a constant speed. At a conceptual level, the analysis process is as follows.</p>
-<ol type="1">
-<li>Define the layered pavement structure and material properties.</li>
-<li>Define the moving wheel-load configuration and vehicle speed.</li>
-<li>Transform the variables from the physical domain, <span class="math inline">\((x,y)\)</span>, to the frequency (or wavenumber) domain, <span class="math inline">\((k_x,k_y)\)</span>, in the horizontal plane.</li>
-<li>Construct the frequency-domain stiffness matrix based on the semi-analytical solution for each layer that makes up the pavement.</li>
-<li>Assemble the layer stiffness matrices into a global stiffness matrix and solve for the nodal responses in the frequency domain.</li>
-<li>Inverse-transform displacement and other pavement responses back to the physical (spatial) domain.</li>
-</ol>
-</section>
-<section id="dsteele-implementation" class="level2">
-<h2 class="anchored" data-anchor-id="dsteele-implementation">3. DSteele Implementation</h2>
-<p>As mentioned, the computational engine of DSteele was implemented in C++, while a developmental MS Excel interface serves as the primary user interface. This separation allows the computationally intensive spectral-element calculations to be conducted efficiently, while the spreadsheet provides a convenient way for the user to communicate inputs and outputs with the C++ engine and visualize the results without repeatedly importing or exporting files through separate software.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="dsteele-interface.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">DSteele developmental interface showing pavement/material inputs, moving-load inputs, and calculated vertical deflection and deflection slope.</figcaption>
-</figure>
 </div>
-</section>
-<section id="why-deflection-slope-matters-for-tsd" class="level2">
-<h2 class="anchored" data-anchor-id="why-deflection-slope-matters-for-tsd">4. Why Deflection Slope Matters for TSD</h2>
-<p>In this context, Traffic Speed Deflection Devices (TSDDs) include devices designed and built to measure pavement deflection from a moving platform, whereas the Traffic Speed Deflectometer (TSD) refers to a specific type of TSDD that uses Doppler laser sensors to measure pavement response.</p>
-<p>It is important to emphasize that the Doppler lasers do not measure distance or displacement directly. Instead, they measure vertical pavement deflection velocity. For continuous pavements (e.g., flexible pavements), the deflection velocity can be divided by the vehicle velocity to yield the deflection slope, which is essentially the derivative of deflection in the longitudinal direction.</p>
-<p>Deflection velocity, or equivalently deflection slope under the steady moving-load relationship, is a particularly unique response associated with TSDs. Other TSDDs that use distance lasers do not rely on deflection slope (or velocity) at all. To support analysis of different TSDDs that exist today as well as those that may be developed in the future, DSteele was therefore developed to calculate not only deflection but also deflection slope directly within the solution. As will be discussed in the mathematical formulation article, this quantity can be obtained naturally in the frequency domain.</p>
-</section>
-<section id="early-evaluation-against-3d-move" class="level2">
-<h2 class="anchored" data-anchor-id="early-evaluation-against-3d-move">5. Early Evaluation against 3D-Move</h2>
-<p>During early development, DSteele response was compared with 3D-Move for a common pavement/loading case. The purpose of this comparison was to check whether the independently developed moving-load solution produced a physically consistent deflection history with comparable response magnitude and shape.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="3dmove-vs-dsteele.png" class="img-fluid figure-img" style="width:78.0%"></p>
-<figcaption class="figure-caption">Early comparison of calculated vertical deflection from DSteele and 3D-Move for the same analysis case. The comparison was used as an early evaluation of the independently developed formulation.</figcaption>
-</figure>
-</div>
-<p>The curves show close agreement in overall response shape and peak deflection, with a small systematic difference visible over much of the time history. This comparison is therefore best described as an early model-to-model evaluation rather than comprehensive validation. Broader verification and validation would require a documented suite of analytical, numerical, and/or measured benchmarks.</p>
-</section>
-<section id="from-dsteele-to-dsteele-v2" class="level2">
-<h2 class="anchored" data-anchor-id="from-dsteele-to-dsteele-v2">6. From DSteele to DSteele V2</h2>
-<p>As the range and complexity of DSteele analyses grew, computational runtime became increasingly important. Development of DSteele V2 focused on accelerating the frequency-domain calculations without changing the fundamental physical formulation.</p>
-<p>The idea behind V2 development was to interpolate the high-frequency portion of the frequency-response function and to take advantage of symmetry in the 2D Fourier transform. In the cases I tested during development, these changes reduced runtime by more than a factor of 20 compared with the original implementation.</p>
-<p>This improvement was purely numerical and related to the implementation of DSteele; it did not change the underlying formulation or derivation. The details may therefore be documented in a separate article in the future.</p>
-</section>
-<section id="what-dsteele-has-enabled" class="level2">
-<h2 class="anchored" data-anchor-id="what-dsteele-has-enabled">7. What DSteele Has Enabled</h2>
-<p>DSteele has allowed me to explore several topics in greater depth as I studied the TSD. A short list of these topics is provided below.</p>
-<ul>
-<li>Sensitivity of modeled deflection and deflection slope.</li>
-<li>Investigation of assumptions used when integrating TSD slope to construct deflection.</li>
-<li>Separation of shifting and rotation errors in reconstructed deflection basins.</li>
-<li>Backcalculation using deflection slopes directly at Doppler-sensor locations.</li>
-<li>Evaluation of full-truck versus reduced axle/load representations.</li>
-<li>Comparison and correlation of TSD and FWD responses under different loading conditions.</li>
-<li>Dimensional analysis of moving-load pavement response.</li>
-<li>Development of a machine-learning surrogate for rapid prediction of DSteele response.</li>
-</ul>
-<p>Some of the topics above have already been covered in bits and pieces across my LinkedIn posts. I plan to develop several of them into longer articles so that the work has a more permanent home.</p>
-</section>
-<section id="dsteele-in-motion" class="level2">
-<h2 class="anchored" data-anchor-id="dsteele-in-motion">8. DSteele in Motion</h2>
-<p>A moving-load model is easier to understand when the response is visualized in an animation. For this reason, I also developed a number of 2D and 3D visualizations of DSteele results, along with other related simulations. I plan to develop separate articles around some of the visualizations that originally appeared in my LinkedIn posts.</p>
-<p>For this introductory article, the visualization below shows pavement deflection under a moving standard single axle, originally posted on LinkedIn.</p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="dsteele-move.mp4"></video></div>
-<hr>
-<section id="continue-the-dsteele-series" class="level3">
-<h3 class="anchored" data-anchor-id="continue-the-dsteele-series">Continue the DSteele series</h3>
-<p>The next article will focus on the <strong>detailed mathematical formulation of DSteele</strong>, including the governing equations, transformed-domain solution, spectral-element stiffness formulation, semi-infinite halfspace, viscoelastic representation, and global assembly.</p>
+<p><a href="hyung-s-lee-aashto-ep-for-tsd.png" class="btn btn-primary" download="hyung-s-lee-aashto-ep-for-tsd.png"><strong>⬇ Download the original high-resolution PNG</strong></a></p>
+<p><em>Click the illustration to open the full-resolution image in a new tab.</em></p>
+<p><a href="https://www.linkedin.com/feed/update/urn:li:activity:7487273233688387584/" target="_blank" rel="noopener noreferrer">View Original LinkedIn Post</a></p>
+<section id="technical-note" class="level3">
+<h3 class="anchored" data-anchor-id="technical-note">Technical note</h3>
+<p>The slope-based expressions shown are the author’s proposed formulations, not equations prescribed by the 1993 AASHTO Guide. The illustration discusses dual-tire loading, sensor position, and assumptions underlying the estimates.</p>
+<p><strong>Illustration:</strong> Hyung S. Lee, Ph.D., P.E. · Originally created 2026-07-26.</p>
+<p>If you share or reproduce this illustration, please credit the author and link to this page.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -746,7 +636,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">Built with Quarto</div>
   </div>
 </footer>
-<script>videojs(video_shortcode_videojs_video1);</script>
 
 
 

@@ -161,6 +161,20 @@
     "text": "Experiments, Animations & Other Curiosities\nThis section is just getting started. Over time, I’ll use this space to share mathematical experiments, animations, visualizations, code, and other things I created simply for the fun of exploring an idea."
   },
   {
+    "objectID": "illustrations/tsd-deflection-integration/index.html",
+    "href": "illustrations/tsd-deflection-integration/index.html",
+    "title": "TSD Deflections Integrated from Deflection Slopes",
+    "section": "",
+    "text": "← Back to Technical Illustrations\nAn illustrated explanation of how deflection slopes are integrated and how reference-sensor assumptions can introduce shifting and rotation errors.\n\n\n\n\nTSD Deflections Integrated from Deflection Slopes\n\n\n\n⬇ Download the original high-resolution PNG\nClick the illustration to open the full-resolution image in a new tab.\nView Original LinkedIn Post\n\nTechnical note\nThis illustration specifically addresses Doppler-laser TSD systems and shows how the selected reference location and zero-slope assumptions can affect integrated deflections. The numerical demonstration is simulation-based.\nIllustration: Hyung S. Lee, Ph.D., P.E. · Originally created 2026-08-15.\nIf you share or reproduce this illustration, please credit the author and link to this page."
+  },
+  {
+    "objectID": "illustrations/aashto-modulus-for-tsd/index.html",
+    "href": "illustrations/aashto-modulus-for-tsd/index.html",
+    "title": "Revisiting the 1993 AASHTO Modulus Equations for TSD",
+    "section": "",
+    "text": "← Back to Technical Illustrations\nProposed analytical equations for estimating subgrade and effective pavement moduli from Traffic Speed Deflectometer (TSD) deflection slopes, including dual-tire loading.\n\n\n\n\nRevisiting the 1993 AASHTO Modulus Equations for TSD\n\n\n\n⬇ Download the original high-resolution PNG\nClick the illustration to open the full-resolution image in a new tab.\nView Original LinkedIn Post\n\nTechnical note\nThe slope-based expressions shown are the author’s proposed formulations, not equations prescribed by the 1993 AASHTO Guide. The illustration discusses dual-tire loading, sensor position, and assumptions underlying the estimates.\nIllustration: Hyung S. Lee, Ph.D., P.E. · Originally created 2026-07-26.\nIf you share or reproduce this illustration, please credit the author and link to this page."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -180,6 +194,20 @@
     "title": "About",
     "section": "Research themes",
     "text": "Research themes\nTraffic Speed Deflectometer (TSD) • FWD/HWD • Ground Penetrating Radar • Flexible and Rigid Pavement Mechanics • Numerical Modeling • Research Software"
+  },
+  {
+    "objectID": "illustrations/aashto-effective-modulus/index.html",
+    "href": "illustrations/aashto-effective-modulus/index.html",
+    "title": "1993 AASHTO Effective Pavement Modulus Equation",
+    "section": "",
+    "text": "← Back to Technical Illustrations\nHow the 1993 AASHTO effective pavement modulus equation can be understood using Boussinesq’s elastic half-space solution and Odemark’s equivalent layer theory.\n\n\n\n\n1993 AASHTO Effective Pavement Modulus Equation\n\n\n\n⬇ Download the original high-resolution PNG\nClick the illustration to open the full-resolution image in a new tab.\nView Original LinkedIn Post\n\nTechnical note\nThe illustration separates the modeled surface deflection into subgrade and pavement contributions using two idealized elastic half-spaces. The resulting effective modulus is an approximate representation, not an exact multilayer elastic solution. The illustration assumes a Poisson’s ratio of 0.5.\nIllustration: Hyung S. Lee, Ph.D., P.E. · Originally created 2025-04-20.\nIf you share or reproduce this illustration, please credit the author and link to this page."
+  },
+  {
+    "objectID": "illustrations/index.html",
+    "href": "illustrations/index.html",
+    "title": "Technical Illustrations",
+    "section": "",
+    "text": "Original technical illustrations covering pavement engineering, AASHTO design equations, and Traffic Speed Deflectometer (TSD) measurements. Select an illustration to view it at full resolution and download the original PNG.\nThe illustrations are intended as visual technical explanations; consult the notes on each page for scope and assumptions.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTSD Deflections Integrated from Deflection Slopes\n\n\n\nTSD\n\n\nDeflection Slopes\n\n\nIntegration\n\n\n\nAn illustrated explanation of how deflection slopes are integrated and how reference-sensor assumptions can introduce shifting and rotation errors.\n\n\n\nHyung S. Lee, Ph.D., P.E.\n\n\nAug 15, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRevisiting the 1993 AASHTO Modulus Equations for TSD\n\n\n\nAASHTO\n\n\nTSD\n\n\nBackcalculation\n\n\n\nProposed analytical equations for estimating subgrade and effective pavement moduli from Traffic Speed Deflectometer (TSD) deflection slopes, including dual-tire loading.\n\n\n\nHyung S. Lee, Ph.D., P.E.\n\n\nJul 26, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1993 AASHTO Effective Pavement Modulus Equation\n\n\n\nAASHTO\n\n\nPavement Engineering\n\n\nEffective Modulus\n\n\n\nHow the 1993 AASHTO effective pavement modulus equation can be understood using Boussinesq’s elastic half-space solution and Odemark’s equivalent layer theory.\n\n\n\nHyung S. Lee, Ph.D., P.E.\n\n\nApr 20, 2025\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",

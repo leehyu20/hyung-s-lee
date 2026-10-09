@@ -7,5 +7,13 @@
       "/posts/dsteele-mathematical-formulation/index.html",
       "/posts/dsteele-overview/index.html"
     ]
+  },
+  {
+    "listing": "/illustrations/index.html",
+    "items": [
+      "/illustrations/tsd-deflection-integration/index.html",
+      "/illustrations/aashto-modulus-for-tsd/index.html",
+      "/illustrations/aashto-effective-modulus/index.html"
+    ]
   }
 ]

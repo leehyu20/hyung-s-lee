@@ -491,3 +491,6 @@ body:has(.article-series-label) .figure-caption {
 .darkred {
   color: darkred;
 }
+/* Technical Illustrations: preserve full-resolution diagrams without cropping. */
+.illustration-viewer { max-width: 1500px; margin: 1.25rem auto; }
+.illustration-viewer img { display: block; width: 100%; height: auto; border: 1px solid #d4d9de; }
