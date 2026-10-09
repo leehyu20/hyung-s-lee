@@ -2,6 +2,7 @@
   {
     "listing": "/posts/index.html",
     "items": [
+      "/posts/gpr-virtual-laboratory/index.html",
       "/posts/tsd-four-myths/index.html",
       "/posts/dsteele-mathematical-formulation/index.html",
       "/posts/dsteele-overview/index.html"
