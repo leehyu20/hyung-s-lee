@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Hyung S. Lee, Ph.D., P.E.">
+<meta name="dcterms.date" content="2026-10-12">
+<meta name="description" content="GPR-02 extends a virtual FDTD GPR laboratory to heterogeneous pavement materials, exploring dry and wet cracks, asphalt compaction, and rising groundwater.">
+
+<title>Hyung S. Lee - GPR-02 | From Homogeneous Layers to Heterogeneous Pavement</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-E3LRN9QKM0"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-E3LRN9QKM0', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Hyung S. Lee</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Research</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-research">    
+        <li>
+    <a class="dropdown-item" href="../../research/tsd.html" rel="" target="">
+ <span class="dropdown-text">Traffic Speed Deflectometer (TSD)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/flexible-pavements.html" rel="" target="">
+ <span class="dropdown-text">Flexible Pavements</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/rigid-pavements.html" rel="" target="">
+ <span class="dropdown-text">Rigid Pavements</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/fwd-hwd.html" rel="" target="">
+ <span class="dropdown-text">FWD / HWD</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/gpr.html" rel="" target="">
+ <span class="dropdown-text">Ground Penetrating Radar</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/friction.html" rel="" target="">
+ <span class="dropdown-text">Friction &amp; Surface Characterization</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-models--software" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Models &amp; Software</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-models--software">    
+        <li>
+    <a class="dropdown-item" href="../../models/dsteele.html" rel="" target="">
+ <span class="dropdown-text">DSteele</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../models/gpr.html" rel="" target="">
+ <span class="dropdown-text">Virtual GPR Laboratory</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../models/viscowave.html" rel="" target="">
+ <span class="dropdown-text">ViscoWave</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../models/finite-beam.html" rel="" target="">
+ <span class="dropdown-text">Finite Beam Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../models/illislab.html" rel="" target="">
+ <span class="dropdown-text">ILLI-SLAB Implementation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html" rel="" target="">
+ <span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../illustrations/index.html" rel="" target="">
+ <span class="menu-text">Technical Illustrations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html" rel="" target="">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../just-for-fun/index.html" rel="" target="">
+ <span class="menu-text">Just for Fun</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/hyungsuklee/" rel="" target=""><i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/leehyu20" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">1. Introduction</a></li>
+  <li><a href="#building-a-more-realistic-virtual-pavement" id="toc-building-a-more-realistic-virtual-pavement" class="nav-link" data-scroll-target="#building-a-more-realistic-virtual-pavement">2. Building a More Realistic Virtual Pavement</a></li>
+  <li><a href="#what-the-virtual-experiment-is-doing" id="toc-what-the-virtual-experiment-is-doing" class="nav-link" data-scroll-target="#what-the-virtual-experiment-is-doing">3. What the Virtual Experiment Is Doing</a></li>
+  <li><a href="#experiment-1-a-crack-develops-and-then-water-enters" id="toc-experiment-1-a-crack-develops-and-then-water-enters" class="nav-link" data-scroll-target="#experiment-1-a-crack-develops-and-then-water-enters">4. Experiment #1 — A Crack Develops, and Then Water Enters</a></li>
+  <li><a href="#experiment-2-can-gpr-see-asphalt-compaction" id="toc-experiment-2-can-gpr-see-asphalt-compaction" class="nav-link" data-scroll-target="#experiment-2-can-gpr-see-asphalt-compaction">5. Experiment #2 — Can GPR See Asphalt Compaction?</a></li>
+  <li><a href="#experiment-3-same-pavement-different-groundwater" id="toc-experiment-3-same-pavement-different-groundwater" class="nav-link" data-scroll-target="#experiment-3-same-pavement-different-groundwater">6. Experiment #3 — Same Pavement, Different Groundwater</a></li>
+  <li><a href="#what-did-these-three-experiments-tell-me" id="toc-what-did-these-three-experiments-tell-me" class="nav-link" data-scroll-target="#what-did-these-three-experiments-tell-me">7. What Did These Three Experiments Tell Me?</a></li>
+  <li><a href="#where-does-the-virtual-laboratory-go-next" id="toc-where-does-the-virtual-laboratory-go-next" class="nav-link" data-scroll-target="#where-does-the-virtual-laboratory-go-next">8. Where Does the Virtual Laboratory Go Next?</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">GPR-02 | From Homogeneous Layers to Heterogeneous Pavement</h1>
+<p class="subtitle lead">What changes when the pavement itself becomes part of the GPR problem?</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Ground Penetrating Radar</div>
+    <div class="quarto-category">GPR</div>
+    <div class="quarto-category">FDTD</div>
+    <div class="quarto-category">Pavement Engineering</div>
+    <div class="quarto-category">Heterogeneous Pavement</div>
+    <div class="quarto-category">Asphalt Compaction</div>
+    <div class="quarto-category">Groundwater</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    GPR-02 extends a virtual FDTD GPR laboratory to heterogeneous pavement materials, exploring dry and wet cracks, asphalt compaction, and rising groundwater.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Hyung S. Lee, Ph.D., P.E. </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 12, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="article-series-label">
+<p><strong>GPR Article Series · GPR-02</strong></p>
+</div>
+<p>What changes when the pavement itself becomes part of the GPR problem?</p>
+<p>Hyung S. Lee, Ph.D., P.E.</p>
+<p>Similar to my previous article (<a href="https://leehyu20.github.io/hyung-s-lee/posts/gpr-virtual-laboratory/">GPR-01</a>), this article grew out of a series of Ground Penetrating Radar (GPR) simulations that I originally shared through my LinkedIn posts. This is the second article in my GPR series. In my previous article, <a href="https://leehyu20.github.io/hyung-s-lee/posts/gpr-virtual-laboratory/">GPR-01</a>, I used a virtual GPR laboratory to examine how relatively simple geometries such as cracks, water, and voids within homogeneous layers of a pavement structure affect the simulated GPR response. This time, I wanted to see what happens when the pavement materials themselves are heterogeneous, and the GPR signal is no longer quite so easy to interpret.</p>
+<section id="introduction" class="level1">
+<h1>1. Introduction</h1>
+<p>In <a href="https://leehyu20.github.io/hyung-s-lee/posts/gpr-virtual-laboratory/">GPR-01</a>, I built a virtual GPR laboratory and used it to explore a few fundamental questions. What happens when the interfaces between different pavement layers are uneven? What does a series of idealized cracks look like in the GPR signal? Why and how does water change the GPR response? And how does a buried void create the GPR signature (i.e., the hyperbola) in a B-scan?</p>
+<p>The experiments in <a href="https://leehyu20.github.io/hyung-s-lee/posts/gpr-virtual-laboratory/">GPR-01</a> were intentionally kept “clean”. All the pavement layers, namely the asphalt, base, and subgrade, were modeled as homogeneous materials (i.e., constant dielectric and electrical conductivity for each material), making it easier to connect a simulated anomaly to its GPR response. But real pavements are never a stack of perfectly uniform or homogeneous materials. Asphalt Concrete (AC) is made up of aggregates, mastic, and air voids. Granular base may contain large particles, fines, and pores while subgrade varies from place to place, particularly as moisture changes.</p>
+<p><span class="darkred"><strong>So, I wanted to upgrade my virtual GPR laboratory and started modeling all layers of a pavement (i.e., AC, base, and subgrade) with heterogeneous materials.</strong></span></p>
+<p>As a preview of this article, Figure 1 shows an example of the heterogeneous pavement layers I used in my recent GPR experiments.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/gpr02-figure-1.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+<div class="text-center">
+<p><em>Figure 1. Example heterogeneous pavement layers used in GPR simulations.</em></p>
+</div>
+<p>What do you think the GPR scans will look like? Well… In this case, each of the different particles making up a pavement layer reflects the electromagnetic energy and causes scattering of the GPR signal, even without any other anomalies. So going from GPR-01 to GPR-02, the question naturally changes from “What does this feature look like?” to “Can I still recognize an anomaly when everything around it is reflecting the GPR signal as well?”</p>
+</section>
+<section id="building-a-more-realistic-virtual-pavement" class="level1">
+<h1>2. Building a More Realistic Virtual Pavement</h1>
+<p>As you may have guessed from Figure 1, I populated the pavement model with synthetic particles and voids, rather than assigning a single dielectric constant and the corresponding electrical conductivity to each layer.</p>
+<p>For the AC layer, the aggregate particles were generated as randomly oriented circles and ellipses. The particle size distribution generally followed the aggregate gradation of a dense-graded asphalt mixture with a Nominal Maximum Aggregate Size (NMAS) of 12.5 mm. More specifically, I specified 100% passing 19.0-mm sieve, 95% passing 12.5-mm sieve, and 43% passing 2.36-mm (No.&nbsp;8) sieve. Any particles greater than 1.5 mm in size were explicitly defined in the spatial domain while those smaller than 1.5 mm were modeled as part of an effective mastic phase. The target for the baseline AC layer was to populate 72% of the 2D area with explicitly defined large aggregates and 4% with air voids.</p>
+<p>The particle sizes for the granular base were inspired by AASHTO M 147 Grading A. More specifically, I used 100% passing 50-mm sieve, 47.5% passing 9.5-mm sieve, 40% passing 4.75-mm (No.&nbsp;4) sieve, 27.5% passing 2.0-mm (No.&nbsp;10) sieve, and 14% passing 0.425-mm (No.&nbsp;40) sieve. Similar to the AC layer, larger particles were represented explicitly within the numerical domain, while smaller particles, air, and water were combined into an effective matrix with a prescribed degree of saturation. The target for the base layer was to achieve 60% of the 2D area filled with explicitly defined large aggregates with a porosity of 30% and an effective mineral-fines fraction of 10%. The initial degree of saturation was assumed to be 20%, corresponding to a volumetric water content of approximately 6%.</p>
+<p>The subgrade model was inspired by A-2-6 soil from the AASHTO soil classification. The larger particles were handled in much the same way as the other two materials. However, for the effective matrix (which included the fine materials, air, and water), I also introduced a spatially-correlated variation in the moisture content. This was to make sure that the neighboring regions within the effective matrix share similar moisture conditions rather than being assigned to completely independent, randomly-generated moisture conditions. The target for the subgrade was to achieve 28% of the area filled with explicitly defined particles and 35% porosity. The degree of saturation was modeled with a mean of 40% and a spatial standard deviation of 10 percentage points.</p>
+<p>The larger particles were placed using a reproducible random-packing method. First, a candidate particle was generated with a randomly selected size, shape, and orientation, and then positioned within the spatial domain. The particle was accepted only if it satisfied certain placement rules: (1) AC aggregates had to maintain an effective mastic zone around them, and (2) granular base and subgrade particles could touch one another, but their interiors could not overlap within the 2D domain.</p>
+<p>If a candidate particle failed to meet the above requirements, it was rejected and another particle was generated for the placement attempt. This process was repeated until the prescribed aggregate fraction was approached or the maximum number of placement attempts was reached.</p>
+<p>Of course, none of this was intended to reconstruct an actual pavement structure grain-by-grain. It was simply a controlled (and reproducible) way to introduce a realistic-looking pavement cross-section in 2D so that we can create some electromagnetic contrasts within the pavement layers.</p>
+<p>That is how I generated the heterogeneous virtual pavement you saw in Figure 1.</p>
+</section>
+<section id="what-the-virtual-experiment-is-doing" class="level1">
+<h1>3. What the Virtual Experiment Is Doing</h1>
+<p>The Finite-Difference Time-Domain (FDTD) method I am using for the virtual GPR laboratory has not changed from <a href="https://leehyu20.github.io/hyung-s-lee/posts/gpr-virtual-laboratory/">GPR-01</a>. I used an approximation of a 1.5-GHz ground-coupled GPR antenna with Convolutional Perfectly Matched Layer (CPML) boundaries on all four sides of the spatial domain. The transmitter emits a short electromagnetic pulse and the receiver records the signal reflected from the pavement. Again, this produces an A-scan and the series of A-scans collected as the antenna moves along the pavement produces the B-scan.</p>
+<p>For the heterogeneous experiments, I had to use a relatively small grid spacing for the spatial domain. For the experiments herein, I used a grid spacing of 0.5 mm in both horizontal and vertical directions (compared to 5.0 mm grid I had in my previous article). This smaller grid spacing was necessary to allow the aggregates (or particles) and the air voids to be defined explicitly within the 2D spatial domain while the finer particles and pore constituents are represented through effective matrix with predefined moisture conditions.</p>
+<p>Table 1 shows the dielectric constants and the electrical conductivity I used for the experiments in this article.</p>
+<p><strong>Table 1. Electromagnetic material properties used in the GPR-02 FDTD simulations.</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 18%">
+<col style="width: 30%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Pavement layer</strong></th>
+<th style="text-align: left;"><strong>Material / phase</strong></th>
+<th style="text-align: left;"><strong>Relative dielectric constant, εᵣ</strong></th>
+<th style="text-align: left;"><strong>Electrical conductivity, σ (S/m)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Air</td>
+<td style="text-align: left;">Air above pavement</td>
+<td style="text-align: left;">1.0</td>
+<td style="text-align: left;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Asphalt concrete</td>
+<td style="text-align: left;">Aggregate</td>
+<td style="text-align: left;">6.5</td>
+<td style="text-align: left;">0.0005</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Asphalt mastic</td>
+<td style="text-align: left;">3.0</td>
+<td style="text-align: left;">0.0010</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Air void</td>
+<td style="text-align: left;">1.0</td>
+<td style="text-align: left;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Asphalt crack</td>
+<td style="text-align: left;">Air (dry crack)</td>
+<td style="text-align: left;">1.0</td>
+<td style="text-align: left;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Water (wet crack)</td>
+<td style="text-align: left;">76.0</td>
+<td style="text-align: left;">0.0500</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Granular base</td>
+<td style="text-align: left;">Aggregate</td>
+<td style="text-align: left;">6.5</td>
+<td style="text-align: left;">0.0010</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Mineral fines</td>
+<td style="text-align: left;">5.0</td>
+<td style="text-align: left;">0.0030</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Air (pore space)</td>
+<td style="text-align: left;">1.0</td>
+<td style="text-align: left;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Water (pore space)</td>
+<td style="text-align: left;">78.0</td>
+<td style="text-align: left;">0.0100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A-2-6-inspired subgrade</td>
+<td style="text-align: left;">Sand/gravel particles</td>
+<td style="text-align: left;">6.0</td>
+<td style="text-align: left;">0.0010</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Mineral fines</td>
+<td style="text-align: left;">7.0</td>
+<td style="text-align: left;">0.0100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Air (pore space)</td>
+<td style="text-align: left;">1.0</td>
+<td style="text-align: left;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Water (pore space)</td>
+<td style="text-align: left;">78.0</td>
+<td style="text-align: left;">0.0150</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note on Table 1:</strong> The dielectric constants and electrical conductivities shown in this table are assumed modeling values used to represent different material phases. For the granular base and subgrade, the electromagnetic properties of the effective fine/pore matrix were calculated from the constituent properties and prescribed moisture conditions. The properties of liquid water were adjusted assuming that the water may include impurities and may not necessarily represent the field conditions accurately.</p>
+<p>Figure 2 shows the GPR B-scan obtained from the heterogeneous pavement shown in Figure 1. The AC/base interface is found at around 3.0 ns and the base/subgrade interface at around 6.4 ns. You can see immediately that these layer interfaces do not appear perfectly flat in the B-scan. This is already different from what we saw in my previous article where each layer was modeled as a homogeneous material. Also in Figure 2, you can see some additional reflections within the AC layer that were generated by the difference in electromagnetic properties of the aggregates and the asphalt mastic.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/gpr02-figure-2.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+<div class="text-center">
+<p><em>Figure 2. GPR B-scan obtained from heterogeneous pavement shown in Figure 1.</em></p>
+</div>
+</section>
+<section id="experiment-1-a-crack-develops-and-then-water-enters" class="level1">
+<h1>4. Experiment #1 — A Crack Develops, and Then Water Enters</h1>
+<p>Now that I have a heterogeneous pavement model for the experiments, I wanted to revisit the pavement with a crack for my first experiment. However, I did not want to use the perfectly vertical and constant-width cracks I used in <a href="https://leehyu20.github.io/hyung-s-lee/posts/gpr-virtual-laboratory/">GPR-01</a>. Also, instead of simulating multiple cracks, <strong>I wanted to focus on a single bottom-up crack with a slightly tortuous path and its width changing with depth as the crack progressed through the AC layer. Should be interesting enough, right? Well, I wasn’t satisfied there! So, I decided to have water infiltrate the crack from the pavement surface after the crack was fully propagated through the depth of the AC layer.</strong></p>
+<p>The sequence begins with an intact heterogeneous pavement shown in Figure 1. The dry crack develops over 24 stages, reaching the surface after passing through 4.0 in. of asphalt to become a full-depth crack. At this stage, the width of the crack is 0.5 mm on top of the pavement surface and 5.2 mm at the bottom of the asphalt. Then, over another 24 stages, water progressively penetrates into the crack through the 0.5 mm opening at the surface. Animation 1 shows the entire process of the dry bottom-up crack propagating through the AC layer and the water infiltrating into the crack.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="media/crack-pavement-cross-section.mp4"></video></div>
+<p><strong>Animation 1. Cross-section view of bottom-up crack penetrating through the heterogeneous AC layer and water infiltrating through the crack (<a href="https://lnkd.in/p/eRNis3Zx">Animation_1_LinkedIn_Post</a>).</strong></p>
+<p>Cool! Now I have an interesting pavement structure that I can simulate the GPR response! The result is shown in Animation 2. This animation never made it to my LinkedIn post, as I was a little disappointed.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="media/crack-pavement-raw-bscan.mp4"></video></div>
+<p><strong>Animation 2. GPR B-scan obtained from dry crack propagation and water infiltration through the crack.</strong></p>
+<p>What surprised me and disappointed me at the same time was how modest the dry crack response was in the raw B-scan. The crack was physically present, but the aggregate and void structure had already generated so much background reflection and scattering that the crack did not immediately stand out. A full-depth crack (i.e., 4.0-in. deep in this case) may sound substantial, but within the GPR response of a heterogeneous layer, its physical size alone does not guarantee any conspicuous evidence in the B-scan.</p>
+<p>Then the water enters the crack. The crack geometry was essentially unchanged, but the electromagnetic contrast was not. The localized response became much stronger over time as the water continued penetrating into the crack, especially when I compared the evolving scans with the original B-scan shown in Figure 2 before the crack initiated (I will refer to this B-scan as the “Background”). This led me to another question.</p>
+<p><span class="darkred"><strong>If I removed the “background” from the B-scan, would I be able to see the dry crack a little better?</strong></span></p>
+<p>If you know me, then you probably know that I cannot stop when I am curious. So, here we go. Animation 3 shows you all the results from this experiment, including a couple of A-scans, one from a distance from the crack and the other directly above the crack.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video3" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="media/crack-pavement-final.mp4"></video></div>
+<p><strong>Animation 3. Overall GPR results obtained from dry crack propagation and water infiltration through the crack (<a href="https://lnkd.in/p/en2BGTTZ">Animation_3_LinkedIn_Post</a>).</strong></p>
+<p>What do you see in Animation 3? If you ask me, I think the conclusion remains pretty much the same. The dry crack is not very visible even with the background removal. Water, however, changes everything. So, the main takeaway is simple. The GPR may see the same crack very differently depending on whether it is dry or wet.</p>
+<p>Another important thing to point out here is the “Orientation” of the crack. What if the discontinuity (i.e., the vertical crack in this example) was oriented in the horizontal direction? What if that horizontal discontinuity is filled with water? Part of that was experimented in my previous article, but maybe it is worth investigating further. That is why this virtual GPR lab exists!</p>
+<p>Just to make one thing very clear. I was able to remove the background (i.e., subtracting the initial B-scan before crack initiation from all the other B-scans). This was possible because I know the original aggregate arrangement and can hold the other modeling conditions fixed. In real life, a background removal I am showing you here is likely impossible, because the “background B-scan” which is obtained from an intact pavement as a reference is likely never available.</p>
+<p>Also one more thing before I jump to the next experiment. The crack propagation and water intrusion stages introduced in this experiment were prescribed rather than predicted using any mechanics (i.e., fracture mechanics or hydraulic equations). The problem was intentionally “over-simplified” as I was only interested in the electromagnetic response, not in forecasting how quickly a crack would grow or how fast the crack would fill with water.</p>
+</section>
+<section id="experiment-2-can-gpr-see-asphalt-compaction" class="level1">
+<h1>5. Experiment #2 — Can GPR See Asphalt Compaction?</h1>
+<p>For Experiment #2, I wanted to try something a little different. Instead of introducing a crack or water into the pavement, what if I compact the AC layer? After all, GPR has attracted considerable interest as a technology for evaluating asphalt density.</p>
+<p><span class="darkred"><strong>But could I see the GPR response side-by-side with the aggregates moving or getting rearranged, and air voids reducing during compaction?</strong></span></p>
+<p>Rather than simply changing the dielectric constant of the entire asphalt layer, I wanted the internal structure to evolve. So, I started with a relatively loose AC layer containing 12% air voids and gradually reduced the air voids to 4% over 17 simulation stages. I kept the same aggregate particles throughout this process and allowed them to move or rotate as the AC layer became denser. The particles were not allowed to overlap in the 2D domain, and the effective mastic region was forced to remain as part of the mixture.</p>
+<p>There was another change I had to consider… Layer thickness! If the amount of solid material remains the same while the air voids decrease, the AC layer should become thinner. So, I came up with this crude equation to relate the AC thickness and the amount of air voids.</p>
+<p><span class="math display">\[
+H_{k}(1-V_{a,k})=H_{f}(1-V_{a,f})\tag{1}
+\]</span></p>
+<p>where <em>H<sub>k</sub></em> and <em>V<sub>a,k</sub></em> are the thickness and air voids of the AC layer at stage k, respectively. <em>H<sub>f</sub></em> and <em>V<sub>a,f</sub></em> represent their values at the final stage, so <em>H<sub>f</sub></em> = 4.0 in. and <em>V<sub>a,f</sub></em> = 0.04. Based on this crude approximation, the AC thickness at the initial stage with 12% air voids was found to be 4.4 in. In addition, I kept the AC/base interface at the same elevation, so the pavement surface moved downward as compaction progressed.</p>
+<p>Animation 4 shows the resulting pavement cross section as the AC layer becomes denser and thinner.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video4" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="media/compaction-pavement-cross-section.mp4"></video></div>
+<p><strong>Animation 4. Progressive compaction of heterogeneous AC layer.</strong></p>
+<p>Nice! Now we are ready to simulate the GPR over this virtual pavement. But let’s make one thing very clear before we move on. I did not try to simulate any actual roller, contact stresses, or aggregate forces. The movement of the particles was prescribed through a simplified compaction procedure. My objective was to generate a series of plausible-looking AC particle structure with progressively lower air-void contents and see how the GPR response changed.</p>
+<p>Animation 5 shows the B-scan from the GPR simulation.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video5" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="media/compaction-original-bscan.mp4"></video></div>
+<p><strong>Animation 5. B-scan results from progressive compaction of heterogeneous AC layer.</strong></p>
+<p>Hmm… What do you think? If you were expecting a dramatic change in the B-scan as the AC layer was getting compacted, you might be a little disappointed. You can clearly see the AC layer getting thinner on the left, but it is somewhat difficult to see the corresponding changes in the B-scan shown on the right. But that should not mean nothing changed.</p>
+<p>So, I wanted to look into the A-scans a little more closely, especially the GPR amplitudes at the pavement surface, but I got frustrated immediately. As an example, Figure 3 shows the average A-scan obtained from Stage 1 (12% air voids).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/gpr02-figure-3.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+<div class="text-center">
+<p><em>Figure 3. Average A-scan obtained from heterogeneous pavement (Stage 1, 12% air voids).</em></p>
+</div>
+<p>Do you see the problem? While the GPR reflection from the AC/base interface (~3.0 ns) and the base/subgrade interface (~6.5 ns) can be clearly seen, the reflection from the pavement surface is blended into the direct coupling (i.e., GPR signal directly traveling from the transmitter to the receiver).</p>
+<p>The problem is that I simulated a ground-coupled GPR antenna! If I had used an air-launched antenna, the greater distance between the antenna and pavement surface might have provided better temporal separation between the Direct Coupling (DC) signal and the surface reflection, making it much easier for me to analyze the GPR reflection from the pavement surface. But, simulating an air-launched antenna means increased computational time, because the air-launched antenna would have to be placed at a higher location above the pavement surface than a ground-coupled antenna, and hence my 2D spatial domain (especially the “air” layer above the pavement) has to be much larger.</p>
+<p>I should have realized that problem before running the simulations, but I felt it was a little too late and I did not want to simply dump all the ground-coupled results because I had already spent a lot of time and effort on these simulations. So, I decided to “remove” the DC signal from the A-scans.</p>
+<p>The idea was to simulate the GPR signal in a new 2D domain with only air. No pavement, No AC, Nothing but air. This should give me a very clean DC signal that travels directly from the transmitter to the receiver without any interference. Figure 4 shows the DC signal I obtained.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/gpr02-figure-4.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+<div class="text-center">
+<p><em>Figure 4. Direct coupling signal obtained from 2D domain full of air.</em></p>
+</div>
+<p>There might be a more elegant way of removing the DC signal, but I decided to keep it simple for my purpose (Well… this is my virtual GPR laboratory and my article to be published on my website, which means I can do whatever the hell I want, right?). So, I subtracted the above DC signal from all of the A-scans I generated from my GPR simulation. Figure 5 shows the A-scan after removing this DC signal.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/gpr02-figure-5.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+<div class="text-center">
+<p><em>Figure 5. DC-removed A-scan obtained from heterogeneous pavement (Stage 1, 12% air voids).</em></p>
+</div>
+<p>Not bad! Now I can see the GPR reflection from the pavement surface at around 1.5 ns. The AC/base and base/subgrade interfaces are still there, but those are not what we are interested in. So, for each stage during the compaction of AC, I extracted the peak GPR amplitude from the surface reflection. Then, using the Stage 1 (12% air voids) amplitude as a reference, I normalized the corresponding amplitudes for my final conclusion.</p>
+<p>Animation 6 shows you the overall results including the pavement cross section, B-scans, A-scans, and the normalized GPR amplitudes from the pavement surface.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video6" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="media/compaction-final.mp4"></video></div>
+<p><strong>Animation 6. Overall results from progressive compaction of heterogeneous AC layer (<a href="https://lnkd.in/p/eUJXZfVb">Animation_6_LinkedIn_Post</a>).</strong></p>
+<p>The peak A-scan amplitude returned from the pavement surface showed a gradual increase of approximately 4.5% as the air-voids decreased from 12% to 4%. That may not sound like a lot but let’s think about this.</p>
+<p>Air has a dielectric constant of 1.0 which is lower than the other constituent materials in the model. But the amount of air in the AC layer was at most 12%. Moreover, the aggregates and the asphalt mastic, which occupied most of the volume within the AC layer, were assigned to dielectric constants of 6.5 and 3.0, respectively. So, two questions we should ask ourselves are: (1) Is there a sufficient contrast in dielectric constant between air and aggregates/mastic? (2) Was the amount of air (4% to 12%) sufficient enough to create a drastic difference in the peak reflection amplitude? Maybe not! So, in that sense, I think 4.5% change in peak GPR amplitude is certainly interesting, at least within this numerical experiment.</p>
+<p>Sometimes, the result you want does not reveal itself that easily. The B-scan, raw A-scans, or even the DC-subtracted A-scans did not really show any significant changes visually (See Animation 6). But if you dig in a little deeper, you may find something useful. I think the 4.5% gradual increase in peak GPR amplitude due to air void reduction from 12% to 4%, is pretty fascinating.</p>
+</section>
+<section id="experiment-3-same-pavement-different-groundwater" class="level1">
+<h1>6. Experiment #3 — Same Pavement, Different Groundwater</h1>
+<p>For my last experiment in this article, I wanted to try something that sounds almost too simple.</p>
+<p><span class="darkred"><strong>What if I kept exactly the same pavement and only changed the Groundwater Table (GWT) depth? No new cracks. No moving aggregates. No changes in layer thickness. Would the GPR B-scan really look that different?</strong></span></p>
+<p>Take a look at Figure 6. This is something I had in one of my LinkedIn posts as a teaser to this experiment, which I will briefly repeat here. All three B-scans came from the same heterogeneous pavement shown in the figure. The layer boundaries and particle arrangements are identical. And yet the scans, especially at later times, look quite different. So, what happened?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/gpr02-figure-6.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+<div class="text-center">
+<p><em>Figure 6. One pavement, three different B-scans (<a href="https://lnkd.in/p/eWhBRvbt">Figure_6_LinkedIn_Post</a>).</em></p>
+</div>
+<p>The answer, of course, is moisture. I started by placing the GWT below the modeled pavement and progressively raised it through the subgrade and into the base. As the GWT level changed, so did the electromagnetic properties of the materials above and below it. But I wanted to make this a little more interesting than simply assigning one new dielectric constant to an entire layer.</p>
+<p>So for this experiment, I used 22 stages for the GWT sequence. At Stage 1, the GWT was placed 2.0 in. below the bottom of the modeled pavement domain. It reached the base/subgrade interface at Stage 17 and continued upward until it reached mid-depth of the 8-in. base at Stage 22.</p>
+<p>I also introduced a simplified 2.0-in. capillary fringe above the GWT. Instead of abruptly changing the degree of saturation from its initial value to 100% at the GWT, I wanted a gradual transition within the capillary fringe. To accomplish this, I defined a dimensionless saturation transition factor, <em>F</em>(<em>z</em>), that varies linearly from 0 to 1 depending on the depth relative to GWT:</p>
+<p><span class="math display">\[
+F(z)=\min\left(\max\left(0,\frac{z-z_w+H_c}{H_c}\right),1\right)\tag{2}
+\]</span></p>
+<p>where <em>z</em> is the depth measured positive downward, <em>z<sub>w</sub></em> is the groundwater-table depth, and <em>H<sub>c</sub></em> is the capillary-fringe thickness (2.0 in. for this experiment). The transition factor was then used to calculate the local degree of saturation, <em>S<sub>r</sub></em>:</p>
+<p><span class="math display">\[
+S_r(z)=S_{r,0}(z)+\left[1-S_{r,0}(z)\right]F(z)\tag{3}
+\]</span></p>
+<p>where <em>S<sub>r,0</sub></em>(<em>z</em>) is the initial degree of saturation at depth <em>z</em>.</p>
+<p>In other words, the material retained its initial degree of saturation above the capillary fringe, progressively (i.e., in a linear fashion) approached full saturation within the fringe, and became fully saturated at or below the GWT. For the base layer, the initial degree of saturation was 20%, while the subgrade had a spatially varying initial degree of saturation with a mean of 40%.</p>
+<p>As the groundwater table rose, I updated the effective dielectric constants and electrical conductivities of the base and subgrade matrices to reflect the changing moisture conditions. The aggregate particles, layer boundaries, and pavement thicknesses remained unchanged throughout the experiment.</p>
+<p>Figure 7 shows three representative stages (Stages 1, 17, and 22) of this process, along with their corresponding GPR B-scans.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/gpr02-figure-7.png" class="img-fluid figure-img" style="width:95.0%"></p>
+</figure>
+</div>
+<div class="text-center">
+<p><em>Figure 7. Simulated B-scans at different stages of groundwater table within the heterogeneous unbound layers.</em></p>
+</div>
+<p>Now compare the B-scans. Initially in Stage 1, the AC/base reflection appears at approximately 3.0 ns, while the base/subgrade reflection is visible at around 6.3 ns to 6.4 ns. As groundwater started rising, the later-time response becomes much more complicated. By the time groundwater enters the granular base, the base/subgrade interface is difficult (if not impossible) to identify, possibly due to the changes in wave velocity, attenuation, and electromagnetic scattering associated with the evolving moisture conditions.</p>
+<p>That is the part I find fascinating. The base/subgrade interface did not disappear. It did not move, either! What changed was the material through which the electromagnetic wave traveled. Increasing moisture content changed the wave velocity, attenuation, and the contrasts responsible for GPR reflections. Consequently, the apparent timing and visibility of the subsurface features changed even though their physical locations remained unchanged.</p>
+<p>And here is the complete sequence. Animation 7 brings together the evolving groundwater condition and its corresponding GPR response over all 22 stages.</p>
+
+<div class="quarto-video"><video id="video_shortcode_videojs_video7" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="media/water-table-final.mp4"></video></div>
+<p><strong>Animation 7. Simulated B-scans as groundwater table rose within the heterogeneous unbound layers (<a href="https://lnkd.in/p/ehJCqvEa">Animation_7_LinkedIn_Post</a>).</strong></p>
+<p>So, if a reflection shifts in time, does that automatically mean the layer thickness changed? Not necessarily. And if an interface becomes hard to recognize, does that mean the interface is not there? Again, not necessarily. Sometimes the pavement stays exactly the same, but moisture could significantly change what GPR can see and what we can observe.</p>
+</section>
+<section id="what-did-these-three-experiments-tell-me" class="level1">
+<h1>7. What Did These Three Experiments Tell Me?</h1>
+<p>When I started working on the experiments in this article (GPR-02), I simply wanted to make the pavement in my virtual laboratory a little less perfect than the homogeneous layers I used in <a href="https://leehyu20.github.io/hyung-s-lee/posts/gpr-virtual-laboratory/">GPR-01</a>. But once I introduced heterogeneous aggregates, mastic, fines, air voids, and variable moisture, even the “intact” pavement produced a much more complicated and interesting GPR response.</p>
+<p>Then came the three experiments. First, a full-depth dry crack was surprisingly difficult to recognize among the reflections from the heterogeneous asphalt. Water entering that same crack made a huge difference. Second, reducing air voids in the AC layer from 12% to 4% did not create an obvious new feature in the B-scan, but a closer look at the DC-removed A-scans revealed an approximately 4.5% increase in the surface-reflection peak amplitude. And finally, rising groundwater changed the deeper B-scan dramatically without moving a single aggregate particle or layer boundary.</p>
+<p>What do I take away from all this? A feature can be physically present without being easy to detect. Moisture can make the same feature look very different. And sometimes a small, systematic change in an A-scan is more informative than a dramatic-looking B-scan.</p>
+<p>That is why I enjoy these virtual experiments. In the field, we see the signal and try to figure out what is underneath. Here, I know exactly what is in the pavement (because I created everything in the pavement!), and I can change one condition at a time to see what happens to the signal.</p>
+</section>
+<section id="where-does-the-virtual-laboratory-go-next" class="level1">
+<h1>8. Where Does the Virtual Laboratory Go Next?</h1>
+<p>Of course, I should not get too carried away. These are still controlled numerical experiments, not a substitute for field validation. The particle arrangements are synthetic, while the crack growth, water intrusion, aggregate rearrangement during compaction, and groundwater rise were prescribed using simplified mathematical relationships rather than fully coupled mechanical or hydraulic models. Everything was also represented in two dimensions. So, lots of limitations here!</p>
+<p>But they certainly give me more questions to explore. Would the dry crack become easier to see with a different aggregate arrangement? What about another antenna frequency or polarization? And what if I used an air-launched GPR antenna instead of a ground-coupled antenna? As I learned in Experiment #2, separating the pavement surface reflection from the DC signal can be challenging with a ground-coupled antenna. An air-launched antenna could make it easier to examine the surface reflection without relying on the DC subtraction I used here. Would the results for different scenarios change significantly when we move to air-launched antennas? And could any signal processing techniques help separate an actual defect from the scattering caused by normal pavement heterogeneity?</p>
+<p>I do not have all the answers yet. But that is exactly why I built a virtual GPR laboratory in the first place. There is more to come from Hyung Lee’s virtual GPR laboratory. Stay tuned!</p>
+</section>
+<section id="section" class="level1">
+<h1></h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp("https:\/\/leehyu20\.github\.io\/hyung-s-lee\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Hyung S. Lee</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Built with Quarto</div>
+  </div>
+</footer>
+<script>videojs(video_shortcode_videojs_video1);</script>
+<script>videojs(video_shortcode_videojs_video2);</script>
+<script>videojs(video_shortcode_videojs_video3);</script>
+<script>videojs(video_shortcode_videojs_video4);</script>
+<script>videojs(video_shortcode_videojs_video5);</script>
+<script>videojs(video_shortcode_videojs_video6);</script>
+<script>videojs(video_shortcode_videojs_video7);</script>
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
