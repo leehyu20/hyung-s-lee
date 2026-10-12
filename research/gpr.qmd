@@ -15,4 +15,10 @@ Using a controlled FDTD-based virtual pavement laboratory, this article examines
 
 [Read GPR-01 →](../posts/gpr-virtual-laboratory/index.qmd)
 
-*GPR-02 will explore more realistic heterogeneous pavement structures, including internal material structure, cracking, moisture, and compaction.*
+### [GPR-02 | From Homogeneous Layers to Heterogeneous Pavement](../posts/gpr-heterogeneous-pavement/index.qmd)
+
+**October 12, 2026 · GPR Article Series**
+
+A heterogeneous FDTD pavement laboratory exploring bottom-up cracking and water intrusion, asphalt compaction and surface reflections, and rising groundwater. Includes seven figures, three experiments, and seven animation slots.
+
+[Read GPR-02 →](../posts/gpr-heterogeneous-pavement/index.qmd)

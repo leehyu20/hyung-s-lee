@@ -5,6 +5,7 @@ project:
     - posts/dsteele-overview/dsteele-move.mp4
     - posts/tsd-four-myths/media/*.mp4
     - posts/gpr-virtual-laboratory/media/*.mp4
+    - posts/gpr-heterogeneous-pavement/media/*
     - illustrations/**/*.png
     - models/media/dancing-tsd-defl-slope.mp4
     
@@ -35,12 +36,14 @@ website:
         menu:
           - text: DSteele
             href: models/dsteele.qmd
+          - text: Virtual GPR Laboratory
+            href: models/gpr.qmd
+          - text: ViscoWave
+            href: models/viscowave.qmd
           - text: Finite Beam Model
             href: models/finite-beam.qmd
           - text: ILLI-SLAB Implementation
             href: models/illislab.qmd
-          - text: ViscoWave
-            href: models/viscowave.qmd
       - text: Articles
         href: posts/index.qmd
       - text: Technical Illustrations

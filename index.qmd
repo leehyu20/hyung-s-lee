@@ -39,6 +39,24 @@ I develop mechanics-based computational models and numerical tools to study pave
 ::: {.featured-article}
 ::: {.featured-article-copy}
 ::: {.eyebrow}
+GPR · GPR-02 · October 12, 2026
+:::
+
+### [From Homogeneous Layers to Heterogeneous Pavement](posts/gpr-heterogeneous-pavement/index.qmd)
+
+A more realistic virtual GPR laboratory explores how heterogeneous pavement materials affect the radar response to crack propagation and water intrusion, asphalt compaction, and rising groundwater.
+
+[Read GPR-02 →](posts/gpr-heterogeneous-pavement/index.qmd){.article-link}
+:::
+
+::: {.featured-article-media}
+![](posts/gpr-heterogeneous-pavement/media/gpr02-figure-1.png){fig-alt="Heterogeneous asphalt, granular base, and subgrade layers in the GPR-02 numerical pavement model"}
+:::
+:::
+
+::: {.featured-article}
+::: {.featured-article-copy}
+::: {.eyebrow}
 GPR · GPR-01 · October 8, 2026
 :::
 
@@ -71,25 +89,6 @@ Four common assumptions about Traffic Speed Deflectometer analysis are examined 
 ![](posts/tsd-four-myths/media/image1.jpg){fig-alt="Confirmed, Busted, and Plausible verdict graphic representing the four TSD myths"}
 :::
 :::
-
-::: {.featured-article}
-::: {.featured-article-copy}
-::: {.eyebrow}
-DSteele · DS-02 · October 3, 2026
-:::
-
-### [Mathematical Formulation of DSteele](posts/dsteele-mathematical-formulation/index.qmd)
-
-The mathematical foundation of DSteele: governing equations, transformed-domain harmonic solutions, spectral-element stiffness matrices, viscoelastic representation, global assembly, and inverse transformation.
-
-[Read DS-02 →](posts/dsteele-mathematical-formulation/index.qmd){.article-link}
-:::
-
-::: {.featured-article-media}
-![](posts/dsteele-mathematical-formulation/media/image1.jpg){fig-alt="Original handwritten mathematical derivation developed during the formulation of DSteele"}
-:::
-:::
-
 
 ## Featured Research {#featured-research}
 

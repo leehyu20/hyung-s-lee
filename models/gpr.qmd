@@ -1,0 +1,80 @@
+---
+title: "Virtual GPR Laboratory"
+subtitle: "FDTD-based electromagnetic simulation of pavement systems"
+description: "A virtual Ground Penetrating Radar (GPR) laboratory for investigating GPR responses to pavement layers, cracks, compaction, moisture, heterogeneous materials, and more!"
+page-layout: full
+toc: false
+---
+
+<div class="hero-home">
+
+<div class="hero-media">
+<video autoplay muted loop playsinline preload="metadata" controls style="width:100%; height:auto; display:block; border-radius:0.55rem;">
+  <source src="../posts/gpr-heterogeneous-pavement/media/water-table-final.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</div>
+
+<div class="hero-content">
+
+<div class="hero-kicker">
+MODELS & SOFTWARE
+</div>
+
+<h1>Virtual GPR Laboratory</h1>
+
+<div class="hero-subtitle">
+A 2D FDTD electromagnetic simulation framework for pavement GPR responses
+</div>
+
+<p>I developed the Virtual GPR Laboratory to explore what a GPR antenna sees when pavement layers, cracks, aggregate particles, air voids, and moisture conditions are known and controlled.</p>
+
+<p><a href="../posts/gpr-virtual-laboratory/index.html" class="btn btn-primary">Start with GPR-01</a></p>
+
+</div>
+
+</div>
+
+*Hero animation: Rising groundwater through a heterogeneous pavement and the corresponding GPR B-Scans (GPR-02, Animation 7).*
+
+## GPR Articles & Numerical Experiments
+
+::: {.home-card-grid}
+::: {.home-card}
+::: {.model-label}
+GPR-01 · VIRTUAL LABORATORY
+:::
+### [Building a Virtual Ground Penetrating Radar (GPR) Laboratory with FDTD](../posts/gpr-virtual-laboratory/index.qmd)
+
+Controlled numerical experiments with relatively simple pavement configurations, including layer interfaces, irregular thickness, cracks, thin layers, and subsurface voids.
+:::
+
+::: {.home-card}
+::: {.model-label}
+GPR-02 · HETEROGENEOUS PAVEMENT
+:::
+### [From Homogeneous Layers to Heterogeneous Pavement](../posts/gpr-heterogeneous-pavement/index.qmd)
+
+Heterogeneous asphalt, granular base, and subgrade materials; progressive crack growth and water intrusion; asphalt compaction; and rising groundwater.
+:::
+:::
+
+## About the Virtual Laboratory
+
+The laboratory uses **two-dimensional (2D) Finite-Difference Time-Domain (FDTD)** electromagnetic simulations to generate synthetic GPR A-scans and B-scans under controlled pavement conditions. The simulations use a $TM_z$ formulation and Convolutional Perfectly Matched Layers (CPML) at the computational boundaries. Experiments to date focus on ground-coupled GPR with a nominal 1.5-GHz antenna configuration.
+
+
+## What Can the Laboratory Explore?
+
+- **Layered pavement systems:** Interfaces, thickness changes, irregular boundaries, and thin layers.
+- **Cracks and water intrusion:** Dry-crack progression and changes in response as water enters a crack.
+- **Heterogeneous materials:** Explicit larger aggregate particles, effective fines–pore matrices, and air voids.
+- **Asphalt compaction:** Evolving aggregate arrangements, decreasing air voids and AC thickness, and changes in surface-reflection amplitude.
+- **Moisture and groundwater:** Spatially varying initial moisture and rising groundwater with a simplified capillary fringe.
+- **And more to come!**
+
+## Scope and Future Directions
+
+This is a **research simulation framework**, not a publicly released, general-purpose GPR software package. These are two-dimensional numerical simulations designed for controlled investigations, rather than field-validated GPR measurements.
+
+Future investigations may include different antenna configurations—especially **air-launched GPR**—along with antenna frequency, material variability, and signal-processing approaches.
