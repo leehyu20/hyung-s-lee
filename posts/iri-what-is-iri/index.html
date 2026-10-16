@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Hyung S. Lee, Ph.D., P.E.">
+<meta name="dcterms.date" content="2026-10-15">
+<meta name="description" content="What IRI actually accumulates: the Golden Car, relative suspension motion, governing equations, and six illustrated examples.">
+
+<title>Hyung S. Lee - IRI-01 | What Exactly Is the International Roughness Index (IRI), and How Is It Calculated?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-E3LRN9QKM0"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-E3LRN9QKM0', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="iri-01.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Hyung S. Lee</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Research</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-research">    
+        <li>
+    <a class="dropdown-item" href="../../research/tsd.html" rel="" target="">
+ <span class="dropdown-text">Traffic Speed Deflectometer (TSD)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/flexible-pavements.html" rel="" target="">
+ <span class="dropdown-text">Flexible Pavements</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/rigid-pavements.html" rel="" target="">
+ <span class="dropdown-text">Rigid Pavements</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/fwd-hwd.html" rel="" target="">
+ <span class="dropdown-text">FWD / HWD</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/gpr.html" rel="" target="">
+ <span class="dropdown-text">Ground Penetrating Radar</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/friction.html" rel="" target="">
+ <span class="dropdown-text">Vehicle-Pavement Interaction</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-models--software" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Models &amp; Software</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-models--software">    
+        <li>
+    <a class="dropdown-item" href="../../models/dsteele.html" rel="" target="">
+ <span class="dropdown-text">DSteele</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../models/gpr.html" rel="" target="">
+ <span class="dropdown-text">Virtual GPR Laboratory</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../models/viscowave.html" rel="" target="">
+ <span class="dropdown-text">ViscoWave</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../models/finite-beam.html" rel="" target="">
+ <span class="dropdown-text">Finite Beam Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../models/illislab.html" rel="" target="">
+ <span class="dropdown-text">ILLI-SLAB Implementation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html" rel="" target="">
+ <span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../illustrations/index.html" rel="" target="">
+ <span class="menu-text">Technical Illustrations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html" rel="" target="">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../just-for-fun/index.html" rel="" target="">
+ <span class="menu-text">Just for Fun</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/hyungsuklee/" rel="" target=""><i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/leehyu20" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-what-does-iri-actually-measure" id="toc-introduction-what-does-iri-actually-measure" class="nav-link active" data-scroll-target="#introduction-what-does-iri-actually-measure">1. Introduction: What Does IRI Actually Measure?</a></li>
+  <li><a href="#full-definition-of-iri-by-sayers-1995" id="toc-full-definition-of-iri-by-sayers-1995" class="nav-link" data-scroll-target="#full-definition-of-iri-by-sayers-1995">2. Full Definition of IRI by Sayers (1995)</a></li>
+  <li><a href="#the-golden-car-a-standardized-quarter-car-model" id="toc-the-golden-car-a-standardized-quarter-car-model" class="nav-link" data-scroll-target="#the-golden-car-a-standardized-quarter-car-model">3. The Golden Car: A Standardized Quarter-Car Model</a></li>
+  <li><a href="#is-the-golden-car-realistic-which-vehicle-does-it-represent" id="toc-is-the-golden-car-realistic-which-vehicle-does-it-represent" class="nav-link" data-scroll-target="#is-the-golden-car-realistic-which-vehicle-does-it-represent">4. Is the Golden Car Realistic? Which Vehicle Does It Represent?</a>
+  <ul class="collapse">
+  <li><a href="#why-do-we-need-a-standardized-vehicle" id="toc-why-do-we-need-a-standardized-vehicle" class="nav-link" data-scroll-target="#why-do-we-need-a-standardized-vehicle">Why do we need a standardized vehicle?</a></li>
+  </ul></li>
+  <li><a href="#governing-equations-and-the-meaning-of-suspension-motion" id="toc-governing-equations-and-the-meaning-of-suspension-motion" class="nav-link" data-scroll-target="#governing-equations-and-the-meaning-of-suspension-motion">5. Governing Equations and the Meaning of Suspension Motion</a>
+  <ul class="collapse">
+  <li><a href="#what-is-suspension-displacement" id="toc-what-is-suspension-displacement" class="nav-link" data-scroll-target="#what-is-suspension-displacement">What is suspension displacement?</a></li>
+  <li><a href="#what-does-the-iri-equation-actually-accumulate" id="toc-what-does-the-iri-equation-actually-accumulate" class="nav-link" data-scroll-target="#what-does-the-iri-equation-actually-accumulate">What does the IRI equation actually accumulate?</a></li>
+  </ul></li>
+  <li><a href="#six-examples-what-is-actually-accumulated" id="toc-six-examples-what-is-actually-accumulated" class="nav-link" data-scroll-target="#six-examples-what-is-actually-accumulated">6. Six Examples: What Is Actually Accumulated?</a>
+  <ul class="collapse">
+  <li><a href="#example-1-neither-mass-moves" id="toc-example-1-neither-mass-moves" class="nav-link" data-scroll-target="#example-1-neither-mass-moves">Example #1 — Neither Mass Moves</a></li>
+  <li><a href="#example-2-sprung-mass-moves-up-and-stays-there" id="toc-example-2-sprung-mass-moves-up-and-stays-there" class="nav-link" data-scroll-target="#example-2-sprung-mass-moves-up-and-stays-there">Example #2 — Sprung Mass Moves Up and Stays There</a></li>
+  <li><a href="#example-3-sprung-mass-moves-up-and-returns" id="toc-example-3-sprung-mass-moves-up-and-returns" class="nav-link" data-scroll-target="#example-3-sprung-mass-moves-up-and-returns">Example #3 — Sprung Mass Moves Up and Returns</a></li>
+  <li><a href="#example-4-unsprung-mass-moves-up-and-returns" id="toc-example-4-unsprung-mass-moves-up-and-returns" class="nav-link" data-scroll-target="#example-4-unsprung-mass-moves-up-and-returns">Example #4 — Unsprung Mass Moves Up and Returns</a></li>
+  <li><a href="#example-5-the-two-masses-move-in-opposite-directions" id="toc-example-5-the-two-masses-move-in-opposite-directions" class="nav-link" data-scroll-target="#example-5-the-two-masses-move-in-opposite-directions">Example #5 — The Two Masses Move in Opposite Directions</a></li>
+  <li><a href="#example-6-both-masses-move-together" id="toc-example-6-both-masses-move-together" class="nav-link" data-scroll-target="#example-6-both-masses-move-together">Example #6 — Both Masses Move Together</a></li>
+  <li><a href="#what-do-these-six-examples-tell-us" id="toc-what-do-these-six-examples-tell-us" class="nav-link" data-scroll-target="#what-do-these-six-examples-tell-us">What Do These Six Examples Tell Us?</a></li>
+  </ul></li>
+  <li><a href="#what-does-iri-tell-usand-what-does-it-not" id="toc-what-does-iri-tell-usand-what-does-it-not" class="nav-link" data-scroll-target="#what-does-iri-tell-usand-what-does-it-not">7. What Does IRI Tell Us—and What Does It Not?</a></li>
+  <li><a href="#closing-thoughts-1" id="toc-closing-thoughts-1" class="nav-link" data-scroll-target="#closing-thoughts-1">8. Closing Thoughts</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">IRI-01 | What Exactly Is the International Roughness Index (IRI), and How Is It Calculated?</h1>
+<p class="subtitle lead">From a measured road profile to accumulated Golden Car suspension motion</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">International Roughness Index</div>
+    <div class="quarto-category">IRI</div>
+    <div class="quarto-category">Pavement Engineering</div>
+    <div class="quarto-category">Golden Car</div>
+    <div class="quarto-category">Pavement Roughness</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    What IRI actually accumulates: the Golden Car, relative suspension motion, governing equations, and six illustrated examples.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Hyung S. Lee, Ph.D., P.E. </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 15, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="article-series-label">
+<p><strong>Pavement Roughness Article Series · IRI-01</strong></p>
+</div>
+<p>This article is based on my illustration (Image shown below) that I posted on LinkedIn in March 2025 and the “IRICoaster” animations I posted on LinkedIn back in 2023.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/image1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><em>Figure 1. Six hypothetical examples illustrating the accumulation of relative suspension movement</em> <strong>(<a href="https://lnkd.in/p/evYdmTNy">Figure_1_LinkedIn_Post</a>)</strong><em>.</em></p>
+<section id="introduction-what-does-iri-actually-measure" class="level1">
+<h1>1. Introduction: What Does IRI Actually Measure?</h1>
+<p>The International Roughness Index (IRI) is one of the most widely used indicators of pavement ride quality or smoothness. It is also frequently described as a “roughness measurement”. Strictly speaking, however, this is not true. A road profiler measures pavement surface elevation (also frequently called the longitudinal profile) and IRI is subsequently “calculated” from that profile using a standardized mathematical vehicle model.</p>
+<p>This distinction may seem minor, but it matters. IRI is not simply the height of bumps, the maximum deviation from a straight line, or the vertical acceleration experienced by a particular driver. <span class="darkred"><strong>It is a precise and mathematical summary of how a specified theoretical quarter-car suspension responds when traversing a longitudinal road profile</strong></span>.</p>
+<p>Over the past two decades, I have talked to many pavement engineers about IRI and pavement smoothness in general. However, when I asked whether they knew how IRI is calculated, the most common answer I get is simply “It is calculated from a Quarter Car simulation”. When I asked to be more specific, I received a lot of different answers from “I don’t know” or “I am not sure” to “IRI is calculated from the suspension response of the Quarter Car” or “Accumulated Quarter Car motion”. But what exactly is the “suspension response” and what is “accumulated”?</p>
+<p>This article was developed to provide answers to the above question using some fictitious examples I had provided in one of my LinkedIn posts along with some additional background, discussion, and some fun stuff that I brought from a couple of my other previous LinkedIn posts.</p>
+</section>
+<section id="full-definition-of-iri-by-sayers-1995" class="level1">
+<h1>2. Full Definition of IRI by Sayers (1995)</h1>
+<p>If I asked you what the “Definition of IRI” is, what would you tell me? I could imagine some answers similar to “IRI is obtained from the accumulated suspension motion of a Golden Car simulation using a measured profile”. Actually, this is pretty good! But the brutal truth is that IRI cannot be defined with a simple sentence or two.</p>
+<p>According to Sayers (1995), the full definition of IRI spans five bullet points. The following five points are reproduced verbatim from Sayers (1995) for its full definition.</p>
+<div class="myth-verdict callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Full Definition of IRI (from Sayers, 1995)</strong></p>
+<ol type="1">
+<li><p>IRI is computed from a single longitudinal profile. The sample interval should be no larger than 300 mm for accurate calculations. The required resolution depends on the roughness level, with finer resolution being needed for smooth roads. A resolution of 0.5 mm is suitable for all conditions.</p></li>
+<li><p>The profile is assumed to have a constant slope between sampled elevation points.</p></li>
+<li><p>The profile is smoothed with a moving average whose base length is 250 mm.</p></li>
+<li><p>The smoothed profile is filtered using a quarter-car simulation, with specific parameter values (Golden Car), at a simulated speed of 80 km/hr (49.7 mph).</p></li>
+<li><p>The simulated suspension motion is linearly accumulated and divided by the length of the profile to yield IRI. Thus, IRI has units of slope, such as inches per mile or meters per kilometer.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<p>As you see from the above, the first 3 bullets in the above are more or less related to the longitudinal profile which is the input used for calculating IRI, or its measurement. These bullets were included to ensure that the equipment used for data collection or the longitudinal profile itself meets some minimum requirement. However, remember that the IRI was first developed in the 1980’s. Most of the equipment that we have nowadays for longitudinal profile data collection can easily meet and exceed these minimum requirements. So, we will not worry about these first 3 bullets herein.</p>
+<p>The last 2 bullets of the above definition delve into the actual calculation of IRI and we will focus on those items in this article. Bullet #4 specifically mentions the “Golden Car” which is a Quarter Car with specific parameter values. It also spells out a speed of 80 km/hr (49.7 mph) specifically. Note that these are all part of the IRI definition, meaning if you change any parameter(s) of the Quarter Car model or if you change the speed of the simulation speed from 80 km/hr (49.7 mph) to something else, the outcome you get from the simulation cannot be called IRI even if you followed the exact same procedure elsewhere.</p>
+<p>So, what are the “Parameter Values” for the Golden Car mentioned in Bullet #4? Let’s take a look at these values before getting into Bullet #5 which is related to the actual calculation of IRI.</p>
+</section>
+<section id="the-golden-car-a-standardized-quarter-car-model" class="level1">
+<h1>3. The Golden Car: A Standardized Quarter-Car Model</h1>
+<p>As mentioned above, the Golden Car is nothing more than a Quarter Car with specific parameters. Well then… what is a Quarter Car? Figure 2 shows the “generic” form of a Quarter Car model.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/image2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><strong>Figure 2. Quarter Car Model.</strong></p>
+<p>As shown in the above figure, the Quarter Car is nothing more than a theoretical model with two vertical degrees of freedom (<em>z<sub>s</sub></em> and <em>z<sub>u</sub></em>), two masses (<em>m<sub>s</sub></em> and <em>m<sub>u</sub></em>), two springs (<em>k<sub>s</sub></em> and <em>k<sub>u</sub></em>), and two dashpots (<em>c<sub>s</sub></em> and <em>c<sub>u</sub></em>). These parameters are defined in the following table.</p>
+<p><strong>Table 1. Description of parameters for the Quarter Car model.</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 17%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Type</strong></th>
+<th style="text-align: left;"><strong>Parameter</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mass</td>
+<td style="text-align: left;"><em>mₛ</em></td>
+<td style="text-align: left;">Sprung mass representing a portion of the vehicle body</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><em>mᵤ</em></td>
+<td style="text-align: left;">Unsprung mass representing the wheel/axle assembly</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Spring</td>
+<td style="text-align: left;"><em>kₛ</em></td>
+<td style="text-align: left;">Suspension stiffness</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><em>k<sub>u</sub></em></td>
+<td style="text-align: left;">Tire stiffness (Sayer’s illustration labels this <em>k<sub>s</sub></em>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dashpot</td>
+<td style="text-align: left;"><em>cₛ</em></td>
+<td style="text-align: left;">Suspension damping coefficient</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><em>c<sub>u</sub></em></td>
+<td style="text-align: left;">Tire damping coefficient</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Degree of Freedom (DOF)</td>
+<td style="text-align: left;"><em>zₛ</em></td>
+<td style="text-align: left;">Vertical displacements of the sprung mass</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><em>zᵤ</em></td>
+<td style="text-align: left;">Vertical displacements of unsprung mass</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Elevation</td>
+<td style="text-align: left;"><em>r</em></td>
+<td style="text-align: left;">Road elevation input along the profile</td>
+</tr>
+</tbody>
+</table>
+<p>Now that we know the individual components of a Quarter Car, let’s return to Golden Car. As mentioned earlier, the Golden Car is a Quarter Car model with a specific set of mechanical parameters. These parameters are not selected based on the pavement being evaluated, a vehicle traveling on it, or the preferences of the engineer performing the analysis. They are standardized. According to Sayers (1995), the Golden Car is defined by the following normalized parameters:</p>
+<div class="iri-equation-row">
+<p><span class="math display">\[
+\frac{c_{s}}{m_{s}} = 6.0\ s^{- 1}
+\]</span></p>
+<p><span class="iri-equation-number">(1)</span></p>
+</div>
+<div class="iri-equation-row">
+<p><span class="math display">\[
+\frac{k_{u}}{m_{s}} = 653\ s^{- 2}
+\]</span></p>
+<p><span class="iri-equation-number">(2)</span></p>
+</div>
+<div class="iri-equation-row">
+<p><span class="math display">\[
+\frac{k_{s}}{m_{s}} = 63.3\ s^{- 2}
+\]</span></p>
+<p><span class="iri-equation-number">(3)</span></p>
+</div>
+<div class="iri-equation-row">
+<p><span class="math display">\[
+\frac{m_{u}}{m_{s}} = 0.15
+\]</span></p>
+<p><span class="iri-equation-number">(4)</span></p>
+</div>
+<p>Note that in the above equations, the parameters are normalized by the sprung mass (<em>m<sub>s</sub></em>). Consequently, we do not need to specify the actual mass of a vehicle to define the Golden Car. What matters are the relationships among its mechanical properties.</p>
+<p>You may also have noticed that the generic Quarter Car model I showed in Figure 2 is different from what Sayers (1995) has in his paper. Figure 2 includes a dashpot (<em>c<sub>u</sub></em>) for the tire, whereas the standardized Golden Car does not. This is intentional. The Golden Car assumes an “elastic” tire without any damping. So, the Golden Car tire is only represented by a spring, while I prefer to keep the dashpot for the tire in the generic Quarter Car model because I have used it for different purposes. All in all, the Quarter Car in Figure 2 becomes the Golden Car if we specify Equations (1) through (4) and eliminate the tire dashpot. Hence for the Golden Car:</p>
+<div class="iri-equation-row">
+<p><span class="math display">\[
+c_{u} = 0
+\]</span></p>
+<p><span class="iri-equation-number">(5)</span></p>
+</div>
+<p>Remember, the above parameters shown in Equations (1) through (5) and the standard speed of 80 km/h (49.7 mph) are part of the IRI definition. You can certainly change any of them in your own vehicle dynamics simulations (which I have done many times), but the resulting index (if that is what you calculated) can no longer be referred to as the IRI.</p>
+</section>
+<section id="is-the-golden-car-realistic-which-vehicle-does-it-represent" class="level1">
+<h1>4. Is the Golden Car Realistic? Which Vehicle Does It Represent?</h1>
+<p>Before getting into the equations, let’s have a little fun. Back in 2023, I developed a couple of animations showing what it might look like to “ride” on top of the sprung mass of the Golden Car. Rather than just showing the Golden Car model from the side, I placed a virtual camera on the sprung mass and looked forward as the model traveled over a pavement profile. I called these animations “IRICoasters” because they reminded me of roller-coaster simulation videos, except that the ride takes place over a pavement profile instead of a roller-coaster track.</p>
+<p>Animations 1 and 2 show the IRICoaster simulations over a rough flexible pavement (IRI = 135.3 in/mi) and a rough rigid pavement with a lot of curling of the jointed slabs (IRI = 134.1 in/mi), respectively. Hope you don’t get sick!</p>
+<video controls="" preload="metadata" playsinline="" style="display:block;width:100%;max-width:850px;height:auto;margin:1rem auto;" aria-label="IRICoaster animation 1"><source src="media/flexible-iri-coaster.mp4" type="video/mp4"></video>
+<p><strong>Animation 1. An imaginary ride in the Golden Car over a flexible pavement profile, IRI = 135.3 in/mi (<a href="https://lnkd.in/p/ecQp7kHy">Animation_1_LinkedIn_Post</a>).</strong></p>
+<video controls="" preload="metadata" playsinline="" style="display:block;width:100%;max-width:850px;height:auto;margin:1rem auto;" aria-label="IRICoaster animation 2"><source src="media/rigid-iri-coaster.mp4" type="video/mp4"></video>
+<p><strong>Animation 2. An imaginary ride in the Golden Car over a rigid pavement profile, IRI = 134.1 in/mi (<a href="https://lnkd.in/p/eupT2PT6">Animation_2_LinkedIn_Post</a>).</strong></p>
+<p>Now, here’s my question. Do these look like realistic rides? You might say YES. After all, the Golden Car is a mechanical model governed by the same basic principles of dynamics that apply to real vehicle suspensions. Or you might say NO. I certainly wouldn’t want to ride in some of the vehicles shown in these animations.</p>
+<p>But here’s the more important question. Does it really matter? My answer is “Not Necessarily”. To understand why, we need to revisit why the Golden Car was developed in the first place.</p>
+<section id="why-do-we-need-a-standardized-vehicle" class="level2">
+<h2 class="anchored" data-anchor-id="why-do-we-need-a-standardized-vehicle">Why do we need a standardized vehicle?</h2>
+<p>Before IRI became widely adopted, many pavement roughness measurements were obtained using Response-Type Road Roughness Measurement (RTRRM) systems. These systems measured how an actual vehicle responded while traveling over a road. The problem was that the measured response depended not only on the pavement but also on the measurement vehicle itself. Different vehicles have different masses, suspension stiffnesses, damping characteristics, and tires. Even the same vehicle can respond differently at different travel speeds. As a result, two vehicles traveling over the same pavement could produce different roughness measurements which had always been a challenge with RTRRMs.</p>
+<p>Several research studies during the late 1970s and 1980s, including the International Road Roughness Experiment (IRRE), helped establish a common reference for evaluating longitudinal pavement roughness (Sayers et al., 1986). As a result, the Golden Car became that reference. Its parameters were selected to provide a meaningful and repeatable representation of vehicle response, informed by earlier research relating road profiles to vehicle-based roughness measurements. The objective was not to simulate every detail of a real vehicle. Rather, it was to establish a standardized mathematical response that could be calculated consistently from measured pavement profiles.</p>
+<p>Think about it this way. Suppose a small passenger car, a large SUV, and a heavy truck travel over exactly the same pavement section. Would their suspension responses be identical? Of course not. Then which vehicle should determine the roughness of that pavement? With IRI, we avoid that question altogether. We use the same Golden Car, with the same mechanical parameters, traveling at the same simulation speed, every time. So, the Golden Car does not need to behave exactly like your car, my car, or any particular vehicle on the road. It only needs to behave consistently like the Golden Car. That’s what makes IRI useful as a standardized roughness index.</p>
+<p>So, my IRICoaster animations are nothing more than visualized results of the mathematical Golden Car model, not predictions of how comfortable an actual ride would feel.</p>
+<p>Now, let’s take a look at the equations before we talk about what actually is accumulated for calculation of IRI.</p>
+</section>
+</section>
+<section id="governing-equations-and-the-meaning-of-suspension-motion" class="level1">
+<h1>5. Governing Equations and the Meaning of Suspension Motion</h1>
+<p>As I mentioned above, the Golden Car model has 2 degrees of freedom, namely the vertical displacements of the sprung and the unsprung masses. These displacements are governed by 2 coupled differential equations, one describing the motion of the sprung mass and the other for the unsprung mass. Using the notation in Figure 2 and Table 1, the governing equations are:</p>
+<div class="iri-equation-row">
+<p><span class="math display">\[
+m_{s}{\ddot{z}}_{s} + c_{s}\left( {\dot{z}}_{s} - {\dot{z}}_{u} \right) + k_{s}\left( z_{s} - z_{u} \right) = 0
+\]</span></p>
+<p><span class="iri-equation-number">(6)</span></p>
+</div>
+<p>for the sprung mass, and:</p>
+<div class="iri-equation-row">
+<p><span class="math display">\[
+m_{u}{\ddot{z}}_{u} + c_{s}\left( {\dot{z}}_{u} - {\dot{z}}_{s} \right) + k_{s}\left( z_{u} - z_{s} \right) + k_{t}\left( z_{u} - r \right) = 0
+\]</span></p>
+<p><span class="iri-equation-number">(7)</span></p>
+</div>
+<p>for the unsprung mass, where the dots above the displacement variables represent derivatives with respect to time (i.e., <span class="math inline">\(\dot{f}(t) = \ \frac{\partial f(t)}{\partial t}\)</span> and <span class="math inline">\(\ddot{f}(t) = \ \frac{\partial^{2}f(t)}{\partial t^{2}}\)</span>), so <span class="math inline">\(\dot{z}(t)\)</span> is the vertical velocity of the sprung mass while <span class="math inline">\(\ddot{z}(t)\)</span> is its vertical acceleration.</p>
+<p>These equations describe how the two masses move in response to the pavement profile. However, to understand what IRI actually accumulates, we don’t need to solve them here. Instead, I will focus on one quantity which is the suspension motion.</p>
+<section id="what-is-suspension-displacement" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-suspension-displacement">What is suspension displacement?</h2>
+<p>The last bullet item under the definition of IRI specifically mentioned that “simulated suspension motion is linearly accumulated”. In the Golden Car model, the suspension is represented by the spring and dashpot that connects the sprung mass and the unsprung mass. Therefore, the suspension motion or more specifically, the relative suspension displacement, <em>s</em>(<em>t</em>), is simply the difference between the vertical displacements of the two masses, as shown in Equation (8).</p>
+<div class="iri-equation-row">
+<p><span class="math display">\[
+s(t) = z_{s}(t) - z_{u}(t)
+\]</span></p>
+<p><span class="iri-equation-number">(8)</span></p>
+</div>
+<p>Note that the above suspension motion or relative suspension displacement is also commonly referred to as suspension stroke in some other literature.</p>
+<p>Suppose the sprung mass moved upward by 1.0 in. while the unsprung mass remained stationary. In this case, the relative suspension displacement changed by 1.0 in. Now suppose the sprung mass moved back downward by 1.0 in, returning to its original position. The final relative suspension displacement is exactly the same as it was initially. Does that mean the suspension experienced no movement? Of course not! It moved 1.0 in. in one direction and another 1.0 in. in the opposite direction. The net change in suspension displacement is zero, but the total accumulated suspension movement is 2.0 in. <span class="darkred"><strong>This distinction is fundamental to understanding IRI.</strong></span></p>
+</section>
+<section id="what-does-the-iri-equation-actually-accumulate" class="level2">
+<h2 class="anchored" data-anchor-id="what-does-the-iri-equation-actually-accumulate">What does the IRI equation actually accumulate?</h2>
+<p>Mathematically speaking, IRI is calculated by integrating the absolute suspension velocity over the simulation time and dividing the result by the distance traveled by the Golden Car.</p>
+<div class="iri-equation-row">
+<p><span class="math display">\[
+IRI = \frac{1}{L}\int_{0}^{L/V}\left| {\dot{z}}_{s}(t) - {\dot{z}}_{u}(t) \right|\, dt
+\]</span></p>
+<p><span class="iri-equation-number">(9)</span></p>
+</div>
+<p>where <em>L</em> is the distance traveled by the Golden Car in the simulation and <em>V</em> is the simulation speed (80 km/h). Also from Equation (8), we can write the suspension velocity as the following:</p>
+<div class="iri-equation-row">
+<p><span class="math display">\[
+\dot{s}(t) = {\dot{z}}_{s}(t) - {\dot{z}}_{u}(t)
+\]</span></p>
+<p><span class="iri-equation-number">(10)</span></p>
+</div>
+<p>which allows us to rewrite Equation (9) as:</p>
+<div class="iri-equation-row">
+<p><span class="math display">\[
+IRI = \frac{1}{L}\int_{0}^{L/V}\left| \dot{s}(t) \right|\, dt
+\]</span></p>
+<p><span class="iri-equation-number">(11)</span></p>
+</div>
+<p>Physics tells us that integrating velocity over time gives displacement. However, integrating the <span class="darkred"><strong>absolute value of velocity</strong></span> gives the total accumulated movement, regardless of direction. Similarly, because we are integrating the absolute relative suspension velocity in Equation (11), the result represents the total accumulated suspension movement, rather than the net change in suspension displacement.</p>
+<p>This is why the absolute-value operation (|…|) is so important. Whether the suspension extends or compresses, the movement contributes positively to the accumulated total.</p>
+<p>Also, since the Golden Car travels at a constant speed of <em>V</em> = 80 km/h (49.7 mph), we can express the longitudinal travel distance as <em>x</em>=<em>V∙t</em>. Therefore, <em>dx</em>=<em>V∙dt</em> and <em>dt</em>=<em>dx</em>/<em>V</em>. Also, using the chain rule, the relative suspension velocity can be expressed as <em>ds</em>/<em>dt</em>=<em>V∙</em>(<em>ds</em>/<em>dx</em>). Then, by applying a change of variables from time to longitudinal distance, we can rewrite Equations (9) and (11) in terms of distance <em>x</em>:</p>
+<div class="iri-equation-row">
+<p><span class="math display">\[
+IRI = \frac{1}{L}\int_{0}^{L}\left| \frac{d\left( z_{s} - z_{u} \right)}{dx} \right|\, dx = \frac{1}{L}\int_{0}^{L}\left| \frac{ds}{dx} \right|\, dx
+\]</span></p>
+<p><span class="iri-equation-number">(12)</span></p>
+</div>
+<p>Now, the term inside the absolute-value operation, <em>ds</em>/<em>dx</em>, represents the slope of the relative suspension displacement with respect to longitudinal distance. Taking its absolute value makes both positive and negative slopes contribute positively. This is called <em>rectification</em>. By integrating the absolute slope over the pavement section and dividing by the section length, we obtain the average rectified slope of the suspension response. This is why IRI is sometimes described as the <span class="darkred"><strong>Average Rectified Slope (ARS)</strong></span>. Note that we are talking about the slope of the relative suspension displacement, <span class="darkred"><strong>not the slope of the pavement profile itself</strong></span>.</p>
+<p>The bottom line is that whether you use the integral over time or distance, the outcome of the integral is the total accumulated absolute suspension motion in units of length (typically in inches or meters). This result is then divided by the distance traveled by the Golden Car which also has units of length (typically in miles or kilometers). This is why IRI is commonly reported in m/km or in/mi.</p>
+</section>
+</section>
+<section id="six-examples-what-is-actually-accumulated" class="level1">
+<h1>6. Six Examples: What Is Actually Accumulated?</h1>
+<p>Now that we've gone through the mathematical definition of IRI, let's look at six simple examples to see what is actually accumulated.</p>
+<p>I originally developed these examples for one of my LinkedIn posts in March 2025. Rather than solving the Golden Car differential equations for different pavement profiles, I prescribed some fictitious motions of the sprung and unsprung masses to illustrate the concept of accumulated suspension movement.</p>
+<p>For simplicity, let's assume that our hypothetical quarter-car travels a distance of 10 ft for all six examples. I'll also use in/ft for the units of IRI in the examples instead of the more familiar in/mi to keep the arithmetic simple.</p>
+<p>Keep in mind that these are hypothetical motion scenarios, not actual Golden Car responses calculated from pavement profiles. The resulting values illustrate the IRI accumulation principle rather than representing standardized IRI values.</p>
+<p>With that in mind, let's see what happens.</p>
+<section id="example-1-neither-mass-moves" class="level3">
+<h3 class="anchored" data-anchor-id="example-1-neither-mass-moves">Example #1 — Neither Mass Moves</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/image3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><strong>Figure 3. Hypothetical example No.&nbsp;1: Neither mass moves.</strong></p>
+<p>In this example, neither the sprung mass nor the unsprung mass experiences any vertical movement while the hypothetical Quarter Car travels 10 ft. Since neither mass moves, the distance between the two masses remains constant. Therefore, the total accumulated suspension movement is zero. Therefore:</p>
+<div class="iri-example-equation">
+<p><strong>IRI = 0 in. / 10 ft = 0.0 in/ft</strong></p>
+</div>
+<p>Pretty straightforward, right?</p>
+</section>
+<section id="example-2-sprung-mass-moves-up-and-stays-there" class="level3">
+<h3 class="anchored" data-anchor-id="example-2-sprung-mass-moves-up-and-stays-there">Example #2 — Sprung Mass Moves Up and Stays There</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/image4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><strong>Figure 4. Hypothetical example No.&nbsp;2: Sprung mass moves up and stays there.</strong></p>
+<p>Now, let's assume that the unsprung mass remains stationary while the sprung mass moves upward by 1.0 in and stays there. Since only the sprung mass moves, the distance between the two masses increases by 1.0 in. Therefore, the total accumulated suspension movement is 1.0 in, and:</p>
+<div class="iri-example-equation">
+<p><strong>IRI = 1.0 in. / 10 ft = 0.1 in/ft</strong></p>
+</div>
+<p>Simple enough. But what if the sprung mass comes back down?</p>
+</section>
+<section id="example-3-sprung-mass-moves-up-and-returns" class="level3">
+<h3 class="anchored" data-anchor-id="example-3-sprung-mass-moves-up-and-returns">Example #3 — Sprung Mass Moves Up and Returns</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/image5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><strong>Figure 5. Hypothetical example No.&nbsp;3: Sprung mass moves up and returns.</strong></p>
+<p>This example is similar to Example #2, except that the sprung mass returns to its original position before reaching the end of the 10-ft section. The unsprung mass remains stationary.</p>
+<p>The sprung mass first moves upward by 1.0 in and then downward by 1.0 in. Although the sprung mass ends up exactly where it started, the suspension has moved a total of 2.0 in. Remember, when it comes to IRI, it is always the absolute or rectified suspension motion we accumulate, not the net displacement! Therefore:</p>
+<div class="iri-example-equation">
+<p><strong>IRI = (1.0 + 1.0) in. / 10 ft = 0.2 in/ft</strong></p>
+</div>
+<p>Notice again that the net change in suspension displacement is zero, but the accumulated suspension movement is not. This is an important distinction.</p>
+</section>
+<section id="example-4-unsprung-mass-moves-up-and-returns" class="level3">
+<h3 class="anchored" data-anchor-id="example-4-unsprung-mass-moves-up-and-returns">Example #4 — Unsprung Mass Moves Up and Returns</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/image6.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><strong>Figure 6. Hypothetical example No.&nbsp;4: Unsprung mass moves up and returns.</strong></p>
+<p>Now, let's reverse the situation. This time, the sprung mass remains stationary while the unsprung mass moves upward by 1.0 in. and then returns to its original position. Just as in Example #3, the total accumulated suspension movement is 2.0 in. Hence:</p>
+<div class="iri-example-equation">
+<p><strong>IRI = (1.0 + 1.0) in. / 10 ft = 0.2 in/ft</strong></p>
+</div>
+<p>Interesting, isn't it? In Example #3, the distance between the two masses initially increases. In Example #4, that distance initially decreases. Yet, both examples produce the same accumulated suspension movement.</p>
+<p>Again, that is because the IRI calculation does not distinguish between suspension extension and compression when accumulating movement. Both directions contribute positively.</p>
+</section>
+<section id="example-5-the-two-masses-move-in-opposite-directions" class="level3">
+<h3 class="anchored" data-anchor-id="example-5-the-two-masses-move-in-opposite-directions">Example #5 — The Two Masses Move in Opposite Directions</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/image7.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><strong>Figure 7. Hypothetical example No.&nbsp;5: The two masses move in opposite directions.</strong></p>
+<p>Now, let's make things a little more interesting. Suppose the sprung mass moves upward by 1.0 in. while the unsprung mass simultaneously moves downward by 1.0 in. Then both masses return to their original positions.</p>
+<p>During the first part of the motion, the distance between the two masses increases by 2.0 in. When they return to their original positions, the distance decreases by another 2.0 in. Therefore, the total accumulated relative suspension movement is 4.0 in, and hence:</p>
+<div class="iri-example-equation">
+<p><strong>IRI = (2.0 + 2.0) in. / 10 ft = 0.4 in/ft</strong></p>
+</div>
+<p>Note again that although each mass travels a total vertical distance of 2 in., the accumulated relative movement between the masses is 4.0 in. This is why IRI considers the relative motion between the two masses rather than the absolute motion of either mass individually.</p>
+</section>
+<section id="example-6-both-masses-move-together" class="level3">
+<h3 class="anchored" data-anchor-id="example-6-both-masses-move-together">Example #6 — Both Masses Move Together</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/image8.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><strong>Figure 8. Hypothetical example No.&nbsp;6: Both masses move together.</strong></p>
+<p>Finally, let’s consider one more interesting case. Suppose both masses move upward by 1.0 in. simultaneously and then return to their original positions together.</p>
+<p>In other words, the entire hypothetical Quarter Car moves up and down, but the two masses always move by exactly the same amount.</p>
+<p><strong>So, how much suspension movement should we accumulate? Zero!</strong></p>
+<p>Although both masses experience vertical movement, the distance between them never changes. Mathematically,</p>
+<div class="iri-equation-row">
+<p><span class="math display">\[
+z_s(t)-z_u(t)=\mathrm{constant}
+\]</span></p>
+<p><span class="iri-equation-number">(13)</span></p>
+</div>
+<p>which also means</p>
+<div class="iri-equation-row">
+<p><span class="math display">\[
+\dot z_s(t)-\dot z_u(t)=0
+\]</span></p>
+<p><span class="iri-equation-number">(14)</span></p>
+</div>
+<p>Therefore:</p>
+<div class="iri-example-equation">
+<p><strong>IRI = 0 in. / 10 ft = 0.0 in/ft</strong></p>
+</div>
+<p><span class="darkred"><strong>Wait a minute. Both masses moved up and down, but the accumulated suspension movement is zero? Hell Yeah!</strong></span></p>
+<p>IRI does not accumulate the absolute vertical motion of either mass. It accumulates the relative movement between the two masses. If both masses move together without any change in their relative positions, there is no suspension movement to accumulate.</p>
+<p>Now compare this with Example #3. In both examples, the sprung mass moves upward by 1 in. and then returns to its original position. However, Example #3 produces 2.0 in. of accumulated suspension movement, while Example #6 produces none. The difference is entirely due to what the unsprung mass is doing. This is why we cannot determine IRI from the motion of the sprung mass alone. We need the relative motion between the two masses.</p>
+</section>
+<section id="what-do-these-six-examples-tell-us" class="level2">
+<h2 class="anchored" data-anchor-id="what-do-these-six-examples-tell-us">What Do These Six Examples Tell Us?</h2>
+<div class="myth-verdict callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>So, what did we learn from these 6 examples?</strong></p>
+<p>First, <span class="darkred"><strong>the accumulated suspension movement depends on the relative displacement between the sprung and unsprung masses</strong></span>, not their individual vertical displacements.</p>
+<p>Second, <span class="darkred"><strong>the direction of the relative movement does not matter</strong></span>. Whether the suspension extends or compresses, the absolute movement is accumulated.</p>
+<p>And finally, <span class="darkred"><strong>the net change in suspension displacement does not tell us the full story about how much movement occurred along the way</strong></span>. The suspension can return to its original position after experiencing substantial movement, as demonstrated in Examples #3 through #5.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="what-does-iri-tell-usand-what-does-it-not" class="level1">
+<h1>7. What Does IRI Tell Us—and What Does It Not?</h1>
+<p>Now that we understand how IRI is calculated, let's consider what an IRI value actually tells us about pavement roughness.</p>
+<p><span class="darkred"><strong>IRI is a standardized index derived from a longitudinal pavement profile using the Golden Car model.</strong></span> Because the model parameters and simulation speed are fixed, IRI provides a consistent basis for comparing the roughness of different pavement sections.</p>
+<p>However, IRI is still just a single number, and a single number cannot describe all characteristics of a pavement profile. For example, one pavement might contain relatively small but frequent surface irregularities, while another might be generally smooth with a few pronounced bumps or depressions. Depending on how these features excite the Golden Car suspension, the two pavement sections could produce similar IRI values.</p>
+<p>Similarly, <span class="darkred"><strong>an elevated IRI value does not tell us exactly where the roughness occurs or what caused it. It could result from one particularly rough location or from smaller irregularities distributed throughout the pavement section.</strong></span> This doesn't make IRI any less useful. It simply means we should understand its limitations and avoid interpreting it as a complete description of the pavement profile.</p>
+<p>I actually put together another article from my previous LinkedIn posts to show two noticeably different pavement profiles producing similar IRI values, and how the Golden Car response may change as we change the speed at which it is traveling.</p>
+</section>
+<section id="closing-thoughts-1" class="level1">
+<h1>8. Closing Thoughts</h1>
+<p>So, did you understand what exactly is accumulated when calculating IRI? Hopefully, the six examples made the answer a little clearer.</p>
+<p>IRI is calculated by accumulating the absolute relative movement between the sprung and unsprung masses of the standardized Golden Car and dividing that accumulated movement by the distance traveled. It is not the total vertical movement of either mass, nor is it the net change in suspension displacement between the beginning and end of the pavement section.</p>
+<p><span class="darkred"><strong>When it comes to IRI, it is always the total accumulated absolute suspension movement.</strong></span></p>
+<p>Of course, understanding what is accumulated is only part of understanding IRI. The standardized Golden Car parameters, the simulation speed of 80 km/h (49.7 mph), and the prescribed pavement profile processing are equally important because they define what makes the resulting index the International Roughness Index.</p>
+<p>I hope this article helps you understand not only how IRI is calculated, but also what the resulting number actually represents.</p>
+<p>And if you ever find yourself wondering why two very different pavement profiles can produce similar IRI values, well... stay tuned for my next IRI article!</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ol type="1">
+<li><p>Sayers, M. W., Gillespie, T. D., and Queiroz, C. A. V. (1986). The International Road Roughness Experiment: Establishing Correlation and a Calibration Standard for Measurements. World Bank Technical Paper No.&nbsp;45.</p></li>
+<li><p>Sayers, M. W. (1995). “On the Calculation of International Roughness Index from Longitudinal Road Profile.” Transportation Research Record, No.&nbsp;1501, pp.&nbsp;1–12. https://trid.trb.org/View/452992</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp("https:\/\/leehyu20\.github\.io\/hyung-s-lee\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Hyung S. Lee</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Built with Quarto</div>
+  </div>
+</footer>
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
