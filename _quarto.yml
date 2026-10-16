@@ -4,6 +4,7 @@ project:
   resources:
     - posts/dsteele-overview/dsteele-move.mp4
     - posts/tsd-four-myths/media/*.mp4
+    - posts/iri-what-is-iri/media/*.mp4
     - posts/gpr-virtual-laboratory/media/*.mp4
     - posts/gpr-heterogeneous-pavement/media/*
     - illustrations/**/*.png
@@ -30,7 +31,7 @@ website:
             href: research/fwd-hwd.qmd
           - text: Ground Penetrating Radar
             href: research/gpr.qmd
-          - text: Friction & Surface Characterization
+          - text: Vehicle-Pavement Interaction
             href: research/friction.qmd
       - text: Models & Software
         menu:

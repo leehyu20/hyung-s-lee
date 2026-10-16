@@ -1,9 +1,25 @@
 ---
-title: "Friction & Surface Characterization"
+title: "Vehicle-Pavement Interaction"
 ---
 
-This section focuses on pavement friction, texture, surface characterization, roughness, and the mechanics and development of pavement-surface measurement methods.
+This section focuses on vehicle–pavement interaction, including pavement roughness and ride quality, friction, texture, surface characterization, and the mechanics of pavement-surface measurement methods.
 
 ## Articles & Technical Notes
 
-**More content is coming.** This section is being developed and will be populated with research articles, technical notes, computational studies, and engineering visualizations as the site develops.
+::: {.featured-article}
+::: {.featured-article-copy}
+::: {.eyebrow}
+IRI · IRI-01 · October 15, 2026
+:::
+
+### [What Exactly Is the International Roughness Index (IRI), and How Is It Calculated?](../posts/iri-what-is-iri/index.qmd)
+
+A technical explanation of how the International Roughness Index is calculated, what accumulated relative suspension movement means, and why six hypothetical quarter-car examples make the concept easier to understand.
+
+[Read IRI-01 →](../posts/iri-what-is-iri/index.qmd){.article-link}
+:::
+
+::: {.featured-article-media}
+![](../posts/iri-what-is-iri/media/image1.png){fig-alt="Six hypothetical quarter-car examples explaining accumulated suspension movement"}
+:::
+:::

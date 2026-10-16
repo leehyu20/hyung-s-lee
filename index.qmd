@@ -39,6 +39,25 @@ I develop mechanics-based computational models and numerical tools to study pave
 ::: {.featured-article}
 ::: {.featured-article-copy}
 ::: {.eyebrow}
+IRI · IRI-01 · October 15, 2026
+:::
+
+### [What Exactly Is the International Roughness Index (IRI), and How Is It Calculated?](posts/iri-what-is-iri/index.qmd)
+
+What does IRI actually accumulate? An explanation of the standardized Golden Car and relative suspension movement, illustrated with six intuitive examples and IRICoaster animations.
+
+[Read IRI-01 →](posts/iri-what-is-iri/index.qmd){.article-link}
+:::
+
+::: {.featured-article-media}
+![](posts/iri-what-is-iri/media/image1.png){fig-alt="Six hypothetical examples illustrating accumulated relative suspension movement in the IRI calculation"}
+:::
+:::
+
+
+::: {.featured-article}
+::: {.featured-article-copy}
+::: {.eyebrow}
 GPR · GPR-02 · October 12, 2026
 :::
 
@@ -69,24 +88,6 @@ A virtual GPR laboratory using FDTD simulations to investigate how pavement laye
 
 ::: {.featured-article-media}
 ![](posts/gpr-virtual-laboratory/media/gpr-figure-1.png){fig-alt="FDTD simulation comparison of pavement structures and GPR responses"}
-:::
-:::
-
-::: {.featured-article}
-::: {.featured-article-copy}
-::: {.eyebrow}
-TSD · TSD-01 · October 6, 2026
-:::
-
-### [Four TSD Myths: Confirmed, Busted, or Plausible?](posts/tsd-four-myths/index.qmd)
-
-Four common assumptions about Traffic Speed Deflectometer analysis are examined through moving-load mechanics, including FWD–TSDD correlation, slope integration, vehicle-model simplification, and slope-based backcalculation.
-
-[Read TSD-01 →](posts/tsd-four-myths/index.qmd){.article-link}
-:::
-
-::: {.featured-article-media}
-![](posts/tsd-four-myths/media/image1.jpg){fig-alt="Confirmed, Busted, and Plausible verdict graphic representing the four TSD myths"}
 :::
 :::
 
@@ -167,6 +168,15 @@ F/HWD ANALYSIS
 ### [ViscoWave](models/viscowave.qmd)
 
 Dynamic/viscoelastic pavement response for FWD/HWD and dynamic backcalculation.
+:::
+
+::: {.model-tile}
+::: {.model-label}
+GPR SIMULATION
+:::
+### [Virtual GPR Laboratory](models/gpr.qmd)
+
+FDTD-based numerical laboratory for simulating radar wave propagation through pavement layers, cracks, moisture, and subsurface anomalies.
 :::
 :::
 

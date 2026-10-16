@@ -1,0 +1,43 @@
+/* IRI-01 — scoped refinements on top of the existing TSD-01 styles.css.
+   Reuses .article-series-label, .myth-verdict, and .darkred. */
+.iri-equation-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.0rem;
+  margin: 1.15rem 0;
+  padding: 0 3.8rem;
+  overflow-x: auto;
+}
+.iri-equation-row .math.display {
+  margin: 0 auto !important;
+  flex: 0 0 auto;
+}
+.iri-equation-number {
+  position: absolute;
+  right: 0.35rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.iri-example-equation {
+  margin: 1rem auto;
+  padding: .65rem 1rem;
+  text-align: center;
+  border-left: 4px solid #4a86e8;
+  background: #eef5fc;
+  border-radius: 6px;
+  font-size: 1.06rem;
+}
+body.quarto-dark .iri-example-equation,
+body.quarto-dark .myth-verdict {
+  background: #222f3b;
+  border-color: #527aa8;
+}
+body.quarto-dark .darkred { color: #ff9999; }
+@media (max-width: 600px) {
+  .iri-equation-row { padding: 0 2.8rem 0 0; justify-content: flex-start; }
+  .iri-equation-number { right: 0; }
+}
