@@ -1,0 +1,6 @@
+/* Preserve the author's bold red emphasis in the finalized Word article. */
+.rigid-red { color: #C00000; font-weight: 700; }
+body.quarto-dark .rigid-red { color: #ff8585; }
+/* Consistent with existing GPR/TSD figure and animation conventions. */
+main.content .text-center { text-align: center; }
+main.content .text-center p { margin-top: 0.35rem; }
