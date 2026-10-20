@@ -39,6 +39,24 @@ I develop mechanics-based computational models and numerical tools to study pave
 ::: {.featured-article}
 ::: {.featured-article-copy}
 ::: {.eyebrow}
+RIGID · RIGID-01 · October 19, 2026
+:::
+
+### [What Does a TSD See When It Crosses a Concrete Pavement Joint?](posts/rigid-analytical-finite-beam/index.qmd)
+
+An analytical finite-beam model explores how joint load-transfer efficiency, slab lengths, tire configurations, and boundary conditions shape TSD Doppler-laser deflection-velocity responses.
+
+[Read RIGID-01 →](posts/rigid-analytical-finite-beam/index.qmd){.article-link}
+:::
+
+::: {.featured-article-media}
+![](posts/rigid-analytical-finite-beam/media/image12.png){fig-alt="Analytical finite-beam comparison showing how boundary conditions change deflection-velocity responses at concrete pavement joints"}
+:::
+:::
+
+::: {.featured-article}
+::: {.featured-article-copy}
+::: {.eyebrow}
 IRI · IRI-01 · October 15, 2026
 :::
 

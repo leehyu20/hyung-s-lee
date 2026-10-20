@@ -6,4 +6,10 @@ This section focuses on Jointed Concrete Pavement (JPC) response, load transfer,
 
 ## Articles & Technical Notes
 
-**More content is coming.** This section is being developed and will be populated with research articles, technical notes, computational studies, and engineering visualizations as the site develops.
+### RIGID-01 — What Does a TSD See When It Crosses a Concrete Pavement Joint?
+
+[Read RIGID-01: Analytical Finite Beam Model](../posts/rigid-analytical-finite-beam/index.qmd)
+
+An analytical beam-on-Winkler-foundation model for jointed concrete pavements, exploring prescribed load-transfer efficiencies, multiple joints, slab length, multi-tire loading, deflection-velocity signatures, and sensitivity to boundary conditions. Includes five animation topics drawn from the author's 2025 FWDUG presentation.
+
+Additional rigid-pavement articles and computational studies will be added as this research series develops.
