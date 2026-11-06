@@ -39,6 +39,24 @@ I develop mechanics-based computational models and numerical tools to study pave
 ::: {.featured-article}
 ::: {.featured-article-copy}
 ::: {.eyebrow}
+IRI · IRI-02 · November 5, 2026
+:::
+
+### [We Know How to Calculate IRI. But Can We Really Predict It?](posts/iri-mechanistic-prediction/index.qmd)
+
+Calculating IRI from a known profile is straightforward. Predicting future IRI is another story. Four numerical experiments explore how truck dynamics and spatially varying rutting change the profile the Golden Car sees.
+
+[Read IRI-02 →](posts/iri-mechanistic-prediction/index.qmd){.article-link}
+:::
+
+::: {.featured-article-media}
+![](posts/iri-mechanistic-prediction/media/iri02-preview.png){fig-alt="Mechanistic IRI progression animation showing an evolving rutted pavement profile and increasing IRI"}
+:::
+:::
+
+::: {.featured-article}
+::: {.featured-article-copy}
+::: {.eyebrow}
 RIGID · RIGID-01 · October 19, 2026
 :::
 

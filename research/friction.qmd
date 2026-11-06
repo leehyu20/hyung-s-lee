@@ -9,6 +9,24 @@ This section focuses on vehicle–pavement interaction, including pavement rough
 ::: {.featured-article}
 ::: {.featured-article-copy}
 ::: {.eyebrow}
+IRI · IRI-02 · November 5, 2026
+:::
+
+### [We Know How to Calculate IRI. But Can We Really Predict It?](../posts/iri-mechanistic-prediction/index.qmd)
+
+Why calculating IRI is mechanistic but predicting future IRI remains challenging—and how four truck simulations connect changing pavement profiles to Golden Car IRI.
+
+[Read IRI-02 →](../posts/iri-mechanistic-prediction/index.qmd){.article-link}
+:::
+
+::: {.featured-article-media}
+![](../posts/iri-mechanistic-prediction/media/iri02-preview.png){fig-alt="Mechanistic IRI simulation showing profile deformation and IRI progression"}
+:::
+:::
+
+::: {.featured-article}
+::: {.featured-article-copy}
+::: {.eyebrow}
 IRI · IRI-01 · October 15, 2026
 :::
 

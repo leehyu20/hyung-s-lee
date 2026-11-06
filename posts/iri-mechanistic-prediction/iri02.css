@@ -1,0 +1,31 @@
+/* IRI-02: conversion of author-approved colors/boxes from final V13 Word manuscript. */
+.iri02-blue { color: #0070c0; }
+.iri02-red { color: #c00000; }
+.iri02-maroon { color: #a62e27; }
+.iri02-bluebox {
+  background: #eaf2f8;
+  border: 1px solid #d2e0ea;
+  border-radius: 5px;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+}
+.iri02-bluebox p:last-child, .iri02-bluebox ol:last-child,
+.iri02-bluebox ul:last-child { margin-bottom: 0; }
+.iri02-bluebox li { margin: 0.35rem 0; }
+.iri02-steps > p:first-child { color: #c00000; font-weight: 700; }
+.iri02-caption { text-align: center; color: #555f69; font-size: 0.92rem; margin: 0.35rem 0 1.35rem; }
+.iri02-caption p { margin: 0; }
+.iri02-equation-row { position: relative; display:flex; align-items:center;
+  justify-content:center; padding: 0.35rem 3.7rem; margin:1.25rem 0;
+  width:100%; min-height: 3rem; overflow-x:auto; }
+.iri02-equation-row .math.display { margin:0 auto !important; flex:0 0 auto; }
+.iri02-equation-number { position:absolute; right:.4rem; top:50%; transform:translateY(-50%); white-space:nowrap; font-weight:600; }
+body.quarto-dark .iri02-bluebox { background:#233544; border-color:#4f7189; }
+body.quarto-dark .iri02-blue { color:#7bc3fb; }
+body.quarto-dark .iri02-red, body.quarto-dark .iri02-maroon { color:#ff9999; }
+body.quarto-dark .iri02-caption { color:#bac5cd; }
+@media (max-width: 700px) {
+  .iri02-equation-row { justify-content:flex-start; padding: .4rem 2.5rem .4rem 0; }
+  .iri02-equation-number { right:0; }
+  .iri02-bluebox { padding: .8rem; }
+}

@@ -6,6 +6,7 @@ project:
     - posts/tsd-four-myths/media/*.mp4
     - posts/rigid-analytical-finite-beam/media/*.mp4
     - posts/iri-what-is-iri/media/*.mp4
+    - posts/iri-mechanistic-prediction/media/*.mp4
     - posts/gpr-virtual-laboratory/media/*.mp4
     - posts/gpr-heterogeneous-pavement/media/*
     - illustrations/**/*.png

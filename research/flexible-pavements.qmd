@@ -6,4 +6,8 @@ This section focuses on pavement response, viscoelastic response, temperature, l
 
 ## Articles & Technical Notes
 
-**More content is coming.** This section is being developed and will be populated with research articles, technical notes, computational studies, and engineering visualizations as the site develops.
+### [IRI-02 — We Know How to Calculate IRI. But Can We Really Predict It?](../posts/iri-mechanistic-prediction/index.qmd)
+
+Explores the distinction between calculating and predicting IRI through truck dynamics, ViscoWave pavement responses, empirical rutting relationships, and spatially varying pavement profiles.
+
+More research articles on flexible-pavement response and viscoelastic modeling are planned.
