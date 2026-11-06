@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Hyung S. Lee, Ph.D., P.E.">
+<meta name="dcterms.date" content="2026-11-05">
+<meta name="description" content="We know how to calculate IRI using the Golden Car. But can we predict future IRI? Four truck simulations explore empirical IRI equations, changing pavement profiles, and spatially varying rutting.">
+
+<title>Hyung S. Lee - IRI-02 | We Know How to Calculate IRI. But Can We Really Predict It?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-E3LRN9QKM0"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-E3LRN9QKM0', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="iri02.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Hyung S. Lee</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-research" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Research</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-research">    
+        <li>
+    <a class="dropdown-item" href="../../research/tsd.html" rel="" target="">
+ <span class="dropdown-text">Traffic Speed Deflectometer (TSD)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/flexible-pavements.html" rel="" target="">
+ <span class="dropdown-text">Flexible Pavements</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/rigid-pavements.html" rel="" target="">
+ <span class="dropdown-text">Rigid Pavements</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/fwd-hwd.html" rel="" target="">
+ <span class="dropdown-text">FWD / HWD</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/gpr.html" rel="" target="">
+ <span class="dropdown-text">Ground Penetrating Radar</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../research/friction.html" rel="" target="">
+ <span class="dropdown-text">Vehicle-Pavement Interaction</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-models--software" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Models &amp; Software</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-models--software">    
+        <li>
+    <a class="dropdown-item" href="../../models/dsteele.html" rel="" target="">
+ <span class="dropdown-text">DSteele</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../models/gpr.html" rel="" target="">
+ <span class="dropdown-text">Virtual GPR Laboratory</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../models/viscowave.html" rel="" target="">
+ <span class="dropdown-text">ViscoWave</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../models/finite-beam.html" rel="" target="">
+ <span class="dropdown-text">Finite Beam Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../models/illislab.html" rel="" target="">
+ <span class="dropdown-text">ILLI-SLAB Implementation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html" rel="" target="">
+ <span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../illustrations/index.html" rel="" target="">
+ <span class="menu-text">Technical Illustrations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html" rel="" target="">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../just-for-fun/index.html" rel="" target="">
+ <span class="menu-text">Just for Fun</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/hyungsuklee/" rel="" target=""><i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/leehyu20" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-why-are-iri-prediction-models-in-m-e-pavement-design-empirical-at-best" id="toc-introduction-why-are-iri-prediction-models-in-m-e-pavement-design-empirical-at-best" class="nav-link active" data-scroll-target="#introduction-why-are-iri-prediction-models-in-m-e-pavement-design-empirical-at-best">1. Introduction: Why Are IRI Prediction Models in M-E Pavement Design “Empirical” At Best?</a>
+  <ul class="collapse">
+  <li><a href="#brief-overview-of-mechanistic-empirical-m-e-pavement-design" id="toc-brief-overview-of-mechanistic-empirical-m-e-pavement-design" class="nav-link" data-scroll-target="#brief-overview-of-mechanistic-empirical-m-e-pavement-design">Brief Overview of Mechanistic-Empirical (M-E) Pavement Design</a></li>
+  <li><a href="#what-about-the-iri-prediction-methods" id="toc-what-about-the-iri-prediction-methods" class="nav-link" data-scroll-target="#what-about-the-iri-prediction-methods">What about the IRI Prediction Methods?</a></li>
+  <li><a href="#why-representative-rut-depth-and-cracking-are-not-enough" id="toc-why-representative-rut-depth-and-cracking-are-not-enough" class="nav-link" data-scroll-target="#why-representative-rut-depth-and-cracking-are-not-enough">Why Representative Rut Depth and Cracking Are Not Enough</a></li>
+  <li><a href="#a-few-empirical-iri-prediction-equations" id="toc-a-few-empirical-iri-prediction-equations" class="nav-link" data-scroll-target="#a-few-empirical-iri-prediction-equations">A Few Empirical IRI Prediction Equations</a></li>
+  </ul></li>
+  <li><a href="#mechanistic-empirical-m-e-iri-prediction-the-basic-idea" id="toc-mechanistic-empirical-m-e-iri-prediction-the-basic-idea" class="nav-link" data-scroll-target="#mechanistic-empirical-m-e-iri-prediction-the-basic-idea">2. Mechanistic-Empirical (M-E) IRI Prediction – The Basic Idea</a></li>
+  <li><a href="#four-numerical-experiments" id="toc-four-numerical-experiments" class="nav-link" data-scroll-target="#four-numerical-experiments">3. Four Numerical Experiments</a>
+  <ul class="collapse">
+  <li><a href="#experiment-1-one-bump-and-a-quarter-truck-model" id="toc-experiment-1-one-bump-and-a-quarter-truck-model" class="nav-link" data-scroll-target="#experiment-1-one-bump-and-a-quarter-truck-model">3.1 Experiment #1 — One Bump and a Quarter-Truck Model</a></li>
+  <li><a href="#experiment-2-perfectly-smooth-pavement-but-something-is-different-underneath" id="toc-experiment-2-perfectly-smooth-pavement-but-something-is-different-underneath" class="nav-link" data-scroll-target="#experiment-2-perfectly-smooth-pavement-but-something-is-different-underneath">3.2 Experiment #2 — Perfectly Smooth Pavement, but Something Is Different Underneath</a></li>
+  <li><a href="#experiment-3-same-bump-but-now-i-bring-in-the-whole-truck" id="toc-experiment-3-same-bump-but-now-i-bring-in-the-whole-truck" class="nav-link" data-scroll-target="#experiment-3-same-bump-but-now-i-bring-in-the-whole-truck">3.3 Experiment #3 — Same Bump, but Now I Bring in the Whole Truck</a></li>
+  <li><a href="#experiment-4-a-real-ltpp-profile-and-a-3d-trucktrailer" id="toc-experiment-4-a-real-ltpp-profile-and-a-3d-trucktrailer" class="nav-link" data-scroll-target="#experiment-4-a-real-ltpp-profile-and-a-3d-trucktrailer">3.4 Experiment #4 — A Real LTPP Profile and a 3D Truck–Trailer</a></li>
+  </ul></li>
+  <li><a href="#so-what-did-these-four-experiments-tell-us" id="toc-so-what-did-these-four-experiments-tell-us" class="nav-link" data-scroll-target="#so-what-did-these-four-experiments-tell-us">4. So, What Did These Four Experiments Tell Us?</a></li>
+  <li><a href="#limitations-because-models-are-still-models" id="toc-limitations-because-models-are-still-models" class="nav-link" data-scroll-target="#limitations-because-models-are-still-models">5. Limitations — Because Models Are Still Models</a></li>
+  <li><a href="#closing-thoughts" id="toc-closing-thoughts" class="nav-link" data-scroll-target="#closing-thoughts">6. Closing Thoughts</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">IRI-02 | We Know How to Calculate IRI. But Can We Really Predict It?</h1>
+<p class="subtitle lead">From empirical IRI equations to truck dynamics and profile-based mechanistic–empirical prediction</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">International Roughness Index</div>
+    <div class="quarto-category">IRI</div>
+    <div class="quarto-category">Pavement Engineering</div>
+    <div class="quarto-category">Golden Car</div>
+    <div class="quarto-category">Vehicle-Pavement Interaction</div>
+    <div class="quarto-category">Mechanistic-Empirical Design</div>
+    <div class="quarto-category">Pavement Roughness</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    We know how to calculate IRI using the Golden Car. But can we predict future IRI? Four truck simulations explore empirical IRI equations, changing pavement profiles, and spatially varying rutting.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Hyung S. Lee, Ph.D., P.E. </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 5, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="article-series-label">
+<p><strong>Pavement Roughness Article Series · IRI-02</strong></p>
+</div>
+<p>In my previous International Roughness Index (IRI) article (<a href="https://leehyu20.github.io/hyung-s-lee/posts/iri-what-is-iri/">IRI-01</a>), I explained how IRI is calculated from a measured pavement profile using the Golden Car simulation. Knowing how to calculate IRI from a given pavement profile is one thing. Now, I would like to ask you another interesting question. Let’s say we measured the profile of a newly constructed pavement surface and we calculated the IRI for that new pavement. Can we actually predict how rough this pavement is going to become after so many years or after several million truck passes? I know some of you may simply say…</p>
+<p><span class="iri02-blue">“<strong>Why not? Just use Mechanistic-Empirical (M-E) Pavement Design and Analysis software. It will give you IRI over time until the pavement fails</strong>”</span></p>
+<p>Well… Yes, that is true. Because IRI or ride quality is considered to be one of the most important functional characteristics of an existing pavement, IRI is often included as a performance metric in most modern M-E pavement analysis packages. But here is my next question.</p>
+<p><span class="iri02-red"><strong>Did you know that the IRI prediction model in most M-E Pavement Design and Analysis software packages is still essentially EMPIRICAL?</strong></span></p>
+<p>I am sorry if that sounds a little surprising, but the IRI prediction equations used in most M-E pavement design packages are essentially empirical, even though the larger framework combines mechanistic and empirical methods. Not sure what I am talking about here? Read on then. I will provide a little background first and then use four numerical experiments to explain what I mean by a more profile-based Mechanistic-Empirical IRI prediction.</p>
+<p>Note: This article is based mainly on four numerical experiments I presented at the 2019 Falling Weight Deflectometer User Group (FWDUG) meeting, with additional materials from my 2020 AM3P paper and a few animations I originally posted on LinkedIn. Links to the original LinkedIn posts are provided where applicable.</p>
+<section id="introduction-why-are-iri-prediction-models-in-m-e-pavement-design-empirical-at-best" class="level1">
+<h1>1. Introduction: Why Are IRI Prediction Models in M-E Pavement Design “Empirical” At Best?</h1>
+<section id="brief-overview-of-mechanistic-empirical-m-e-pavement-design" class="level2">
+<h2 class="anchored" data-anchor-id="brief-overview-of-mechanistic-empirical-m-e-pavement-design">Brief Overview of Mechanistic-Empirical (M-E) Pavement Design</h2>
+<p>Before getting into the discussion of IRI prediction models, let me first provide a quick high-level overview of the M-E Pavement Design methodology. Why is such a methodology even referred to as “Mechanistic-Empirical (M-E)”? Easy. It is because there are 2 fundamental components in a M-E pavement design procedure. These components are:</p>
+<ol type="1">
+<li><p><strong>Mechanistic models</strong> that compute the critical responses of a given pavement subjected to traffic and climate loads. More often than not, an M-E analysis package includes more than one mechanistic models for different pavement types.</p></li>
+<li><p><strong>Empirical models or transfer functions</strong> that relate the critical responses obtained from the mechanistic model to pavement damage and field-observed distresses. Regression equations or other types of statistical methods are most frequently used for these transfer functions.</p></li>
+</ol>
+<p>If you have some experience in M-E pavement design, it is more than likely that I have already provided you with more than enough information. But for those who don’t, let me explain that a little more.</p>
+<p>Let us assume that fatigue cracking of Asphalt Concrete (AC) pavements is the only pavement distress we are concerned with. To keep the discussion as simple as possible, let us also assume that the only thing we can control is the AC thickness. Then the pavement design problem essentially reduces to a simple question. What AC thickness do we need to let the pavement withstand the amount of traffic I am expecting on this pavement during its design life?</p>
+<p>At this point, I can gather all of the relevant inputs I need (e.g., layer thickness and modulus) for the mechanistic analysis and run the simulations for a wide range of AC thicknesses. The outcome of the simulations will be a range of “critical strains (or stresses)” for fatigue cracking. Let’s say the critical strains from the mechanistic simulation ranged from 100 to 300 microstrains under a single load pass. I know that 100 microstrains are likely better than 300 microstrains because it exhibits 3 times less strain magnitude for the AC material. But does this mean the AC thickness corresponding to 100 microstrains will have 3 times more “life” compared to the AC thickness with 300 microstrains? The answer to this question is NO. Things are not that simple.</p>
+<p>The bigger problem, however, is that we have no idea how many load passes the pavement with 100 microstrains will withstand before failing. Is it 1,000 passes? 1.0 million passes? 10 or 100 million passes? What about the pavement with 300 microstrains?</p>
+<p>This is where the empirical models or transfer functions come into play! The purpose of the transfer function is to bridge the gap between the results we get from mechanistic simulations to what we observe in the field. To keep the discussion brief, let’s just say that the transfer functions are some sort of “Regression Equations” that take the critical response (e.g., 100 or 300 microstrains) from the mechanistic simulation as input and provide us with the amount of distress (e.g., cracking) after certain number of load passes. Easy enough, right?</p>
+<p>One thing I want to emphasize again is that because these transfer functions are mostly based on statistical regression, they need to be “calibrated”. In other words, the coefficients of the regression equation must be determined such that the amount of distress predicted by the transfer function can match what we observed in the field. This is why the transfer functions are categorized as “Empirical” methods. Also, because these empirical methods must be calibrated, you will almost always see some sort of a scatter plot showing the relationship between the “Measured” vs.&nbsp;“Predicted (from transfer functions)” amount of distress as a result of calibration.</p>
+<p>Sorry it was lengthier than I originally thought. I only discussed cracking as an example here but the same broad methodology can also be applied for different pavement distresses such as rutting. Again, this was only supposed to be a high-level overview. The actual M-E Pavement Design methodologies are much more involved and complicated but they are not our focus here. Now, let’s stay on course and talk about IRI.</p>
+</section>
+<section id="what-about-the-iri-prediction-methods" class="level2">
+<h2 class="anchored" data-anchor-id="what-about-the-iri-prediction-methods">What about the IRI Prediction Methods?</h2>
+<p>Before I start talking about IRI again, I think it is important to revisit the definition of IRI. I had already provided the full definition of IRI in my previous post (<a href="https://leehyu20.github.io/hyung-s-lee/posts/iri-what-is-iri/">IRI-01</a>), so I will not repeat everything here. For our current discussion, we only need to revisit 2 out of the 5 bullets that fully define IRI.</p>
+<div class="iri02-bluebox">
+<p><strong>Two (2) Important Bullets from Full Definition of IRI (from Sayers, 1995)</strong></p>
+<ul>
+<li>The smoothed profile is filtered using a quarter-car <strong>simulation</strong>, with specific parameter values (<strong>Golden Car</strong>), at a simulated speed of 80 km/hr (49.7 mph).</li>
+<li>The <strong>simulated suspension motion</strong> is linearly accumulated and divided by the length of the profile to yield <strong>IRI</strong>. Thus, IRI has units of slope, such as inches per mile or meters per kilometer.</li>
+</ul>
+</div>
+<p>What are the above bullets telling us? Here are the 2 most important takeaways.</p>
+<div class="iri02-bluebox">
+<ol type="1">
+<li><strong>IRI is NOT DIRECTLY MEASURED.</strong> A profiler measures the longitudinal pavement surface profile, from which IRI is calculated.</li>
+<li><strong>IRI is MECHANISTICALLY CALCULATED.</strong> By definition, the Golden Car simulation provides the IRI from a known longitudinal profile.</li>
+</ol>
+</div>
+<p>Now, do you see where I am going with this? This is where IRI becomes a little different from other distresses such as cracking and rutting. For cracking, we can survey the pavement and measure the amount of cracking in the field. For rutting, we can measure the rut depth. Then, we can compare those field-observed distresses against the values predicted from the M-E pavement analysis package (or its empirical transfer function). As I mentioned earlier, the measured vs.&nbsp;predicted comparisons of the distresses may also show us how well the calibration was conducted for the empirical transfer functions. Nothing terribly mysterious here.</p>
+<p>Then what about IRI? As part of the broader M-E pavement analysis framework, we frequently compare “Measured IRI” with “Predicted IRI”. Yes, I know. <strong>I just emphasized that IRI is NOT DIRECTLY MEASURED in my first takeaway shown above! In this context, the so-called “Measured IRI” simply refers to the IRI CALCULATED from the longitudinal pavement profile measured by a profiler</strong>. So, there is nothing wrong with comparing measured and predicted IRI. We just need to remember what is actually meant by “Measured IRI” and what was actually measured vs.&nbsp;calculated.</p>
+<p>Now, let’s revisit my second takeaway. <strong>By definition, IRI is mechanistically calculated</strong>. Once we have a measured pavement profile, we can run the standardized Golden Car simulation to calculate IRI. All we need for that is a computer and an algorithm for the Golden Car simulation. That is it! We do not need a calibrated transfer function, a regression equation, or even any other pavement-related knowledge to calculate IRI from that profile. In other words, <strong>there is no empirical component in the calculation of IRI</strong>.</p>
+<p>Now, let’s think about how we could predict future IRI. <strong>If we could predict the future pavement profile using a completely mechanistic or theoretical solution, we could also predict future IRI in a fully mechanistic manner</strong>. All I would have to do is run the Golden Car over that predicted profile. Simple, right? Oh well… I wish everything was that simple!</p>
+<p>The problem is that predicting how a pavement surface changes after millions of truck passes is much more complicated than calculating IRI from a known profile. Permanent deformation, cracking, material variability, climate, and other factors all affect how the pavement surface profile changes in the future. We simply do not have a sufficiently complete, reliable, purely mechanistic way to predict every change in surface elevation at every location along the road. So, similar to the fatigue cracking example I discussed earlier, this is where some of the empirical relationships can help us.</p>
+</section>
+<section id="why-representative-rut-depth-and-cracking-are-not-enough" class="level2">
+<h2 class="anchored" data-anchor-id="why-representative-rut-depth-and-cracking-are-not-enough">Why Representative Rut Depth and Cracking Are Not Enough</h2>
+<p>Again, the core idea behind Mechanistic-Empirical IRI prediction is to keep using the mechanistic analysis portion (i.e., Golden Car simulation) over the future profiles that are predicted in some empirical or mechanistic-empirical manner. But how can we predict the future profile? The M-E pavement analysis can already predict the pavement distresses we may need for that purpose, so can we just use the distress predictions from our existing M-E pavement analysis? Not really. Most M-E pavement analysis packages give us a representative or section-average rut depth and perhaps some measure of cracking. But these results only tell us how much distress is predicted, not necessarily where the predicted distress occurs along the pavement. Remember, we are trying to predict the future pavement surface profile we need for the Golden Car simulation, not just an overall amount or severity of the distresses.</p>
+<p>A single rut-depth value does not tell us how the surface elevation varies from one station to another. Similarly, knowing that a pavement has a certain amount of cracking does not tell us what those cracks have done to the longitudinal surface profile. Without that spatial information, we cannot construct the future profile needed for our Golden Car simulation. I will illustrate this in a very simple example shown in Figure 1.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/figure01.png" class="img-fluid figure-img" style="width:96.0%" alt="Figure 1. Uniform 0.25-in. rutting leaves IRI unchanged (Lee, 2019)."></p>
+</figure>
+</div>
+<div class="iri02-caption">
+<p><em>Figure 1. Uniform 0.25-in. rutting leaves IRI unchanged (Lee, 2019).</em></p>
+</div>
+<p>The left-hand side of Figure 1 shows a 500-ft-long pavement profile. The surface is perfectly flat except for a single half-sine bump with a 0.75-in height over a distance of 15-ft. Let’s assume this is our initial profile (before any significant traffic loading). The IRI I calculated for this profile is 31.1 in/mi.</p>
+<p>Now suppose a conventional M-E distress model predicted 0.25-in rut depth for this pavement section. What can we do with this one representative rut depth? Let’s say the pavement rutted 0.25-in uniformly along the entire 500-ft section length, as shown in the right-hand side of Figure 1. In this case, the entire 500-ft pavement surface profile moved down uniformly. The IRI for this “uniformly rutted” pavement surface is still 31.1 in/mi.</p>
+<p>Why? Because lowering every point by the same amount does not change the SHAPE of the profile. The Golden Car encounters exactly the same bumps and valleys and accumulates exactly the same suspension movement. The same problem applies to a section-level cracking prediction. We may know how much cracking was predicted, but not necessarily the nonuniform change in elevation caused by the cracks along the 500-ft section length. This is the missing information for a profile-based Mechanistic-Empirical IRI prediction.</p>
+</section>
+<section id="a-few-empirical-iri-prediction-equations" class="level2">
+<h2 class="anchored" data-anchor-id="a-few-empirical-iri-prediction-equations">A Few Empirical IRI Prediction Equations</h2>
+<p>Since our conventional M-E pavement analysis methods do not provide us with the inputs we want for M-E prediction of IRI, one question we should ask is, of course, the following.</p>
+<p><span class="iri02-red"><strong>“How is IRI predicted in current M-E pavement analysis procedures?”</strong></span></p>
+<p>The quick answer is that IRI predicted directly using purely empirical relationships. Let’s take a look at a few examples. Table 1 shows 3 simple equation forms for empirical IRI prediction methods that frequently appear in literature. As you see in the table, these equations are mostly based on initial IRI (or <em>IRI₀</em>) and pavement age with some arbitrary coefficients β and γ that need to be determined from calibration.</p>
+<p><strong>Table 1. Examples of empirical IRI prediction equations (from Lee, 2020).</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Model type</th>
+<th style="text-align: left;">Functional form</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Exponential function</td>
+<td style="text-align: left;"><span class="math inline">\(IRI = IRI_0 \cdot e^{\beta \cdot Age}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Power function</td>
+<td style="text-align: left;"><span class="math inline">\(IRI = IRI_0 \cdot Age^{\beta}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Polynomial function</td>
+<td style="text-align: left;"><span class="math inline">\(IRI = IRI_0 + \beta \cdot Age + \gamma \cdot Age^2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The regression-type equations shown in Table 1 are very straight forward, easy to understand, and useful for some applications for sure. I actually used one of these equation forms for one of my past research projects. But it is very obvious that these are empirical equations. There is nothing mechanistic about these equation forms.</p>
+<p>Okay, then what about the IRI prediction model in AASHTOWare Pavement ME? This one is a little more interesting because it does not rely only on pavement age. More specifically, Pavement ME uses the following equation for predicting the IRI of flexible pavements.</p>
+<div class="iri02-equation-row">
+<p><span class="math display">\[
+IRI = IRI_{0} + C_{1}(RD) + C_{2}(FC) + C_{3}(TC) + C_{4}(SF)
+\]</span></p>
+<p><span class="iri02-equation-number">(1)</span></p>
+</div>
+<p>where <em>RD</em> is rut depth, <em>FC</em> is fatigue cracking, <em>TC</em> is transverse cracking, <em>SF</em> is site factor, and <em>C₁</em> through <em>C₄</em> are calibration coefficients.</p>
+<p>At first glance, you may think, ‘Well, rutting and cracking are predicted from M-E pavement analysis, so isn't this an M-E IRI prediction model?’ Fair question! The distress predictions may indeed come from mechanistic pavement responses combined with empirical transfer functions. But take another look at Equation (1). Where is the future pavement profile? Where is the mechanistic Golden Car simulation? Neither one is there. The equation goes directly from predicted distresses and site factors to an IRI value using calibrated coefficients.</p>
+<p>Therefore, even though this equation belongs to a larger M-E pavement design framework, the <strong>IRI prediction itself is empirical</strong>. It does not perform the mechanistic Golden Car simulation which is included in the definition of IRI. Am I saying that the equation is wrong? Absolutely not! It is practical, computationally efficient, and calibrated against observed pavement performance. I just want to distinguish between purely empirical IRI prediction models and the M-E methodology which still uses the mechanistic Golden Car model.</p>
+</section>
+</section>
+<section id="mechanistic-empirical-m-e-iri-prediction-the-basic-idea" class="level1">
+<h1>2. Mechanistic-Empirical (M-E) IRI Prediction – The Basic Idea</h1>
+<p>Okay. I hope I have convinced you that it is the future pavement profile that we need to predict for M-E IRI prediction. But how can we predict the future profile of a pavement surface? A visual illustration of the basic idea is shown in Figure 2 and a quick summary of the procedure is provided below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/figure02.png" class="img-fluid figure-img" style="width:96.0%" alt="Figure 2. Profile-based M-E IRI prediction procedure."></p>
+</figure>
+</div>
+<div class="iri02-caption">
+<p><em>Figure 2. Profile-based M-E IRI prediction procedure.</em></p>
+</div>
+<div class="iri02-bluebox iri02-steps">
+<p><strong>Mechanistic-Empirical (M-E) IRI Prediction Procedure</strong></p>
+<ol type="1">
+<li>Starting with an initial profile, simulate the response of a truck traveling over the profile using a <strong>Vehicle Dynamics model</strong>. The outcome is a “dynamic” or “time-varying” load magnitude for the tire(s) included in the vehicle model.</li>
+<li>Predict the critical pavement response (i.e., stress or strain) under the time-varying or spatially varying load magnitude using a <strong>Pavement Response model</strong>. The outcome, of course, is the critical pavement response that varies along the length of the simulated section.</li>
+<li>Using the spatially varying response and other relevant pavement-related inputs, predict the spatially varying permanent deformation along the roadway with <strong>Empirical Transfer Functions</strong>.</li>
+<li>Update the pavement profile using the spatially varying permanent deformation and calculate IRI using the Golden Car simulation.</li>
+<li>Repeat the above process.</li>
+</ol>
+</div>
+<p>For the examples I will show you subsequently, I used two different truck models. Figure 3 shows the “Quarter-Truck” model. This represents the simplest mechanical vehicle model that you will find in literature and in vehicle-dynamic textbooks. And yes, it looks awfully similar to the “Quarter-Car” model, doesn’t it? That is because both Quarter-Truck and Quarter-Car models share the same mechanical components. However, their properties are quite different. To keep it brief, let me just say that the Quarter-Truck model has a relatively stiffer suspension and a relatively weaker tire when compared to the Golden Car model. If you are interested, you can find the exact parameter values for the Quarter-Truck model in my FWDUG presentation.</p>
+<p>Figure 4 shows the three-dimensional (3D) truck–trailer model with 14 Degrees of Freedom (DOFs). It may look a little more complicated, and yes, the math behind it is much more involved than the simple Quarter-Truck model. But in the vehicle dynamics world, this is still considered to be a simple model because it is just a bunch of masses, linear springs, and linear dashpots connected together. In reality, the vehicle suspensions and other components are highly nonlinear and much more complicated. But for me, I think this is good enough for what we are trying to do!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/figure03.png" class="img-fluid figure-img" style="width:46.0%" alt="Figure 3. Quarter-truck model."></p>
+</figure>
+</div>
+<div class="iri02-caption">
+<p><em>Figure 3. Quarter-truck model.</em></p>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/figure04.png" class="img-fluid figure-img" style="width:96.0%" alt="Figure 4. 3D truck–trailer model (14 DOFs)."></p>
+</figure>
+</div>
+<div class="iri02-caption">
+<p><em>Figure 4. 3D truck–trailer model (14 DOFs).</em></p>
+</div>
+<p>As for the pavement response model, I used my moving-load implementation of ViscoWave to calculate the pavement responses under the moving tire loads. But for this purpose, you could use any pavement response model you feel comfortable with, as long as the model can produce the necessary responses for the next step.</p>
+<p>Before I introduce the empirical transfer functions I used for my numerical experiments, let me first show you how the vehicle dynamics model and the pavement response model work together. Animation 1 shows the truck–trailer moving over a pavement profile, along with the dynamic tire loads predicted from the vehicle model. It also shows the associated pavement deflections predicted from ViscoWave, the pavement response model I used. On a personal note, Animation 1 is the very first animation I made for LinkedIn and I had it posted as a LinkedIn article rather than a post (Why? I have no idea now!).</p>
+<video controls="" preload="metadata" playsinline="" style="display:block;width:100%;max-width:850px;height:auto;margin:1rem auto;" aria-label="IRI-02 animation 1"><source src="media/Staley_Full_Truck_Tractor-2.mp4" type="video/mp4">Your browser does not support HTML5 video.</video>
+<div class="iri02-caption">
+<p><em>Animation 1. Truck–trailer motion, tire loads, and pavement deflections (<a href="https://lnkd.in/p/epzba9xY">Animation_1_LinkedIn_Post</a>, <a href="https://www.linkedin.com/pulse/pavement-deflection-under-moving-dynamic-load-3d-model-hyung-lee/">Animation_1_LinkedIn_Article</a>).</em></p>
+</div>
+<p>Animation 2 is essentially the same as Animation 1, but it also includes the longitudinal stress and strain responses at the bottom of the asphalt (which can be considered as the critical pavement response for fatigue cracking). So, it is much “busier” than Animation 1.</p>
+<video controls="" preload="metadata" playsinline="" style="display:block;width:100%;max-width:850px;height:auto;margin:1rem auto;" aria-label="IRI-02 animation 2"><source src="media/Staley_Full_Truck_Tractor_Deflection_Stress_Strain.mp4" type="video/mp4">Your browser does not support HTML5 video.</video>
+<div class="iri02-caption">
+<p><em>Animation 2. Truck–trailer motion, deflections, stresses, and strains (<a href="https://www.linkedin.com/pulse/pavement-deflection-stress-strain-under-moving-dynamic-hyung-lee/">Animation_2_LinkedIn_Article</a>).</em></p>
+</div>
+<p>Hope these animations gave you a better idea on how the spatially varying pavement responses were obtained from vehicle dynamics and pavement response models working together. Note that both these models are purely mechanistic. The last model we need is the empirical model or the transfer functions for calculating the spatially varying rut depth.</p>
+<p>For my numerical experiments, I used two different rutting models for updating the pavement profile. The first is the AASHTOWare Pavement ME rutting model for the Asphalt Concrete (AC) layer. This empirical model is given as the following.</p>
+<div class="iri02-equation-row">
+<p><span class="math display">\[
+RD_{AC} = \beta_{1r} k_z \varepsilon_{r(AC)} 10^{k_{1r}} n^{k_{2r}\beta_{2r}} T^{k_{3r}\beta_{3r}}
+\]</span></p>
+<p><span class="iri02-equation-number">(2)</span></p>
+</div>
+<p>where <em>ε<sub>z</sub></em><sub>(<em>AC</em>)</sub> is the vertical compressive strain at mid-depth of the AC layer, <em>n</em> is the number of load repetitions, <em>T</em> is the AC temperature, and <em>β</em> and <em>k</em> terms are the model coefficients. The important point is that the strain comes from the mechanistic pavement-response analysis, while the relationship that converts it into accumulated rutting is empirical.</p>
+<p>The second model was for the subgrade rutting. For this, I used the Asphalt Institute relationship shown as the following.</p>
+<div class="iri02-equation-row">
+<p><span class="math display">\[
+N_f = 1.365 \times 10^{-9} \varepsilon_{r(SG)}^{-4.477}
+\]</span></p>
+<p><span class="iri02-equation-number">(3)</span></p>
+</div>
+<p>where <em>ε<sub>z</sub></em><sub>(<em>SC</em>)</sub> is the vertical compressive strain on top of the subgrade layer and <em>N<sub>f</sub></em> is the allowable number of load repetitions to reach a subgrade rut depth of 0.5-in. So, I also used the Miner’s hypothesis along with Equation (3) to calculate the subgrade rut depth.</p>
+</section>
+<section id="four-numerical-experiments" class="level1">
+<h1>3. Four Numerical Experiments</h1>
+<p>Finally, I am ready to show you some examples on how the 3 models (vehicle dynamics, pavement response, and transfer functions) can come altogether to start predicting future profiles and how IRI changes! In these examples, I used a simple 3-layer pavement system: a 12-in AC layer and a 12-in base layer over subgrade with typical modulus inputs with AC being viscoelastic subjected to a temperature of 70˚F. I will first present some animations that show you how the surface profile changed from zero to 20 million passes of the truck (at every 50,000 passes), then look into the rut depths as well as the IRI.</p>
+<section id="experiment-1-one-bump-and-a-quarter-truck-model" class="level2">
+<h2 class="anchored" data-anchor-id="experiment-1-one-bump-and-a-quarter-truck-model">3.1 Experiment #1 — One Bump and a Quarter-Truck Model</h2>
+<p>For Experiment #1, I returned to the same 500-ft pavement profile from Figure 1, a perfectly smooth pavement surface except for a single half-sine bump with a 0.75-in height over a distance of 15-ft. I used the Quarter-Truck model to obtain the dynamic loads, calculated the pavement response, and then used the empirical transfer functions to update the surface profile. Animation 3 shows how this pavement surface profile changes due to the varying rut depth along its length. Yes, this is a rather unrealistic pavement and at the same time, an unrealistic vehicle. That was intentional. I wanted to start with the simplest example before making the problem more complicated.</p>
+<video controls="" preload="metadata" playsinline="" style="display:block;width:100%;max-width:850px;height:auto;margin:1rem auto;" aria-label="IRI-02 animation 3"><source src="media/halfsine-quarter-truck.mp4" type="video/mp4">Your browser does not support HTML5 video.</video>
+<div class="iri02-caption">
+<p><em>Animation 3. Single bump with a quarter-truck model.</em></p>
+</div>
+<p>Not bad for a first trial, right? Figure 5 shows the progression of the total (i.e., asphalt + subgrade) rut depth averaged over the 500-ft section length. Note that there are 2 different series in the plot. The “Without Dynamic Load” is the rut depth that the empirical transfer function predicted under the “static weight” of the Quarter-Truck which in this case was 9,000 lbs. This is basically the scenario that will give us a “constant rut depth” throughout the section (and hence no increase in IRI) as we saw in Figure 1.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/figure05.png" class="img-fluid figure-img" style="width:83.0%" alt="Figure 5. Experiment #1: representative rut depth."></p>
+</figure>
+</div>
+<div class="iri02-caption">
+<p><em>Figure 5. Experiment #1: representative rut depth.</em></p>
+</div>
+<p>The other rut depth “With Dynamic Load” corresponds to the “average” of the spatially varying rut depth. Because the spatially varying dynamic load oscillates around its static weight of 9,000 lbs, the average of the dynamic load over the 500-ft section is almost equal to its static weight. Consequently, the average dynamic response was close to the static response, and even after when these responses were passed through the highly nonlinear transfer functions, the average rut depths over the entire 500-ft section were quite close (with and without dynamic load) for the range of rut depth predicted here (mostly below 0.12-in).</p>
+<p>We already discussed that if we do not consider the dynamic load (or vehicle dynamics) and only consider the constant rut depth, the IRI will not change. So, in Figure 6, I am only showing you how the IRI changed based on M-E prediction with vehicle dynamics effect. After approximately 20 million simulated truck passes, IRI increased from 31.1 to 40.3 in/mi. Not exactly a dramatic change! Even though the average dynamic load was nearly identical to its static counterpart, the permanent deformation was not necessarily the same at every station (and that’s what you saw in Animation 3!). And those local changes in profile were enough to increase the IRI, although the overall increase in IRI was not all that significant.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/figure06.png" class="img-fluid figure-img" style="width:83.0%" alt="Figure 6. Experiment #1: M-E predicted IRI progression."></p>
+</figure>
+</div>
+<div class="iri02-caption">
+<p><em>Figure 6. Experiment #1: M-E predicted IRI progression.</em></p>
+</div>
+</section>
+<section id="experiment-2-perfectly-smooth-pavement-but-something-is-different-underneath" class="level2">
+<h2 class="anchored" data-anchor-id="experiment-2-perfectly-smooth-pavement-but-something-is-different-underneath">3.2 Experiment #2 — Perfectly Smooth Pavement, but Something Is Different Underneath</h2>
+<p>For Experiment #2, I decided to make the pavement even simpler. I removed the bump and started with a perfectly flat 500-ft-long profile. In other words, the initial IRI was literally 0.0 in/mi. There was not a single bump or dip for the Golden Car to respond to. So, how could this pavement possibly become rougher?</p>
+<p>Well, I changed something else below the pavement surface. Over a 15-ft section, the AC thickness was reduced from 12-in to 6-in, as shown in Figure 7. You can think of it as a hypothetical patch with a perfectly smooth finished surface. The pavement looked perfectly uniform from the surface, but it certainly was not underneath. I used the same Quarter-Truck model and empirical transfer functions as Experiment #1 to calculate how the rutting developed along the section. Animation 4 shows the resulting profile changes.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/figure07.png" class="img-fluid figure-img" style="width:83.0%" alt="Figure 7. Experiment #2: localized AC thickness reduction."></p>
+</figure>
+</div>
+<div class="iri02-caption">
+<p><em>Figure 7. Experiment #2: localized AC thickness reduction.</em></p>
+</div>
+<video controls="" preload="metadata" playsinline="" style="display:block;width:100%;max-width:850px;height:auto;margin:1rem auto;" aria-label="IRI-02 animation 4"><source src="media/thickness-quarter-truck.mp4" type="video/mp4">Your browser does not support HTML5 video.</video>
+<div class="iri02-caption">
+<p><em>Animation 4. Smooth surface with a localized AC thickness change.</em></p>
+</div>
+<p>Figure 8 shows the “average” rut depth results for both cases with and without dynamic load (or vehicle dynamics). For a fair comparison, the <strong>15-ft patched section was completed excluded</strong> when I calculated the average rut depths. So, the two curves in this figure represent the average rut depth outside the thinner section. Compared to what we had in Figure 5 for Experiment #1, the simulation with dynamic load showed a little more “deviation” from its static counterpart. Is this significant? Probably not when you are only looking at the averages of 0.13-in (with dynamics) and 0.12-in (without dynamics). But again, these are just the “Average” values which do not necessarily tell us how “rough” the pavement surface became. As you saw from Animation 4, the surface profile clearly seemed “rougher” than what we saw in Experiment #1. So, how was IRI affected?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/figure08.png" class="img-fluid figure-img" style="width:83.0%" alt="Figure 8. Experiment #2: average rut depth EXCLUDING the patched area."></p>
+</figure>
+</div>
+<div class="iri02-caption">
+<p><em>Figure 8. Experiment #2: average rut depth EXCLUDING the patched area.</em></p>
+</div>
+<p>Figure 9 shows the profile-based M-E prediction of IRI with vehicle dynamics effects. After approximately 20 million truck passes, the IRI increased from <strong>0.0 to 93.8 in/mi (Whoa!)</strong>. Remember, I started with a perfectly flat pavement surface. The thinner AC section responded differently to the applied loads and accumulated more rutting than its surrounding pavement. As a result, the profile was no longer flat and the Golden Car simply responded to the new “irregularity” produced by this differential rutting.</p>
+<p><span class="iri02-maroon"><strong>The pavement was initially smooth, but it was not structurally uniform. And eventually, the surface showed it.</strong></span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/figure09.png" class="img-fluid figure-img" style="width:83.0%" alt="Figure 9. Experiment #2: M-E predicted IRI progression."></p>
+</figure>
+</div>
+<div class="iri02-caption">
+<p><em>Figure 9. Experiment #2: M-E predicted IRI progression.</em></p>
+</div>
+</section>
+<section id="experiment-3-same-bump-but-now-i-bring-in-the-whole-truck" class="level2">
+<h2 class="anchored" data-anchor-id="experiment-3-same-bump-but-now-i-bring-in-the-whole-truck">3.3 Experiment #3 — Same Bump, but Now I Bring in the Whole Truck</h2>
+<p>Now, let’s bring back our single-bump pavement from Experiment #1. But this time, I replaced the Quarter-Truck with the 3D truck–trailer model shown in Figure 4. Its 14 DOFs allow the vehicle body and multiple axles to respond simultaneously as the truck travels over the bump. Compared with the Quarter-Truck, the model is more complicated, but that would not be a surprise, right?</p>
+<p>The basic prediction procedure did not change at all. I calculated the dynamic tire loads using vehicle dynamics model, passed them through the pavement response model, used the empirical rutting relationships to update the longitudinal profile, and ran the Golden Car simulation for IRI. What changed was the vehicle dynamics and, therefore, the spatial distribution of tire loads. I wanted to see how much difference that could make. Animation 5 shows how the single-bump profile gets updated under this 3D truck-trailer model.</p>
+<video controls="" preload="metadata" playsinline="" style="display:block;width:100%;max-width:850px;height:auto;margin:1rem auto;" aria-label="IRI-02 animation 5"><source src="media/halfsine-full-truck.mp4" type="video/mp4">Your browser does not support HTML5 video.</video>
+<div class="iri02-caption">
+<p><em>Animation 5. Single bump with the 3D truck–trailer.</em></p>
+</div>
+<p>Figure 10 shows the average rut depth history for both scenarios with and without dynamic loads. Now we have a completely different result. After roughly 20 million passes, the rutting under dynamic loads showed about 40% more representative rutting on average. It is also interesting to see that for the simulation with dynamic loads (or vehicle dynamics), the average rut depth started to grow almost exponentially at around 18 million passes of the truck-trailer system.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/figure10.png" class="img-fluid figure-img" style="width:83.0%" alt="Figure 10. Experiment #3: representative rut depth."></p>
+</figure>
+</div>
+<div class="iri02-caption">
+<p><em>Figure 10. Experiment #3: representative rut depth.</em></p>
+</div>
+<p>Surprised at the rut depth results? Then take a look at Figure 11 which shows the M-E IRI prediction for the dynamic scenario. The final IRI exceeded 1,000 in/mi. Yes, 1,000 in/mi (Thank god it was the Golden Car driving over it, not my vehicle!). Before anyone takes this 1,000 in/mi prediction too seriously, let me emphasize something. This was a deliberately simplified numerical experiment. I allowed the simulated pavement to deteriorate for about 20 million passes of the full truck-trailer system without any maintenance or rehabilitation, and the resulting surface became unrealistically rough. The goal was to show you the difference the truck models can make (i.e., compare results from Experiments 1 and 3), not to predict the actual condition of a highway after 20 million passes in a realistic manner.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/figure11.png" class="img-fluid figure-img" style="width:83.0%" alt="Figure 11. Experiment #3: M-E predicted IRI progression."></p>
+</figure>
+</div>
+<div class="iri02-caption">
+<p><em>Figure 11. Experiment #3: M-E predicted IRI progression.</em></p>
+</div>
+</section>
+<section id="experiment-4-a-real-ltpp-profile-and-a-3d-trucktrailer" class="level2">
+<h2 class="anchored" data-anchor-id="experiment-4-a-real-ltpp-profile-and-a-3d-trucktrailer">3.4 Experiment #4 — A Real LTPP Profile and a 3D Truck–Trailer</h2>
+<p>For my last experiment, I wanted to use a real pavement profile rather than another hypothetical artifact on the pavement surface. So, I started with an actual measured pavement profile from Long-Term Pavement Performance (LTPP) section 04-0261 in Arizona. The profiles were obtained shortly after construction of this pavement in 1994. The initial IRI was 38.9 in/mi in the left wheel path and 52.4 in/mi in the right wheel path.</p>
+<p>No Quarter-Truck simulation for this example, as I only simulated the 3D truck–trailer at 60 mph. For the pavement structure, I used the same structure as all other experiments (i.e., 12-in AC / 12-in base / subgrade) rather than the actual LTPP pavement structure.</p>
+<p>Just like the earlier experiments, I used the calculated pavement responses and empirical transfer functions to estimate location-dependent permanent deformation along the wheel paths. The predicted rutting changed the surface profiles, and I calculated the corresponding IRI using the Golden Car. I also estimated fatigue damage, but I did NOT necessarily translate this to actual cracking or any changes in surface profile. So, for this example, the predicted IRI growth still came from spatially varying rutting only. Animation 6 shows how the profiles of this LTPP section change along with the estimated fatigue damage.</p>
+<video controls="" preload="metadata" playsinline="" style="display:block;width:100%;max-width:850px;height:auto;margin:1rem auto;" aria-label="IRI-02 animation 6"><source src="media/ltpp-full-truck.mp4" type="video/mp4">Your browser does not support HTML5 video.</video>
+<div class="iri02-caption">
+<p><em>Animation 6. LTPP 04-0261 truck and pavement simulation.</em></p>
+</div>
+<p>Figures 12 and 13 summarize the corresponding rutting and fatigue-damage comparisons from the Left Wheel Path (LWP), respectively. Nothing dramatically different from what we already saw in previous examples. But let me point out one thing regarding Figure 13. The simulation with vehicle dynamics resulted in about twice as much fatigue damage compared to the static simulation. However, the magnitude of fatigue damage was still very small (&lt;2%) for both cases. At this level of damage, we can safely assume that no cracking on the pavement surface.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/figure12.png" class="img-fluid figure-img" style="width:83.0%" alt="Figure 12. Experiment #4: representative rut depth (LWP)."></p>
+</figure>
+</div>
+<div class="iri02-caption">
+<p><em>Figure 12. Experiment #4: representative rut depth (LWP).</em></p>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/figure13.png" class="img-fluid figure-img" style="width:83.0%" alt="Figure 13. Experiment #4: fatigue damage (LWP)."></p>
+</figure>
+</div>
+<div class="iri02-caption">
+<p><em>Figure 13. Experiment #4: fatigue damage (LWP).</em></p>
+</div>
+<p>Finally, Figure 14 shows the M-E IRI prediction results for both wheel paths. Both wheel paths start becoming rougher at a relatively slow pace, but then after about 10 million passes of the truck-trailer system, the IRI starts picking up very quickly and increases almost exponentially.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="media/figure14.png" class="img-fluid figure-img" style="width:96.0%" alt="Figure 14. LTPP 04-0261: M-E profile-based versus AASHTOWare IRI predictions."></p>
+</figure>
+</div>
+<div class="iri02-caption">
+<p><em>Figure 14. LTPP 04-0261: M-E profile-based versus AASHTOWare IRI predictions.</em></p>
+</div>
+<p>Now, let’s ask another interesting question. How do these profile-based M-E IRI prediction results compare to the empirical IRI equation in AASHTOWare Pavement ME (which does not consider vehicle dynamics or spatially varying rut depth)?</p>
+<p>Recall from Equation (1) that the rutting model in Pavement ME is a linear model including rut depth (<em>RD</em>), fatigue cracking (<em>FC</em>), transverse cracking (<em>TC</em>), and site factor (<em>SF</em>). Let’s think about this. Under my assumed condition of constant AC temperature of 70°F, there cannot be any transverse or thermal cracking (i.e., <em>TC</em> = 0). There obviously cannot be any freeze-thaw effects and this simulated pavement never received any precipitation, so <em>SF</em> = 0. Furthermore, according to Figure 13, the fatigue damage was less than 2% which is not enough to induce any full depth cracks, so <em>FC</em>=0. So, the only parameter that can increase the IRI is rut depth and IRI was a linear function of the average rut depth. That is exactly why you see the 2 linearly increasing IRI predictions in Figure 14.</p>
+<p>Now, does this mean the M-E IRI prediction is more accurate than the empirical methodology in AASHTOWare? Not necessarily<strong>!</strong> The empirical model was calibrated for practical pavement performance prediction. My numerical experiment was never validated against actual future pavement profiles, and it is probably more difficult to calibrate or verify the profiles that change over time. But you know what? It is definitely a fun concept!</p>
+<p>Before I conclude this section, here is a bonus animation for everyone. It basically combines the profile and IRI plot into a single animation for the left wheel path of this experiment. Surprisingly, out of all 4 experiments, this was the only animation that was posted on LinkedIn.</p>
+<video controls="" preload="metadata" playsinline="" poster="media/iri02-preview.png" style="display:block;width:100%;max-width:850px;height:auto;margin:1rem auto;" aria-label="IRI-02 animation 7"><source src="media/iri02-mechanistic-iri-progression-3x.mp4" type="video/mp4">Your browser does not support HTML5 video.</video>
+<div class="iri02-caption">
+<p><em>Animation 7. LTPP 04-0261 profile and IRI progression (<a href="https://lnkd.in/p/e72dByeT">Animation_7_LinkedIn_Post</a>).</em></p>
+</div>
+</section>
+</section>
+<section id="so-what-did-these-four-experiments-tell-us" class="level1">
+<h1>4. So, What Did These Four Experiments Tell Us?</h1>
+<p>So, what did we learn from all four experiments? The answer is actually rather simple. How much a pavement ruts is not necessarily the same as where it ruts. A representative rut-depth from static simulation can tell us how much it rutted, but the Golden Car needs to know where and how much it rutted for updating the longitudinal profile.</p>
+<p>Let’s summarize the experiments. In Experiment #1, the IRI increased only modestly, even though the average rutting with and without vehicle dynamics was nearly identical. Experiment #2 started with a perfectly smooth surface and developed roughness because of a hidden AC thickness variation. Experiment #3 showed how sensitive the results could become when a 3D truck–trailer model was used, although its extreme final IRI was clearly unrealistic. Finally, Experiment #4 used a measured LTPP profile rather than a hypothetical one. Different examples, but the same lesson. <strong>Spatial variability matters</strong>.</p>
+<p>There is another interesting part of these simulations. It is the feedback between the pavement and the truck. The pavement profile affects the vehicle motion and tire loads. Those loads affect pavement response, which the empirical transfer functions use to estimate permanent deformation. The permanent deformation then changes the profile and may change the tire loads during the next round of passes. So, the truck and pavement keep influencing each other. And the Golden Car calculates the IRI from whatever profile results. Sounds straightforward when I put it that way, doesn't it?</p>
+<p>I also want to emphasize again that I am not saying the M-E IRI prediction methods are superior to the empirical methods. The empirical methods are practical, computationally efficient, and calibrated using field observations. My point is that predicting an IRI value from representative distresses and predicting the future profile before calculating IRI are two different approaches. I think it is worth being clear about that distinction.</p>
+</section>
+<section id="limitations-because-models-are-still-models" class="level1">
+<h1>5. Limitations — Because Models Are Still Models</h1>
+<p>I want to emphasize that these were numerical experiments, not field-validated IRI forecasts. The first three examples used hypothetical profiles, and even the fourth (although it started with a measured LTPP profile) used simulated deterioration after that initial measurement. The animations help illustrate the mechanisms, but they do not, by themselves, demonstrate predictive accuracy.</p>
+<p>I also made quite a few simplifying assumptions. The vehicle models were relatively simple, the pavement properties and rutting relationships were prescribed, and the LTPP simulation used a constant 70°F AC temperature and the same truck configuration throughout. I did not account for any pavement rehabilitation, traffic wander, changing climate, or crack-induced changes in surface elevation. Real pavement deterioration is a little more complicated than my computer experiments!</p>
+<p>There is another problem that becomes especially important for <strong>PAVEMENT DESIGN</strong>. If we are evaluating an existing road, we can measure its longitudinal profile and use that as our starting point. But what if the pavement has not even been constructed? We obviously have no profile to measure! We may be able to specify an initial IRI, but that single number cannot tell us what the actual profile looks like. In fact, many very different profiles can have the same IRI. We would need a reasonable way to represent the future as-constructed profile before we could even begin updating it. And, of course, repeating the truck dynamics, pavement analysis, rutting calculations, and Golden Car simulations over millions of passes is not exactly cheap computationally. We have a standard Golden Car for IRI, but no universally accepted Golden Truck for predicting dynamic tire loads.</p>
+</section>
+<section id="closing-thoughts" class="level1">
+<h1>6. Closing Thoughts</h1>
+<p>In <a href="https://leehyu20.github.io/hyung-s-lee/posts/iri-what-is-iri/">IRI-01</a>, I explained how to calculate IRI from a known pavement profile using the Golden Car. In IRI-02, I wanted to ask a different question: can we predict what that pavement profile will look like in the future? Once we have the future profile, we already know how to calculate IRI. The difficult part is predicting how the surface changes under repeated traffic loading, not running the Golden Car.</p>
+<p>In my personal opinion, I like Experiment #2 the most. I started with a perfectly flat pavement, so its initial IRI was ZERO. But I had reduced the AC thickness over one short section, where the resulting permanent deformation differed from the surrounding pavement. Eventually, that difference created a surface irregularity and the IRI increased. The initial IRI did not tell me about the structural difference hiding underneath. And the average rut depth <strong>outside the patched section</strong> did not tell me where the new roughness developed. Simple example, but perfect for proving that it is not only about the initial pavement profile that matters. Any structural variability in the pavement itself can also affect the ride quality in the long term!</p>
+<p>So, are we ready to predict future IRI accurately for every pavement? Unfortunately, NO. The experiments were preliminary, and the challenges (especially predicting spatial deterioration and defining an initial profile for a pavement that does not yet exist) are still substantial. But I hope they illustrate why predicting a representative distress value is NOT the same as predicting future roughness. As usual, I started with what seemed like a simple question and ended up with quite a few more!</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ol type="1">
+<li><p>Lee, H. S. (2019). Effect of Moving Dynamic Loads on Pavement Performance. Presentation at the FWD User Group meeting, Alpharetta, Georgia. Original source of the four numerical examples and animations.</p></li>
+<li><p>Lee, H. S. (2020). Towards a Mechanistic-Empirical IRI Prediction. Conference paper (provided manuscript). Includes the methodology and LTPP section 04-0261 case study.</p></li>
+<li><p>Lee, H. S. (2026). IRI-01 | What Exactly Is the International Roughness Index (IRI), and How Is It Calculated? Research website: https://leehyu20.github.io/hyung-s-lee/posts/iri-what-is-iri/</p></li>
+<li><p>Sayers, M. W. (1995). “On the Calculation of International Roughness Index from Longitudinal Road Profile.” Transportation Research Record, No.&nbsp;1501, pp.&nbsp;1–12. https://trid.trb.org/View/452992</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp("https:\/\/leehyu20\.github\.io\/hyung-s-lee\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Hyung S. Lee</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Built with Quarto</div>
+  </div>
+</footer>
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
